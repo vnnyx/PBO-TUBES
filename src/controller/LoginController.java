@@ -29,8 +29,11 @@ public class LoginController implements ActionListener{
             loginBtnPerformed();
         }else if(src.equals(view_login.getDaftarBtn())){
             daftarBtnPerformed();
+        }else if(src.equals(view_login.getLihatPassword())){
+            lihatPswdPerformed();
         }
     }
+    
     
     public void loginBtnPerformed(){
         
@@ -41,7 +44,11 @@ public class LoginController implements ActionListener{
         view_login.dispose();
     }
     
-    
-    
-    
+    public void lihatPswdPerformed(){
+        if(view_login.getLihatPassword().isSelected()){
+            view_login.getPassword().setEchoChar((char)0);
+        }else{
+            view_login.getPassword().setEchoChar('*');
+        }
+    }
 }

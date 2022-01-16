@@ -70,20 +70,24 @@ public class RegisController extends Database implements ActionListener{
     }
     
     public void nextBtnPerformed(){
+        String username = view_regis1.getUsername().getText();
+        String email = view_regis1.getEmail().getText();
         String password = String.valueOf(view_regis1.getPassword().getPassword());
         String confirm_password = String.valueOf(view_regis1.getConfirm_password().getPassword());
-        if(password.equals(confirm_password)){
+        if("".equals(username) || "".equals(email)|| "".equals(password)){
+            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+        }else if(!confirm_password.equals(password)){
+            JOptionPane.showMessageDialog(null, "Password tidak sesuai");
+        }else{
             addUser();
             view_regis2.setVisible(true);
             view_regis1.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Password tidak sesuai");
         }
-
     }
     
     public void backBtnPerformed(){
         new LoginController();
+        view_regis1.dispose();
     }
     
     public void unggahKTPBtnPerformed(){
@@ -124,6 +128,4 @@ public class RegisController extends Database implements ActionListener{
         view_regis2.dispose();
         new LoginController();
     }
-    
-    
 }
