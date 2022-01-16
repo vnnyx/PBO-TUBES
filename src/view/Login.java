@@ -5,8 +5,10 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -41,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         Password = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
-        Lihatpassword = new javax.swing.JCheckBox();
+        lihatPassword = new javax.swing.JCheckBox();
         loginBtn = new javax.swing.JButton();
         Belumpunyaakun = new javax.swing.JLabel();
         daftarBtn = new javax.swing.JButton();
@@ -93,11 +95,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        Lihatpassword.setBackground(new java.awt.Color(255, 255, 255));
-        Lihatpassword.setText("Lihat Password");
-        Lihatpassword.addActionListener(new java.awt.event.ActionListener() {
+        lihatPassword.setBackground(new java.awt.Color(255, 255, 255));
+        lihatPassword.setText("Lihat Password");
+        lihatPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LihatpasswordActionPerformed(evt);
+                lihatPasswordActionPerformed(evt);
             }
         });
 
@@ -142,7 +144,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lihatpassword)
+                    .addComponent(lihatPassword)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(Heading)
@@ -174,7 +176,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Lihatpassword)
+                .addComponent(lihatPassword)
                 .addGap(42, 42, 42)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -213,9 +215,9 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
-    private void LihatpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LihatpasswordActionPerformed
+    private void lihatPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lihatPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LihatpasswordActionPerformed
+    }//GEN-LAST:event_lihatPasswordActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
@@ -268,13 +270,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel Belumpunyaakun;
     private javax.swing.JLabel Gambar;
     private javax.swing.JLabel Heading;
-    private javax.swing.JCheckBox Lihatpassword;
     private javax.swing.JLabel Password;
     private javax.swing.JLabel Subheading;
     private javax.swing.JLabel Username;
     private javax.swing.JButton daftarBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JCheckBox lihatPassword;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
@@ -288,6 +290,10 @@ public class Login extends javax.swing.JFrame {
         return loginBtn;
     }
 
+    public JCheckBox getLihatPassword() {
+        return lihatPassword;
+    }
+
     public JPasswordField getPassword() {
         return password;
     }
@@ -299,5 +305,6 @@ public class Login extends javax.swing.JFrame {
     public void addActionListener(ActionListener e){
         daftarBtn.addActionListener(e);
         loginBtn.addActionListener(e);
+        lihatPassword.addActionListener(e);
     }
 }
