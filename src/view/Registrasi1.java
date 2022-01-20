@@ -79,11 +79,6 @@ public class Registrasi1 extends javax.swing.JFrame {
         nextBtn.setText("Selanjutnya");
         nextBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         nextBtn.setFocusable(false);
-        nextBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextBtnActionPerformed(evt);
-            }
-        });
 
         Email.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Email.setForeground(new java.awt.Color(51, 51, 51));
@@ -124,11 +119,6 @@ public class Registrasi1 extends javax.swing.JFrame {
         backBtn.setBorder(null);
         backBtn.setBorderPainted(false);
         backBtn.setContentAreaFilled(false);
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,14 +197,6 @@ public class Registrasi1 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nextBtnActionPerformed
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments

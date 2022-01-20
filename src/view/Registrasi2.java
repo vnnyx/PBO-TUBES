@@ -80,11 +80,6 @@ public class Registrasi2 extends javax.swing.JFrame {
         daftarBtn.setText("Daftar");
         daftarBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         daftarBtn.setFocusable(false);
-        daftarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daftarBtnActionPerformed(evt);
-            }
-        });
 
         FotoKTP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         FotoKTP.setForeground(new java.awt.Color(51, 51, 51));
@@ -113,11 +108,6 @@ public class Registrasi2 extends javax.swing.JFrame {
         unggahKTPBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         unggahKTPBtn.setForeground(new java.awt.Color(255, 255, 255));
         unggahKTPBtn.setText("Unggah Foto");
-        unggahKTPBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                unggahKTPBtnActionPerformed(evt);
-            }
-        });
 
         pathKTP.setText("Unggah foto KTP");
         pathKTP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -137,11 +127,6 @@ public class Registrasi2 extends javax.swing.JFrame {
         backBtn.setBorder(null);
         backBtn.setBorderPainted(false);
         backBtn.setContentAreaFilled(false);
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,18 +210,6 @@ public class Registrasi2 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void daftarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_daftarBtnActionPerformed
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtnActionPerformed
-
-    private void unggahKTPBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unggahKTPBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_unggahKTPBtnActionPerformed
 
     /**
      * @param args the command line arguments

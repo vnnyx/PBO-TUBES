@@ -16,12 +16,13 @@ import java.sql.SQLException;
  * @author Firdaus
  */
 public class Database {
+
     static final String DB_URL = "jdbc:mysql://db-mysql-do-do-user-7851304-0.b.db.ondigitalocean.com:25060/sewakendaraan";
     static final String DB_USER = "doadmin";
     static final String DB_PASS = "Gy0kEuurt5HuDGqw";
-    static Connection conn = null;
-    static Statement stmt = null;
-    static ResultSet rs = null;
+    protected Connection conn = null;
+    protected Statement stmt = null;
+    protected ResultSet rs = null;
 
     public void connectDB() {
         try {
@@ -47,5 +48,5 @@ public class Database {
     public void disconnectDB() throws SQLException {
         this.conn.close();
     }
-    
+
 }
