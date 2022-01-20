@@ -5,8 +5,10 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -41,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         Password = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
-        Lihatpassword = new javax.swing.JCheckBox();
+        lihatPassword = new javax.swing.JCheckBox();
         loginBtn = new javax.swing.JButton();
         Belumpunyaakun = new javax.swing.JLabel();
         daftarBtn = new javax.swing.JButton();
@@ -72,11 +74,6 @@ public class Login extends javax.swing.JFrame {
         username.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         username.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         username.setCaretColor(new java.awt.Color(0, 63, 130));
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         Password.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Password.setForeground(new java.awt.Color(51, 51, 51));
@@ -87,19 +84,9 @@ public class Login extends javax.swing.JFrame {
         password.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         password.setCaretColor(new java.awt.Color(0, 63, 130));
         password.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
 
-        Lihatpassword.setBackground(new java.awt.Color(255, 255, 255));
-        Lihatpassword.setText("Lihat Password");
-        Lihatpassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LihatpasswordActionPerformed(evt);
-            }
-        });
+        lihatPassword.setBackground(new java.awt.Color(255, 255, 255));
+        lihatPassword.setText("Lihat Password");
 
         loginBtn.setBackground(new java.awt.Color(51, 51, 255));
         loginBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -107,11 +94,6 @@ public class Login extends javax.swing.JFrame {
         loginBtn.setText("Login");
         loginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loginBtn.setFocusable(false);
-        loginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtnActionPerformed(evt);
-            }
-        });
 
         Belumpunyaakun.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Belumpunyaakun.setText("Belum punya akun?");
@@ -123,16 +105,6 @@ public class Login extends javax.swing.JFrame {
         daftarBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         daftarBtn.setBorderPainted(false);
         daftarBtn.setContentAreaFilled(false);
-        daftarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                daftarBtnMouseClicked(evt);
-            }
-        });
-        daftarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daftarBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -142,7 +114,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lihatpassword)
+                    .addComponent(lihatPassword)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(Heading)
@@ -174,7 +146,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Lihatpassword)
+                .addComponent(lihatPassword)
                 .addGap(42, 42, 42)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,30 +176,6 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
-
-    private void LihatpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LihatpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LihatpasswordActionPerformed
-
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginBtnActionPerformed
-
-    private void daftarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_daftarBtnActionPerformed
-
-    private void daftarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarBtnMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_daftarBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -268,13 +216,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel Belumpunyaakun;
     private javax.swing.JLabel Gambar;
     private javax.swing.JLabel Heading;
-    private javax.swing.JCheckBox Lihatpassword;
     private javax.swing.JLabel Password;
     private javax.swing.JLabel Subheading;
     private javax.swing.JLabel Username;
     private javax.swing.JButton daftarBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JCheckBox lihatPassword;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
@@ -288,6 +236,10 @@ public class Login extends javax.swing.JFrame {
         return loginBtn;
     }
 
+    public JCheckBox getLihatPassword() {
+        return lihatPassword;
+    }
+
     public JPasswordField getPassword() {
         return password;
     }
@@ -299,5 +251,6 @@ public class Login extends javax.swing.JFrame {
     public void addActionListener(ActionListener e){
         daftarBtn.addActionListener(e);
         loginBtn.addActionListener(e);
+        lihatPassword.addActionListener(e);
     }
 }

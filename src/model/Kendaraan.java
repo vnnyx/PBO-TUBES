@@ -19,7 +19,8 @@ public class Kendaraan {
     private int harga;
     private int kapasitas;
 
-    public Kendaraan(String nama, String merk, String warna, String cc, String foto1, String foto2, String foto3, String harga, String kapasitas) {
+    public Kendaraan(String nama, String merk, String warna, String cc, String foto1, String foto2, String foto3,
+            String harga, String kapasitas) {
         this.nama = nama;
         this.merk = merk;
         this.warna = warna;
@@ -31,6 +32,8 @@ public class Kendaraan {
         this.kapasitas = Integer.parseInt(kapasitas);
     }
 
+    public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas2) {
+    }
 
     public void setHarga(int harga) {
         this.harga = harga;
@@ -103,7 +106,5 @@ public class Kendaraan {
     public void setFoto3(String foto3) {
         this.foto3 = foto3;
     }
-    
-    
-    
+
 }
