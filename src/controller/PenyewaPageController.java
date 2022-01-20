@@ -53,9 +53,9 @@ public class PenyewaPageController extends Database implements MouseListener {
         } else if (src.equals(view_catalog.getNextPage())) {
             nextPageClicked();
         } else if (src.equals(view_catalog.getPanelGambar2())) {
-            detailKendaraanClicked();
+            detailKendaraanClicked2();
         } else if (src.equals(view_catalog.getPanelGambar3())) {
-            detailKendaraanClicked();
+            detailKendaraanClicked3();
         } else if (src.equals(view_catalog.getPreviousPage())) {
             previousPageClicked();
         }
@@ -231,6 +231,28 @@ public class PenyewaPageController extends Database implements MouseListener {
 
     public void detailKendaraanClicked() {
         String merk = view_catalog.getMerkKendaraan1().getText();
+        try {
+            showList(merk);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_detail.setVisible(true);
+        view_catalog.dispose();
+    }
+
+    public void detailKendaraanClicked2() {
+        String merk = view_catalog.getMerkKendaraan2().getText();
+        try {
+            showList(merk);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_detail.setVisible(true);
+        view_catalog.dispose();
+    }
+
+    public void detailKendaraanClicked3() {
+        String merk = view_catalog.getMerkKendaraan3().getText();
         try {
             showList(merk);
         } catch (Exception ex) {
