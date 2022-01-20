@@ -47,15 +47,15 @@ public class PenyewaPageController extends Database implements MouseListener {
     public void mouseClicked(MouseEvent me) {
         Object src = me.getSource();
         if (src.equals(view_catalog.getPanelGambar1())) {
-            detailKendaraanClicked();
+            detailKendaraanClicked(view_catalog.getMerkKendaraan1().getText());
         } else if (src.equals(view_detail.getBranchKatalog())) {
             branchKatalogClicked();
         } else if (src.equals(view_catalog.getNextPage())) {
             nextPageClicked();
         } else if (src.equals(view_catalog.getPanelGambar2())) {
-            detailKendaraanClicked2();
+            detailKendaraanClicked(view_catalog.getMerkKendaraan2().getText());
         } else if (src.equals(view_catalog.getPanelGambar3())) {
-            detailKendaraanClicked3();
+            detailKendaraanClicked(view_catalog.getMerkKendaraan3().getText());
         } else if (src.equals(view_catalog.getPreviousPage())) {
             previousPageClicked();
         }
@@ -229,30 +229,7 @@ public class PenyewaPageController extends Database implements MouseListener {
         view_detail.dispose();
     }
 
-    public void detailKendaraanClicked() {
-        String merk = view_catalog.getMerkKendaraan1().getText();
-        try {
-            showList(merk);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        view_detail.setVisible(true);
-        view_catalog.dispose();
-    }
-
-    public void detailKendaraanClicked2() {
-        String merk = view_catalog.getMerkKendaraan2().getText();
-        try {
-            showList(merk);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        view_detail.setVisible(true);
-        view_catalog.dispose();
-    }
-
-    public void detailKendaraanClicked3() {
-        String merk = view_catalog.getMerkKendaraan3().getText();
+    public void detailKendaraanClicked(String merk) {
         try {
             showList(merk);
         } catch (Exception ex) {
