@@ -198,9 +198,6 @@
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="daftarBtnActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="FotoKTP">
           <Properties>
@@ -281,9 +278,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Unggah Foto"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unggahKTPBtnActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="pathKTP">
           <Properties>
@@ -335,9 +329,6 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

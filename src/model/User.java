@@ -10,6 +10,7 @@ package model;
  * @author Firdaus
  */
 public class User {
+
     private String username;
     private String password;
     private String email;
@@ -73,6 +74,13 @@ public class User {
         this.foto_ktp = foto_ktp;
         this.foto_diri = foto_diri;
     }
-    
-    
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+
+    }
 }

@@ -74,11 +74,6 @@ public class Login extends javax.swing.JFrame {
         username.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         username.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         username.setCaretColor(new java.awt.Color(0, 63, 130));
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         Password.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Password.setForeground(new java.awt.Color(51, 51, 51));
@@ -89,19 +84,9 @@ public class Login extends javax.swing.JFrame {
         password.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         password.setCaretColor(new java.awt.Color(0, 63, 130));
         password.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
 
         lihatPassword.setBackground(new java.awt.Color(255, 255, 255));
         lihatPassword.setText("Lihat Password");
-        lihatPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lihatPasswordActionPerformed(evt);
-            }
-        });
 
         loginBtn.setBackground(new java.awt.Color(51, 51, 255));
         loginBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -109,11 +94,6 @@ public class Login extends javax.swing.JFrame {
         loginBtn.setText("Login");
         loginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loginBtn.setFocusable(false);
-        loginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtnActionPerformed(evt);
-            }
-        });
 
         Belumpunyaakun.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Belumpunyaakun.setText("Belum punya akun?");
@@ -125,16 +105,6 @@ public class Login extends javax.swing.JFrame {
         daftarBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         daftarBtn.setBorderPainted(false);
         daftarBtn.setContentAreaFilled(false);
-        daftarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                daftarBtnMouseClicked(evt);
-            }
-        });
-        daftarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daftarBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,30 +176,6 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
-
-    private void lihatPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lihatPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lihatPasswordActionPerformed
-
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginBtnActionPerformed
-
-    private void daftarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_daftarBtnActionPerformed
-
-    private void daftarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarBtnMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_daftarBtnMouseClicked
 
     /**
      * @param args the command line arguments
