@@ -10,6 +10,9 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
@@ -37,15 +40,13 @@ public class Helper {
     }
 
     public String priceFormat(int price) {
-        String harga = String.valueOf(price);
-        if (harga.length() == 6) {
-            return harga.substring(0, 3) + "." + harga.substring(3, 6) + ",00";
-        } else if (harga.length() == 5) {
-            return harga.substring(0, 2) + "." + harga.substring(2, 5) + ",00";
-        } else {
-            return harga.substring(0, 1) + "." + harga.substring(1, 4) + ",00";
-        }
-
+        DecimalFormat kursIDN = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIDN.setDecimalFormatSymbols(formatRp);
+        return kursIDN.format(price);
     }
 
     public ImageIcon getImage(JLabel label, String path) throws Exception {
