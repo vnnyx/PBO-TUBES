@@ -6,12 +6,15 @@
 package controller;
 
 import database.Database;
+import helper.Helper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.Penyewa;
+import repository.Repository;
+import service.UserService;
 import view.Registrasi1;
 import view.Registrasi2;
 
@@ -24,8 +27,14 @@ public class RegisController extends Database implements ActionListener {
     private Registrasi1 view_regis1;
     private Registrasi2 view_regis2;
     private Penyewa model_penyewa;
+    private Helper helper;
+    private Repository repo;
+    private UserService userService;
 
     public RegisController() {
+        userService = new UserService();
+        repo = new Repository();
+        helper = new Helper();
         view_regis1 = new Registrasi1();
         view_regis2 = new Registrasi2();
         view_regis1.setVisible(true);
@@ -51,7 +60,7 @@ public class RegisController extends Database implements ActionListener {
         }
     }
 
-    public void addUser() {
+    public void tempUser() {
         String username = view_regis1.getUsername().getText();
         String email = view_regis1.getEmail().getText();
         String password = String.valueOf(view_regis1.getConfirm_password().getPassword());
@@ -60,44 +69,44 @@ public class RegisController extends Database implements ActionListener {
 
     public void updateUser() {
         String alamat = view_regis2.getAlamat().getText();
-        String ktp = view_regis2.getPathKTP().getText();
-        ktp = ktp.replace("\\", "\\\\");
-        String foto = view_regis2.getPathFoto().getText();
-        foto = foto.replace("\\", "\\\\");
         model_penyewa.setAlamat(alamat);
-        model_penyewa.setFoto_ktp(ktp);
-        model_penyewa.setFoto_diri(foto);
     }
 
     public void nextBtnPerformed() {
-        connectDB();
-        String username_db = "";
         String username = view_regis1.getUsername().getText();
-        String email = view_regis1.getEmail().getText();
-        String query = "SELECT username FROM user WHERE username='%s'";
-        query = String.format(query, username);
-        try {
-            executeQuery(query);
-            while (rs.next()) {
-                username_db = rs.getString("username");
+        String password = String.valueOf(view_regis1.getPassword().getPassword());
+        String confirm_password = String.valueOf(view_regis1.getConfirm_password().getPassword());
+        if (!password.equals(confirm_password)) {
+            JOptionPane.showMessageDialog(null, "Password tidak sesuai");
+        } else {
+            Penyewa penyewa = new Penyewa(username, confirm_password);
+            try {
+                penyewa = userService.validatePenyewa(penyewa);
+                if (penyewa.getUsername() != null) {
+                    JOptionPane.showMessageDialog(null, "Username sudah digunakan");
+                } else {
+                    tempUser();
+                    view_regis2.setVisible(true);
+                    view_regis1.setVisible(false);
+                }
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
-            disconnectDB();
+        }
+    }
+
+    public void daftarBtnPerformed() {
+        updateUser();
+        try {
+            repo.addUser(model_penyewa);
+            JOptionPane.showMessageDialog(null, "Sukses daftar akun");
+            view_regis2.dispose();
+            new LoginController();
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        String password = String.valueOf(view_regis1.getPassword().getPassword());
-        String confirm_password = String.valueOf(view_regis1.getConfirm_password().getPassword());
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
-        } else if (!confirm_password.equals(password)) {
-            JOptionPane.showMessageDialog(null, "Password tidak sesuai");
-        } else if (username.equals(username_db)) {
-            JOptionPane.showMessageDialog(null, "Username sudah digunakan");
-        } else {
-            addUser();
-            view_regis2.setVisible(true);
-            view_regis1.dispose();
-        }
+
     }
 
     public void backBtnPerformed() {
@@ -111,6 +120,13 @@ public class RegisController extends Database implements ActionListener {
         File file = chooser.getSelectedFile();
         String filename = file.getAbsolutePath();
         view_regis2.getPathKTP().setText(filename);
+        try {
+            String imageURL = helper.uploadImage(file);
+            model_penyewa.setFoto_ktp(imageURL);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public void unggahFotoBtnPerformed() {
@@ -119,28 +135,16 @@ public class RegisController extends Database implements ActionListener {
         File file = chooser.getSelectedFile();
         String filename = file.getAbsolutePath();
         view_regis2.getPathFoto().setText(filename);
+        try {
+            String imageURL = helper.uploadImage(file);
+            model_penyewa.setFoto_diri(imageURL);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void backBtn2Performed() {
         new RegisController();
         view_regis2.dispose();
-    }
-
-    public void daftarBtnPerformed() {
-        updateUser();
-        connectDB();
-        String sql = "INSERT INTO `user` (`role`, `username`, `email`, `password`, `alamat`, `foto_ktp`, `foto_diri`) VALUES ("
-                + "'%s', '%s', '%s', '%s', '%s', '%s', '%s')";
-        sql = String.format(sql, model_penyewa.getRole(), model_penyewa.getUsername(), model_penyewa.getEmail(), model_penyewa.getPassword(),
-                model_penyewa.getAlamat(), model_penyewa.getFoto_ktp(), model_penyewa.getFoto_diri());
-        try {
-            execute(sql);
-            disconnectDB();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        JOptionPane.showMessageDialog(null, "Sukses Daftar Akun");
-        view_regis2.dispose();
-        new LoginController();
     }
 }
