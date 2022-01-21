@@ -8,13 +8,10 @@ package controller;
 import database.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Admin;
 import model.Penyewa;
 import service.UserService;
-import view.KatalogKendaraan;
 import view.Login;
 
 /**
@@ -25,10 +22,8 @@ public class LoginController extends Database implements ActionListener {
 
     private Login view_login;
     private UserService userService;
-    private KatalogKendaraan view_katalog;
 
     public LoginController() {
-        view_katalog = new KatalogKendaraan();
         userService = new UserService();
         view_login = new Login();
         view_login.setVisible(true);
@@ -47,24 +42,6 @@ public class LoginController extends Database implements ActionListener {
         }
     }
 
-    public Admin validateAdmin(Admin admin) throws SQLException {
-        Admin user_admin = new Admin();
-        ArrayList<Admin> selectUser = userService.getDataAdmin(admin, 1);
-        if (selectUser.size() > 0) {
-            user_admin = selectUser.get(0);
-        }
-        return user_admin;
-    }
-
-    public Penyewa validatePenyewa(Penyewa penyewa) throws SQLException {
-        Penyewa user_Penyewa = new Penyewa();
-        ArrayList<Penyewa> selectUser = userService.getDataPenyewa(penyewa, 1);
-        if (selectUser.size() > 0) {
-            user_Penyewa = selectUser.get(0);
-        }
-        return user_Penyewa;
-    }
-
     public void loginBtnPerformed() {
         String username = view_login.getUsername().getText();
         String password = String.valueOf(view_login.getPassword().getPassword());
@@ -75,11 +52,11 @@ public class LoginController extends Database implements ActionListener {
             Penyewa attPenyewa = new Penyewa(username, password);
             Admin attAdmin = new Admin(username, password);
             try {
-                attPenyewa = validatePenyewa(attPenyewa);
-                attAdmin = validateAdmin(attAdmin);
+                attPenyewa = userService.validatePenyewa(attPenyewa);
+                attAdmin = userService.validateAdmin(attAdmin);
                 if (attPenyewa.getUsername() != null) {
-                    view_katalog.getUsername().setText(attPenyewa.getUsername());
-                    new PenyewaPageController();
+                    view_login.dispose();
+                    new PenyewaPageController(attPenyewa.getUsername(), attPenyewa.getEmail(), attPenyewa.getFoto_diri());
                 } else if (attAdmin.getUsername() != null) {
                     JOptionPane.showMessageDialog(null, "Admin page");
                 } else {
