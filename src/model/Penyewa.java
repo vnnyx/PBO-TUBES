@@ -9,7 +9,8 @@ package model;
  *
  * @author Firdaus
  */
-public class Penyewa extends User{
+public class Penyewa extends User {
+
     private final String role = "Penyewa";
 
     public String getRole() {
@@ -19,4 +20,12 @@ public class Penyewa extends User{
     public Penyewa(String username, String password, String email, String alamat, String foto_ktp, String foto_diri) {
         super(username, password, email, alamat, foto_ktp, foto_diri);
     }
+
+    public Penyewa(String username, String password) {
+        super(username, password);
+    }
+
+    public Penyewa() {
+    }
+
 }
