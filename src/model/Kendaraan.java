@@ -21,7 +21,7 @@ public class Kendaraan {
     private int harga_sewa;
     private int kapasitas;
 
-    public Kendaraan(String nama_kendaraan, String merk_kendaraan, String warna_kendaraan, 
+    public Kendaraan(String nama_kendaraan, String merk_kendaraan, String warna_kendaraan,
             int cc_kendaraan, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas) {
         this.nama_kendaraan = nama_kendaraan;
         this.merk_kendaraan = merk_kendaraan;
