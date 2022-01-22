@@ -21,6 +21,28 @@ public class Kendaraan {
     private int harga_sewa;
     private int kapasitas;
 
+    public Kendaraan(String nama_kendaraan, String merk_kendaraan, String warna_kendaraan, int cc_kendaraan, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas) {
+        this.nama_kendaraan = nama_kendaraan;
+        this.merk_kendaraan = merk_kendaraan;
+        this.warna_kendaraan = warna_kendaraan;
+        this.cc_kendaraan = cc_kendaraan;
+        this.foto_1 = foto_1;
+        this.foto_2 = foto_2;
+        this.foto_3 = foto_3;
+        this.harga_sewa = harga_sewa;
+        this.kapasitas = kapasitas;
+    }
+
+    public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas) {
+        this.nama_kendaraan = nama_kendaraan;
+        this.foto_1 = foto_1;
+        this.harga_sewa = harga_sewa;
+        this.kapasitas = kapasitas;
+    }
+
+    public Kendaraan() {
+    }
+
     public String getNama_kendaraan() {
         return nama_kendaraan;
     }
@@ -91,29 +113,6 @@ public class Kendaraan {
 
     public void setKapasitas(int kapasitas) {
         this.kapasitas = kapasitas;
-    }
-
-    public Kendaraan(String nama_kendaraan, String merk_kendaraan, String warna_kendaraan, int cc_kendaraan, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas) {
-        this.nama_kendaraan = nama_kendaraan;
-        this.merk_kendaraan = merk_kendaraan;
-        this.warna_kendaraan = warna_kendaraan;
-        this.cc_kendaraan = cc_kendaraan;
-        this.foto_1 = foto_1;
-        this.foto_2 = foto_2;
-        this.foto_3 = foto_3;
-        this.harga_sewa = harga_sewa;
-        this.kapasitas = kapasitas;
-    }
-
-    public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas) {
-        this.nama_kendaraan = nama_kendaraan;
-        this.foto_1 = foto_1;
-        this.harga_sewa = harga_sewa;
-        this.kapasitas = kapasitas;
-    }
-
-    public Kendaraan() {
-
     }
 
 }

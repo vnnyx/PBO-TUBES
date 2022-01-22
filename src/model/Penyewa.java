@@ -13,10 +13,6 @@ public class Penyewa extends User {
 
     private final String role = "Penyewa";
 
-    public String getRole() {
-        return role;
-    }
-
     public Penyewa(String username, String password, String email, String alamat, String foto_ktp, String foto_diri) {
         super(username, password, email, alamat, foto_ktp, foto_diri);
     }
@@ -28,4 +24,7 @@ public class Penyewa extends User {
     public Penyewa() {
     }
 
+    public String getRole() {
+        return role;
+    }
 }
