@@ -72,7 +72,7 @@ public class Repository extends Database {
         disconnectDB();
     }
 
-    public ArrayList<Kendaraan> getData(int offset) throws SQLException {
+    public ArrayList<Kendaraan> getDataKendaraan(int offset) throws SQLException {
         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
         String sql = "SELECT * FROM kendaraan LIMIT 3 OFFSET %s";
@@ -89,7 +89,7 @@ public class Repository extends Database {
         return kendaraan;
     }
 
-    public ArrayList<Kendaraan> getData(int offset, String nama) throws SQLException {
+    public ArrayList<Kendaraan> getSearchDataKendaraan(int offset, String nama) throws SQLException {
         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
         String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan = '%s' LIMIT 3 OFFSET %s";
