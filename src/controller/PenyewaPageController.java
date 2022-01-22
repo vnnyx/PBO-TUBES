@@ -51,7 +51,7 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
         view_catalog.addActionListener(this);
         profile();
         try {
-            katalogService.katalogShow(view_catalog, repo.getData(offset));
+            katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -99,10 +99,13 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
         offset = 0;
         String search = view_catalog.getSearchBar().getText();
         try {
-            if (search.isEmpty()) {
-                katalogService.katalogShow(view_catalog, repo.getData(offset));
+            ArrayList<Kendaraan> data_kendaraan = repo.getSearchDataKendaraan(offset, search);
+            if (data_kendaraan.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nama kendaraan tidak ditemukan");
+            } else if (search.isEmpty()) {
+                katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
             } else {
-                katalogService.katalogShow(view_catalog, repo.getData(offset, search));
+                katalogService.katalogShow(view_catalog, data_kendaraan);
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -125,9 +128,9 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
         offset -= 3;
         try {
             if (search.isEmpty()) {
-                katalogService.katalogShow(view_catalog, repo.getData(offset));
+                katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
             } else {
-                katalogService.katalogShow(view_catalog, repo.getData(offset, search));
+                katalogService.katalogShow(view_catalog, repo.getSearchDataKendaraan(offset, search));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -139,9 +142,9 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
         offset += 3;
         try {
             if (search.isEmpty()) {
-                katalogService.katalogShow(view_catalog, repo.getData(offset));
+                katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
             } else {
-                katalogService.katalogShow(view_catalog, repo.getData(offset, search));
+                katalogService.katalogShow(view_catalog, repo.getSearchDataKendaraan(offset, search));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
