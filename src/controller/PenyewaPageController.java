@@ -115,8 +115,8 @@ public class PenyewaPageController extends Database implements MouseListener {
     public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas) {
         String path = "D:\\Gambar\\deye-eyed-patrick-prog4.jpg"; //Sementara
         icon.setIcon(getIcon(icon, path));
-        harga.setText(priceFormat(kendaraan.getHarga_sewa()));
-        nama.setText(kendaraan.getNama_kendaraan());
+        harga.setText(priceFormat(kendaraan.getHarga()));
+        nama.setText(kendaraan.getNama());
         kapasitas.setText(String.valueOf(kendaraan.getKapasitas()));
     }
 
@@ -185,14 +185,14 @@ public class PenyewaPageController extends Database implements MouseListener {
 
     public void createAset(DetailKendaraan view, Kendaraan kendaraan) {
         String path = "D:\\Gambar\\deye-eyed-patrick-prog4.jpg";
-        view.getNamaKendaraan().setText(kendaraan.getNama_kendaraan());
-        view.getMerkKendaraan().setText(kendaraan.getMerk_kendaraan());
-        view.getWarnaKendaraan().setText(kendaraan.getWarna_kendaraan());
-        view.getCcKendaraan().setText(String.valueOf(kendaraan.getCc_kendaraan()));
+        view.getNamaKendaraan().setText(kendaraan.getNama());
+        view.getMerkKendaraan().setText(kendaraan.getMerk());
+        view.getWarnaKendaraan().setText(kendaraan.getWarna());
+        view.getCcKendaraan().setText(String.valueOf(kendaraan.getCc()));
         view.getGambar1().setIcon(getIcon(view.getGambar1(), path));
         view.getGambar2().setIcon(getIcon(view.getGambar2(), path));
         view.getGambar3().setIcon(getIcon(view.getGambar3(), path));
-        view.getHarga().setText(priceFormat(kendaraan.getHarga_sewa()));
+        view.getHarga().setText(priceFormat(kendaraan.getHarga()));
         view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
     }
 

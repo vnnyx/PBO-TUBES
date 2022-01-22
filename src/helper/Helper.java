@@ -24,6 +24,7 @@ public class Helper {
         config.put("cloud_name", "dlz36gxog");
         config.put("api_key", "413437548493451");
         config.put("api_secret", "7_0ScXRwIMgts4ouARqiHfUU5W4");
+        config.put("public_id", "rentalee/kendaraan");
         Cloudinary cloudinary = new Cloudinary(config);
 
         Map result = cloudinary.uploader().upload(image, config);

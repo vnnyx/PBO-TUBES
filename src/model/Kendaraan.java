@@ -35,6 +35,14 @@ public class Kendaraan {
     public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas2) {
     }
 
+    public Kendaraan() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Kendaraan(String nama_kendaraan, String merk, String warna, int cc, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void setHarga(int harga) {
         this.harga = harga;
     }
