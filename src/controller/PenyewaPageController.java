@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -100,20 +101,16 @@ public class PenyewaPageController extends Database implements MouseListener {
         return kendaraan;
     }
 
-    public ImageIcon getIcon(JLabel label, String path) {
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File(path));
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+    public ImageIcon getIcon(JLabel label, String path) throws Exception {
+        URL url = new URL(path);
+        Image img = ImageIO.read(url);
         Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         return icon;
     }
 
-    public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas) {
-        String path = "D:\\Gambar\\deye-eyed-patrick-prog4.jpg"; //Sementara
+    public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas) throws Exception {
+        String path = "http://res.cloudinary.com/dlz36gxog/image/upload/v1642704323/rentalee/kendaraan.jpg"; //Sementara
         icon.setIcon(getIcon(icon, path));
         harga.setText(priceFormat(kendaraan.getHarga_sewa()));
         nama.setText(kendaraan.getNama_kendaraan());
@@ -125,7 +122,7 @@ public class PenyewaPageController extends Database implements MouseListener {
         return harga.substring(0, 3) + "." + harga.substring(3, 6) + ",00";
     }
 
-    public void initData() throws SQLException {
+    public void initData() throws SQLException, Exception {
         int limit = 3;
         int offset = (page - 1) * limit;
         Kendaraan kendaraan1, kendaraan2, kendaraan3 = new Kendaraan();
@@ -183,8 +180,8 @@ public class PenyewaPageController extends Database implements MouseListener {
 
     }
 
-    public void createAset(DetailKendaraan view, Kendaraan kendaraan) {
-        String path = "D:\\Gambar\\deye-eyed-patrick-prog4.jpg";
+    public void createAset(DetailKendaraan view, Kendaraan kendaraan) throws Exception {
+        String path = "http://res.cloudinary.com/dlz36gxog/image/upload/v1642704323/rentalee/kendaraan.jpg";
         view.getNamaKendaraan().setText(kendaraan.getNama_kendaraan());
         view.getMerkKendaraan().setText(kendaraan.getMerk_kendaraan());
         view.getWarnaKendaraan().setText(kendaraan.getWarna_kendaraan());
@@ -196,7 +193,7 @@ public class PenyewaPageController extends Database implements MouseListener {
         view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
     }
 
-    public void showList(String nama) throws SQLException {
+    public void showList(String nama) throws SQLException, Exception {
         Kendaraan kendaraan = new Kendaraan();
         ArrayList<Kendaraan> detail_kendaraan = getDetail(nama);
         if (detail_kendaraan.size() > 0) {
