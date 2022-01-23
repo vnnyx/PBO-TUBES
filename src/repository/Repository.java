@@ -92,8 +92,8 @@ public class Repository extends Database {
     public ArrayList<Kendaraan> getSearchDataKendaraan(int offset, String nama) throws SQLException {
         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
-        String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan = '%s' LIMIT 3 OFFSET %s";
-        sql = String.format(sql, nama, offset);
+        String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan LIKE '%s' LIMIT 3 OFFSET %s";
+        sql = String.format(sql, "%"+nama+"%", offset);
         executeQuery(sql);
         while (rs.next()) {
             String nama_kendaraan = rs.getString("nama_kendaraan");
