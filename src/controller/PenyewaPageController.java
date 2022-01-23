@@ -98,19 +98,24 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
     public void searchBtnPerformed() {
         offset = 0;
         String search = view_catalog.getSearchBar().getText();
-        try {
-            ArrayList<Kendaraan> data_kendaraan = repo.getSearchDataKendaraan(offset, search);
-            if (data_kendaraan.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nama kendaraan tidak ditemukan");
-            } else if (search.isEmpty()) {
+        if (search.isEmpty()) {
+            try {
                 katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
-            } else {
-                katalogService.katalogShow(view_catalog, data_kendaraan);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } else {
+            try {
+                ArrayList<Kendaraan> data_kendaraan = repo.getSearchDataKendaraan(offset, search);
+                if (data_kendaraan.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nama kendaraan tidak ditemukan");
+                } else {
+                    katalogService.katalogShow(view_catalog, data_kendaraan);
+                }
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
-
     }
 
     public void showList(String nama) throws SQLException, Exception {
