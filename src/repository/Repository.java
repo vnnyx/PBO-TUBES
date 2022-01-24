@@ -7,10 +7,12 @@ package repository;
 
 import database.Database;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Admin;
 import model.Kendaraan;
 import model.Penyewa;
+import model.Transaksi;
 
 /**
  *
@@ -93,7 +95,7 @@ public class Repository extends Database {
         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
         String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan LIKE '%s' LIMIT 3 OFFSET %s";
-        sql = String.format(sql, "%"+nama+"%", offset);
+        sql = String.format(sql, "%" + nama + "%", offset);
         executeQuery(sql);
         while (rs.next()) {
             String nama_kendaraan = rs.getString("nama_kendaraan");
@@ -126,6 +128,22 @@ public class Repository extends Database {
         }
         disconnectDB();
         return kendaraan;
+    }
+
+    public void addTransaksi(Transaksi transaksi) throws SQLException {
+        String username = transaksi.getUsername();
+        String foto_kendaraan = transaksi.getFoto_kendaraan();
+        int lama_sewa = transaksi.getLama_sewa();
+        LocalDate mulai_sewa = transaksi.getMulai_sewa();
+        LocalDate selesai_sewa = transaksi.getSelesai_sewa();
+        int total = transaksi.getTotal();
+        connectDB();
+        String query = "INSERT INTO `transaksi` (`foto_kendaraan`, `username`, "
+                + "`lama_sewa(hari)`, `mulai_sewa`, `selesai_sewa`, `total_harga`) "
+                + "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')";
+        query = String.format(query, foto_kendaraan, username, lama_sewa, mulai_sewa, selesai_sewa, total);
+        execute(query);
+        disconnectDB();
     }
 
 }

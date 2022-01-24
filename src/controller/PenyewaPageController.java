@@ -35,6 +35,7 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
     private String url;
     private KatalogService katalogService;
     private int offset = 0;
+    private String nama_kendaraan;
 
     public PenyewaPageController(String username, String email, String url) {
         katalogService = new KatalogService();
@@ -77,21 +78,30 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
 
     @Override
     public void mouseClicked(MouseEvent me) {
+        String merk = "";
         Object src = me.getSource();
         if (src.equals(view_catalog.getPanelGambar1())) {
-            detailKendaraanClicked(view_catalog.getMerkKendaraan1().getText());
+            merk = view_catalog.getMerkKendaraan1().getText();
+            this.nama_kendaraan = merk;
+            detailKendaraanClicked(merk);
         } else if (src.equals(view_detail.getBranchKatalog())) {
             branchKatalogClicked();
         } else if (src.equals(view_catalog.getNextPage())) {
             nextPageClicked();
         } else if (src.equals(view_catalog.getPanelGambar2())) {
-            detailKendaraanClicked(view_catalog.getMerkKendaraan2().getText());
+            merk = view_catalog.getMerkKendaraan2().getText();
+            this.nama_kendaraan = merk;
+            detailKendaraanClicked(merk);
         } else if (src.equals(view_catalog.getPanelGambar3())) {
-            detailKendaraanClicked(view_catalog.getMerkKendaraan3().getText());
+            merk = view_catalog.getMerkKendaraan3().getText();
+            this.nama_kendaraan = merk;
+            detailKendaraanClicked(merk);
         } else if (src.equals(view_catalog.getPreviousPage())) {
             previousPageClicked();
         } else if (src.equals(view_catalog.getExitBtn()) || src.equals(view_detail.getExitBtn())) {
             exitBtnClicked();
+        } else if (src.equals(view_detail.getRentalKendaraan())) {
+            rentalKendaraanClicked();
         }
     }
 
@@ -157,6 +167,11 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
     }
 
     public void branchKatalogClicked() {
+        view_detail.dispose();
+    }
+
+    public void rentalKendaraanClicked() {
+        new CheckoutController(username, email, url, nama_kendaraan);
         view_detail.dispose();
     }
 
