@@ -8,18 +8,17 @@ package service;
 import helper.Helper;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 import model.Kendaraan;
-import view.KatalogKendaraan;
+import view.PenyewaPageView;
 
 /**
  *
  * @author Firdaus
  */
-public class KatalogService extends Helper{
-    
-//    private Helper helper = new Helper();
+public class PenyewaPageService extends Helper {
 
-    public void katalogShow(KatalogKendaraan view, ArrayList<Kendaraan> kendaraan_data) throws SQLException, Exception {
+    public void katalogShow(PenyewaPageView view, ArrayList<Kendaraan> kendaraan_data) throws SQLException, Exception {
         Kendaraan kendaraan1, kendaraan2, kendaraan3 = new Kendaraan();
         view.getPanelGambar1().setVisible(true);
         view.getPanelGambar2().setVisible(true);
@@ -68,5 +67,15 @@ public class KatalogService extends Helper{
                 break;
         }
 
+    }
+
+    public void swapPanel(PenyewaPageView view, JPanel panel) {
+        JPanel main_panel = view.getMainPanel();
+        main_panel.removeAll();
+        main_panel.repaint();
+        main_panel.revalidate();
+        main_panel.add(panel);
+        main_panel.repaint();
+        main_panel.revalidate();
     }
 }

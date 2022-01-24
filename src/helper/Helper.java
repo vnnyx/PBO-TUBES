@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.Kendaraan;
-import view.DetailKendaraan;
+import view.PenyewaPageView;
 
 /**
  *
@@ -63,14 +63,14 @@ public class Helper {
         kapasitas.setText(String.valueOf(kendaraan.getKapasitas()));
     }
 
-    public void createAset(DetailKendaraan view, Kendaraan kendaraan) throws Exception {
+    public void createAset(PenyewaPageView view, Kendaraan kendaraan) throws Exception {
         view.getNamaKendaraan().setText(kendaraan.getNama_kendaraan());
         view.getMerkKendaraan().setText(kendaraan.getMerk_kendaraan());
         view.getWarnaKendaraan().setText(kendaraan.getWarna_kendaraan());
         view.getCcKendaraan().setText(String.valueOf(kendaraan.getCc_kendaraan()));
-        view.getGambar1().setIcon(getImage(view.getGambar1(), kendaraan.getFoto_1()));
-        view.getGambar2().setIcon(getImage(view.getGambar2(), kendaraan.getFoto_2()));
-        view.getGambar3().setIcon(getImage(view.getGambar3(), kendaraan.getFoto_3()));
+        view.getGambar4().setIcon(getImage(view.getGambar4(), kendaraan.getFoto_1()));
+        view.getGambar5().setIcon(getImage(view.getGambar5(), kendaraan.getFoto_2()));
+        view.getGambar6().setIcon(getImage(view.getGambar6(), kendaraan.getFoto_3()));
         view.getHarga().setText(priceFormat(kendaraan.getHarga_sewa()));
         view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
     }

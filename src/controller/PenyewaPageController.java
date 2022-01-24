@@ -5,112 +5,130 @@
  */
 package controller;
 
-import database.Database;
 import helper.Helper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Kendaraan;
+import model.Transaksi;
 import repository.Repository;
-import service.KatalogService;
-import view.KatalogKendaraan;
-import view.DetailKendaraan;
+import service.PenyewaPageService;
+import service.KendaraanService;
+import view.PenyewaPageView;
 
 /**
  *
  * @author Firdaus
  */
-public class PenyewaPageController extends Database implements MouseListener, ActionListener {
+public class PenyewaPageController implements MouseListener, ActionListener {
 
-    private KatalogKendaraan view_catalog;
-    private DetailKendaraan view_detail;
-    private Helper helper;
-    private Repository repo;
+    private PenyewaPageView view_penyewa;
     private String username;
     private String email;
     private String url;
-    private KatalogService katalogService;
-    private int offset = 0;
+    private PenyewaPageService penyewaPageService;
+    private KendaraanService kendaraanService;
+    private Repository repo;
+    private Helper helper;
+    private Kendaraan model_kendaraan;
+    private Transaksi model_transaksi;
     private String nama_kendaraan;
+    private int offset = 0;
 
     public PenyewaPageController(String username, String email, String url) {
-        katalogService = new KatalogService();
         this.username = username;
         this.email = email;
         this.url = url;
+        view_penyewa = new PenyewaPageView();
+        penyewaPageService = new PenyewaPageService();
+        kendaraanService = new KendaraanService();
         repo = new Repository();
         helper = new Helper();
-        view_catalog = new KatalogKendaraan();
-        view_detail = new DetailKendaraan();
-        view_catalog.setVisible(true);
-        view_catalog.addMouseListener(this);
-        view_detail.addMouseListener(this);
-        view_catalog.addActionListener(this);
-        profile();
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
+        view_penyewa.setVisible(true);
+        view_penyewa.addMouseListener(this);
+        view_penyewa.addActionListener(this);
         try {
-            katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
+            penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        showProfile();
     }
 
-    public void profile() {
-        view_catalog.getUsername().setText(username);
-        view_catalog.getEmail().setText(email);
-        try {
-            view_catalog.getPp().setIcon(helper.getImage(view_catalog.getPp(), url));
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Object src = e.getSource();
+        if (src.equals(view_penyewa.getPanelGambar1())) {
+            nama_kendaraan = view_penyewa.getMerkKendaraan1().getText();
+            detailKendaraanClicked(nama_kendaraan);
+        } else if (src.equals(view_penyewa.getPanelGambar2())) {
+            nama_kendaraan = view_penyewa.getMerkKendaraan2().getText();
+            detailKendaraanClicked(nama_kendaraan);
+        } else if (src.equals(view_penyewa.getPanelGambar3())) {
+            nama_kendaraan = view_penyewa.getMerkKendaraan3().getText();
+            detailKendaraanClicked(nama_kendaraan);
+        } else if (src.equals(view_penyewa.getPreviousPage())) {
+            previousPageClicked();
+        } else if (src.equals(view_penyewa.getNextPage())) {
+            nextPageClicked();
+        } else if (src.equals(view_penyewa.getCheckoutRental())) {
+            checkoutRentalClicked();
+        } else if(src.equals(view_penyewa.getRentalKendaraan())){
+            rentalKendaraanClicked();
+        } else if(src.equals(view_penyewa.getExitBtn())){
+            exitBtnClicked();
+        } else if(src.equals(view_penyewa.getBranchKatalog()) || src.equals(view_penyewa.getBranchKatalog1())){
+            branchKatalogClicked();
+        } else if (src.equals(view_penyewa.getBranchDetailKendaraan())){
+            branchDetailClicked();
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
-        if (src.equals(view_catalog.getSearchBtn())) {
+        if (src.equals(view_penyewa.getSearchBtn())) {
             searchBtnPerformed();
+        } else if (src.equals(view_penyewa.getListHari())) {
+            listActionPerformed();
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        String merk = "";
-        Object src = me.getSource();
-        if (src.equals(view_catalog.getPanelGambar1())) {
-            merk = view_catalog.getMerkKendaraan1().getText();
-            this.nama_kendaraan = merk;
-            detailKendaraanClicked(merk);
-        } else if (src.equals(view_detail.getBranchKatalog())) {
-            branchKatalogClicked();
-        } else if (src.equals(view_catalog.getNextPage())) {
-            nextPageClicked();
-        } else if (src.equals(view_catalog.getPanelGambar2())) {
-            merk = view_catalog.getMerkKendaraan2().getText();
-            this.nama_kendaraan = merk;
-            detailKendaraanClicked(merk);
-        } else if (src.equals(view_catalog.getPanelGambar3())) {
-            merk = view_catalog.getMerkKendaraan3().getText();
-            this.nama_kendaraan = merk;
-            detailKendaraanClicked(merk);
-        } else if (src.equals(view_catalog.getPreviousPage())) {
-            previousPageClicked();
-        } else if (src.equals(view_catalog.getExitBtn()) || src.equals(view_detail.getExitBtn())) {
-            exitBtnClicked();
-        } else if (src.equals(view_detail.getRentalKendaraan())) {
-            rentalKendaraanClicked();
+    public void showProfile() {
+        view_penyewa.getUsername().setText(username);
+        view_penyewa.getEmail().setText(email);
+        try {
+            view_penyewa.getPp().setIcon(helper.getImage(view_penyewa.getPp(), url));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
+    }
+
+    public void showList(String nama) throws SQLException, Exception {
+        kendaraanService.getDataKendaraan(view_penyewa, nama);
+    }
+
+    public void detailKendaraanClicked(String merk) {
+        try {
+            showList(merk);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
     }
 
     public void searchBtnPerformed() {
         offset = 0;
-        String search = view_catalog.getSearchBar().getText();
+        String search = view_penyewa.getSearchBar().getText();
         if (search.isEmpty()) {
             try {
-                katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -120,7 +138,7 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
                 if (data_kendaraan.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Nama kendaraan tidak ditemukan");
                 } else {
-                    katalogService.katalogShow(view_catalog, data_kendaraan);
+                    penyewaPageService.katalogShow(view_penyewa, data_kendaraan);
                 }
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -128,24 +146,14 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
         }
     }
 
-    public void showList(String nama) throws SQLException, Exception {
-        Kendaraan kendaraan = new Kendaraan();
-        ArrayList<Kendaraan> detail_kendaraan = repo.getDetail(nama);
-        if (detail_kendaraan.size() > 0) {
-            kendaraan = detail_kendaraan.get(0);
-            helper.createAset(view_detail, kendaraan);
-        }
-
-    }
-
     public void previousPageClicked() {
-        String search = view_catalog.getSearchBar().getText();
+        String search = view_penyewa.getSearchBar().getText();
         offset -= 3;
         try {
             if (search.isEmpty()) {
-                katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
             } else {
-                katalogService.katalogShow(view_catalog, repo.getSearchDataKendaraan(offset, search));
+                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset, search));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -153,60 +161,94 @@ public class PenyewaPageController extends Database implements MouseListener, Ac
     }
 
     public void nextPageClicked() {
-        String search = view_catalog.getSearchBar().getText();
+        String search = view_penyewa.getSearchBar().getText();
         offset += 3;
         try {
             if (search.isEmpty()) {
-                katalogService.katalogShow(view_catalog, repo.getDataKendaraan(offset));
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
             } else {
-                katalogService.katalogShow(view_catalog, repo.getSearchDataKendaraan(offset, search));
+                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset, search));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
-
-    public void branchKatalogClicked() {
-        view_detail.dispose();
+    
+    public void rentalKendaraanClicked(){
+        showDetailCheckout();
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPagePembayaran());
     }
 
-    public void rentalKendaraanClicked() {
-        new CheckoutController(username, email, url, nama_kendaraan);
-        view_detail.dispose();
-    }
-
-    public void detailKendaraanClicked(String merk) {
+    public void showDetailCheckout() {
+        this.model_kendaraan = kendaraanService.getDataKendaraan(nama_kendaraan);
+        String harga = helper.priceFormat(model_kendaraan.getHarga_sewa());
+        view_penyewa.getHargaHarian().setText(harga);
+        view_penyewa.getHargaCheckout().setText(harga);
+        view_penyewa.getHargaTotal().setText(harga);
+        view_penyewa.getUsername().setText(username);
+        view_penyewa.getEmail().setText(email);
         try {
-            showList(merk);
-            view_detail.getUsername().setText(username);
-            view_detail.getEmail().setText(email);
-            view_detail.getPp().setIcon(helper.getImage(view_detail.getPp(), url));
+            view_penyewa.getPp().setIcon(helper.getImage(view_penyewa.getPp(), url));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        view_detail.setVisible(true);
     }
 
-    public void exitBtnClicked() {
+    public void listActionPerformed() {
+        String selectedValue = view_penyewa.getListHari().getSelectedItem().toString();
+        int hari = Integer.parseInt(selectedValue.substring(0, 1));
+        System.out.println(hari);
+        int total = hari * model_kendaraan.getHarga_sewa();
+        view_penyewa.getHargaCheckout().setText(helper.priceFormat(total));
+        view_penyewa.getHargaTotal().setText(helper.priceFormat(total));
+    }
+
+    public void checkoutRentalClicked() {
+        String selectedValue = view_penyewa.getListHari().getSelectedItem().toString();
+        int hari = Integer.parseInt(selectedValue.substring(0, 1));
+        int total = hari * model_kendaraan.getHarga_sewa();
+        LocalDate mulai = LocalDate.now();
+        LocalDate akhir = LocalDate.of(mulai.getYear(), mulai.getMonth(), mulai.getDayOfMonth() + hari);
+        model_transaksi = new Transaksi(username, model_kendaraan.getFoto_1(), mulai, akhir, nama_kendaraan, hari, total);
+        try {
+            repo.addTransaksi(model_transaksi);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void branchKatalogClicked(){
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
+    }
+    
+    public void branchDetailClicked(){
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
+    }
+    
+    public void exitBtnClicked(){
         JOptionPane.showMessageDialog(null, "Berhasil keluar");
-        view_catalog.dispose();
-        view_detail.dispose();
+        view_penyewa.dispose();
         new LoginController();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+
     }
+
 }
