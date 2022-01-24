@@ -18,12 +18,12 @@ import javax.swing.border.LineBorder;
  *
  * @author AsusPRO
  */
-public class KatalogKendaraan extends javax.swing.JFrame {
+public class RiwayatRental extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuUtamaListKendaraan
      */
-    public KatalogKendaraan() {
+    public RiwayatRental() {
         initComponents();
     }
 
@@ -232,7 +232,7 @@ public class KatalogKendaraan extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(877, 675));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/katalog.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Riwayatrental (2).png"))); // NOI18N
 
         searchBar.setBackground(new java.awt.Color(255, 255, 255));
         searchBar.setFont(new java.awt.Font("Mulish", 1, 16)); // NOI18N
@@ -643,14 +643,18 @@ public class KatalogKendaraan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KatalogKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatRental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KatalogKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatRental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KatalogKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatRental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KatalogKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RiwayatRental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -658,7 +662,7 @@ public class KatalogKendaraan extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KatalogKendaraan().setVisible(true);
+                new RiwayatRental().setVisible(true);
             }
         });
     }
