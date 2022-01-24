@@ -828,7 +828,7 @@ public class MenuUtamaDaftarKendaraan extends javax.swing.JFrame {
     private javax.swing.JPanel panelImg3;
     private javax.swing.JButton save;
     private java.awt.TextField warnaKendaraan;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     public void addActionListener(DaftarKendaraanController aThis) {
         save.addActionListener(aThis);

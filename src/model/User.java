@@ -18,6 +18,23 @@ public class User {
     private String foto_ktp;
     private String foto_diri;
 
+    public User(String username, String password, String email, String alamat, String foto_ktp, String foto_diri) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.alamat = alamat;
+        this.foto_ktp = foto_ktp;
+        this.foto_diri = foto_diri;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }
@@ -64,23 +81,5 @@ public class User {
 
     public void setFoto_diri(String foto_diri) {
         this.foto_diri = foto_diri;
-    }
-
-    public User(String username, String password, String email, String alamat, String foto_ktp, String foto_diri) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.alamat = alamat;
-        this.foto_ktp = foto_ktp;
-        this.foto_diri = foto_diri;
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public User() {
-
     }
 }

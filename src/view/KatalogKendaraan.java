@@ -6,9 +6,12 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 /**
@@ -39,7 +42,7 @@ public class KatalogKendaraan extends javax.swing.JFrame {
         riwayatRental = new javax.swing.JPanel();
         riwataRentalTxt = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        exitBtn = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -48,8 +51,8 @@ public class KatalogKendaraan extends javax.swing.JFrame {
         pp = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchBar = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
         PanelGambar1 = new javax.swing.JPanel();
         gambar1 = new javax.swing.JLabel();
         merkKendaraan1 = new javax.swing.JLabel();
@@ -141,8 +144,8 @@ public class KatalogKendaraan extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setPreferredSize(new java.awt.Dimension(239, 56));
+        exitBtn.setBackground(new java.awt.Color(255, 255, 255));
+        exitBtn.setPreferredSize(new java.awt.Dimension(239, 56));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
 
@@ -150,38 +153,35 @@ public class KatalogKendaraan extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(165, 0, 0));
         jLabel7.setText("Keluar");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout exitBtnLayout = new javax.swing.GroupLayout(exitBtn);
+        exitBtn.setLayout(exitBtnLayout);
+        exitBtnLayout.setHorizontalGroup(
+            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
                 .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
                 .addGap(67, 67, 67))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        exitBtnLayout.setVerticalGroup(
+            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
-                .addGap(14, 14, 14))
+                .addGap(16, 16, 16))
         );
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Line 29.png"))); // NOI18N
 
         username.setFont(new java.awt.Font("Mulish", 1, 22)); // NOI18N
         username.setForeground(new java.awt.Color(255, 255, 255));
-        username.setText("Optimum Pride");
 
         email.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
         email.setForeground(new java.awt.Color(102, 140, 180));
-        email.setText("email@email.com");
 
-        pp.setText("jLabel13");
         pp.setPreferredSize(new java.awt.Dimension(56, 56));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -203,7 +203,7 @@ public class KatalogKendaraan extends javax.swing.JFrame {
                             .addComponent(username)
                             .addComponent(email)))
                     .addComponent(jLabel8)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +224,7 @@ public class KatalogKendaraan extends javax.swing.JFrame {
                         .addComponent(email))
                     .addComponent(pp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
@@ -234,16 +234,16 @@ public class KatalogKendaraan extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/katalog.png"))); // NOI18N
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Mulish", 1, 16)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(49, 49, 49));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(139, 139, 139)));
-        jTextField1.setPreferredSize(new java.awt.Dimension(697, 48));
+        searchBar.setBackground(new java.awt.Color(255, 255, 255));
+        searchBar.setFont(new java.awt.Font("Mulish", 1, 16)); // NOI18N
+        searchBar.setForeground(new java.awt.Color(49, 49, 49));
+        searchBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(139, 139, 139)));
+        searchBar.setPreferredSize(new java.awt.Dimension(697, 48));
 
-        jButton1.setBackground(new java.awt.Color(0, 63, 130));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setPreferredSize(new java.awt.Dimension(96, 48));
+        searchBtn.setBackground(new java.awt.Color(0, 63, 130));
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
+        searchBtn.setBorder(null);
+        searchBtn.setPreferredSize(new java.awt.Dimension(96, 48));
 
         PanelGambar1.setBackground(new java.awt.Color(255, 255, 255));
         PanelGambar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(139, 139, 139)));
@@ -535,9 +535,9 @@ public class KatalogKendaraan extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(PanelGambar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -548,8 +548,8 @@ public class KatalogKendaraan extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelGambar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -668,6 +668,7 @@ public class KatalogKendaraan extends javax.swing.JFrame {
     private javax.swing.JPanel PanelGambar2;
     private javax.swing.JPanel PanelGambar3;
     private javax.swing.JLabel email;
+    private javax.swing.JPanel exitBtn;
     private javax.swing.JLabel gambar1;
     private javax.swing.JLabel gambar2;
     private javax.swing.JLabel gambar3;
@@ -677,7 +678,6 @@ public class KatalogKendaraan extends javax.swing.JFrame {
     private javax.swing.JLabel harian1;
     private javax.swing.JLabel harian2;
     private javax.swing.JLabel harian3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -692,8 +692,6 @@ public class KatalogKendaraan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jmlPenumpang1;
     private javax.swing.JLabel jmlPenumpang2;
     private javax.swing.JLabel jmlPenumpang3;
@@ -708,6 +706,8 @@ public class KatalogKendaraan extends javax.swing.JFrame {
     private javax.swing.JPanel previousPage;
     private javax.swing.JLabel riwataRentalTxt;
     private javax.swing.JPanel riwayatRental;
+    private javax.swing.JTextField searchBar;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 
@@ -717,6 +717,15 @@ public class KatalogKendaraan extends javax.swing.JFrame {
         previousPage.addMouseListener(me);
         PanelGambar2.addMouseListener(me);
         PanelGambar3.addMouseListener(me);
+        exitBtn.addMouseListener(me);
+    }
+    
+    public void addActionListener(ActionListener l){
+        searchBtn.addActionListener(l);
+    }
+
+    public JPanel getExitBtn() {
+        return exitBtn;
     }
 
     public JPanel getPreviousPage() {
@@ -801,6 +810,14 @@ public class KatalogKendaraan extends javax.swing.JFrame {
 
     public JLabel getUsername() {
         return username;
+    }
+
+    public JTextField getSearchBar() {
+        return searchBar;
+    }
+
+    public JButton getSearchBtn() {
+        return searchBtn;
     }
 
 }

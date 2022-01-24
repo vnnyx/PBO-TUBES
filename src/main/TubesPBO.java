@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package main;
+import controller.AdminPageController;
 import controller.DaftarKendaraanController;
 import controller.LoginController;
 /**
@@ -15,7 +16,7 @@ public class TubesPBO {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        new DaftarKendaraanController();
+    public static void main(String[] args) throws Exception {
+        new AdminPageController();
     }
 }

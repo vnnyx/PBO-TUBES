@@ -38,7 +38,7 @@ public class DetailKendaraan extends javax.swing.JFrame {
         riwayatRental = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        exitBtn = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -136,8 +136,8 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setPreferredSize(new java.awt.Dimension(239, 56));
+        exitBtn.setBackground(new java.awt.Color(255, 255, 255));
+        exitBtn.setPreferredSize(new java.awt.Dimension(239, 56));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
 
@@ -145,38 +145,35 @@ public class DetailKendaraan extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(165, 0, 0));
         jLabel7.setText("Keluar");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout exitBtnLayout = new javax.swing.GroupLayout(exitBtn);
+        exitBtn.setLayout(exitBtnLayout);
+        exitBtnLayout.setHorizontalGroup(
+            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
                 .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
                 .addGap(67, 67, 67))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        exitBtnLayout.setVerticalGroup(
+            exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
-                .addGap(14, 14, 14))
+                .addGap(16, 16, 16))
         );
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Line 29.png"))); // NOI18N
 
         username.setFont(new java.awt.Font("Mulish", 1, 22)); // NOI18N
         username.setForeground(new java.awt.Color(255, 255, 255));
-        username.setText("Optimum Pride");
 
         email.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
         email.setForeground(new java.awt.Color(102, 140, 180));
-        email.setText("emaeil@email.com");
 
-        pp.setText("jLabel11");
         pp.setPreferredSize(new java.awt.Dimension(56, 56));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -198,7 +195,7 @@ public class DetailKendaraan extends javax.swing.JFrame {
                             .addComponent(username)
                             .addComponent(email)))
                     .addComponent(jLabel8)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +216,7 @@ public class DetailKendaraan extends javax.swing.JFrame {
                         .addComponent(email))
                     .addComponent(pp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
@@ -235,7 +232,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         namaKendaraan.setFont(new java.awt.Font("Mulish", 1, 30)); // NOI18N
         namaKendaraan.setForeground(new java.awt.Color(49, 49, 49));
-        namaKendaraan.setText("Alphard Tipe X");
 
         jLabel10.setFont(new java.awt.Font("Mulish Medium", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(139, 139, 139));
@@ -243,7 +239,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         merkKendaraan.setFont(new java.awt.Font("Mulish", 1, 30)); // NOI18N
         merkKendaraan.setForeground(new java.awt.Color(49, 49, 49));
-        merkKendaraan.setText("Toyota");
 
         jLabel12.setFont(new java.awt.Font("Mulish Medium", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(139, 139, 139));
@@ -251,7 +246,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         warnaKendaraan.setFont(new java.awt.Font("Mulish", 1, 30)); // NOI18N
         warnaKendaraan.setForeground(new java.awt.Color(49, 49, 49));
-        warnaKendaraan.setText("Hitam");
 
         jLabel14.setFont(new java.awt.Font("Mulish Medium", 0, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(139, 139, 139));
@@ -259,7 +253,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         ccKendaraan.setFont(new java.awt.Font("Mulish", 1, 30)); // NOI18N
         ccKendaraan.setForeground(new java.awt.Color(49, 49, 49));
-        ccKendaraan.setText("250");
 
         jLabel16.setFont(new java.awt.Font("Mulish Medium", 0, 16)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(139, 139, 139));
@@ -292,7 +285,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         harga.setFont(new java.awt.Font("Mulish", 1, 30)); // NOI18N
         harga.setForeground(new java.awt.Color(49, 49, 49));
-        harga.setText("800.000,00");
 
         jLabel24.setFont(new java.awt.Font("Mulish Medium", 0, 16)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(139, 139, 139));
@@ -304,7 +296,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
         kapasitasKendaraan.setFont(new java.awt.Font("Mulish", 1, 30)); // NOI18N
         kapasitasKendaraan.setForeground(new java.awt.Color(49, 49, 49));
-        kapasitasKendaraan.setText("4");
 
         jPanel4.setBackground(new java.awt.Color(0, 63, 130));
         jPanel4.setPreferredSize(new java.awt.Dimension(276, 72));
@@ -561,6 +552,7 @@ public class DetailKendaraan extends javax.swing.JFrame {
     private javax.swing.JLabel branchKatalog;
     private javax.swing.JLabel ccKendaraan;
     private javax.swing.JLabel email;
+    private javax.swing.JPanel exitBtn;
     private javax.swing.JLabel gambar1;
     private javax.swing.JLabel gambar2;
     private javax.swing.JLabel gambar3;
@@ -589,7 +581,6 @@ public class DetailKendaraan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel kapasitasKendaraan;
     private javax.swing.JPanel katalogKendaraan;
@@ -601,12 +592,17 @@ public class DetailKendaraan extends javax.swing.JFrame {
     private javax.swing.JLabel warnaKendaraan;
     // End of variables declaration//GEN-END:variables
 
-    public JLabel getBranchKatalog() {
-        return branchKatalog;
-    }
-
     public void addMouseListener(MouseListener me) {
         branchKatalog.addMouseListener(me);
+        exitBtn.addMouseListener(me);
+    }
+
+    public JPanel getExitBtn() {
+        return exitBtn;
+    }
+
+    public JLabel getBranchKatalog() {
+        return branchKatalog;
     }
 
     public JLabel getCcKendaraan() {
@@ -643,6 +639,18 @@ public class DetailKendaraan extends javax.swing.JFrame {
 
     public JLabel getWarnaKendaraan() {
         return warnaKendaraan;
+    }
+
+    public JLabel getEmail() {
+        return email;
+    }
+
+    public JLabel getPp() {
+        return pp;
+    }
+
+    public JLabel getUsername() {
+        return username;
     }
 
 }

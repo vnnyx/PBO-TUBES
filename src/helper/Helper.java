@@ -1,34 +1,87 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package helper;
 
-import java.util.HashMap;
 import com.cloudinary.Cloudinary;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import model.Kendaraan;
+import view.DetailKendaraan;
 
 /**
  *
- * @author aryuska
+ * @author Firdaus
  */
 public class Helper {
-    public Helper() {
-
-    }
 
     public String uploadImage(File image) throws IOException {
         Map config = new HashMap();
         config.put("cloud_name", "dlz36gxog");
         config.put("api_key", "413437548493451");
         config.put("api_secret", "7_0ScXRwIMgts4ouARqiHfUU5W4");
-        config.put("public_id", "rentalee/kendaraan");
         Cloudinary cloudinary = new Cloudinary(config);
 
         Map result = cloudinary.uploader().upload(image, config);
 
         return (String) result.get("url");
+    }
+
+    public String priceFormat(int price) {
+        DecimalFormat kursIDN = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIDN.setDecimalFormatSymbols(formatRp);
+        return kursIDN.format(price);
+    }
+
+    public ImageIcon getImage(JLabel label, String path) throws Exception {
+        Image img;
+        try{
+            URL url = new URL(path);
+            img = ImageIO.read(url);
+ 
+        }catch(IIOException e){
+            img = ImageIO.read(getClass().getResource("/icon/broke-image.png"));
+        }
+           Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+           ImageIcon icon = new ImageIcon(dimg);
+           return icon;
+       
+    }
+
+    public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas)
+            throws Exception {
+        icon.setIcon(getImage(icon, kendaraan.getFoto_1()));
+        harga.setText(priceFormat(kendaraan.getHarga_sewa()));
+        nama.setText(kendaraan.getNama_kendaraan());
+        kapasitas.setText(String.valueOf(kendaraan.getKapasitas()));
+    }
+
+    public void createAset(DetailKendaraan view, Kendaraan kendaraan) throws Exception {
+        view.getNamaKendaraan().setText(kendaraan.getNama_kendaraan());
+        view.getMerkKendaraan().setText(kendaraan.getMerk_kendaraan());
+        view.getWarnaKendaraan().setText(kendaraan.getWarna_kendaraan());
+        view.getCcKendaraan().setText(String.valueOf(kendaraan.getCc_kendaraan()));
+        view.getGambar1().setIcon(getImage(view.getGambar1(), kendaraan.getFoto_1()));
+        view.getGambar2().setIcon(getImage(view.getGambar2(), kendaraan.getFoto_2()));
+        view.getGambar3().setIcon(getImage(view.getGambar3(), kendaraan.getFoto_3()));
+        view.getHarga().setText(priceFormat(kendaraan.getHarga_sewa()));
+        view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
     }
 }

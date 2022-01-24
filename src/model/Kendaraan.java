@@ -1,118 +1,139 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package model;
 
 /**
  *
- * @author aryuska
+ * @author Firdaus
  */
 public class Kendaraan {
-    private String nama;
-    private String merk;
-    private String warna;
-    private int cc;
-    private String foto1;
-    private String foto2;
-    private String foto3;
-    private int harga;
+    private int id_kendaraan;
+    private String nama_kendaraan;
+    private String merk_kendaraan;
+    private String warna_kendaraan;
+    private int cc_kendaraan;
+    private String foto_1;
+    private String foto_2;
+    private String foto_3;
+    private int harga_sewa;
     private int kapasitas;
+    private int status;
 
-    public Kendaraan(String nama, String merk, String warna, String cc, String foto1, String foto2, String foto3,
-            String harga, String kapasitas) {
-        this.nama = nama;
-        this.merk = merk;
-        this.warna = warna;
-        this.cc = Integer.parseInt(cc);
-        this.foto1 = foto1;
-        this.foto2 = foto2;
-        this.foto3 = foto3;
-        this.harga = Integer.parseInt(harga);
-        this.kapasitas = Integer.parseInt(kapasitas);
+    public Kendaraan(int id_kendaraan, String nama_kendaraan, String merk_kendaraan, String warna_kendaraan,
+            int cc_kendaraan, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas, int status) {
+        this.nama_kendaraan = nama_kendaraan;
+        this.merk_kendaraan = merk_kendaraan;
+        this.warna_kendaraan = warna_kendaraan;
+        this.cc_kendaraan = cc_kendaraan;
+        this.foto_1 = foto_1;
+        this.foto_2 = foto_2;
+        this.foto_3 = foto_3;
+        this.harga_sewa = harga_sewa;
+        this.kapasitas = kapasitas;
+        this.status = status;
+        this.id_kendaraan=id_kendaraan;
     }
 
-    public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas2) {
+    public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas) {
+        this.nama_kendaraan = nama_kendaraan;
+        this.foto_1 = foto_1;
+        this.harga_sewa = harga_sewa;
+        this.kapasitas = kapasitas;
     }
 
     public Kendaraan() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Kendaraan(String nama_kendaraan, String merk, String warna, int cc, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getNama_kendaraan() {
+        return nama_kendaraan;
     }
 
-    public void setHarga(int harga) {
-        this.harga = harga;
+    public void setNama_kendaraan(String nama_kendaraan) {
+        this.nama_kendaraan = nama_kendaraan;
     }
 
-    public void setKapasitas(String kapasitas) {
-        this.kapasitas = Integer.parseInt(kapasitas);
+    public String getMerk_kendaraan() {
+        return merk_kendaraan;
     }
 
-    public int getHarga() {
-        return harga;
+    public void setMerk_kendaraan(String merk_kendaraan) {
+        this.merk_kendaraan = merk_kendaraan;
+    }
+
+    public String getWarna_kendaraan() {
+        return warna_kendaraan;
+    }
+
+    public void setWarna_kendaraan(String warna_kendaraan) {
+        this.warna_kendaraan = warna_kendaraan;
+    }
+
+    public int getCc_kendaraan() {
+        return cc_kendaraan;
+    }
+
+    public void setCc_kendaraan(int cc_kendaraan) {
+        this.cc_kendaraan = cc_kendaraan;
+    }
+
+    public String getFoto_1() {
+        return foto_1;
+    }
+
+    public void setFoto_1(String foto_1) {
+        this.foto_1 = foto_1;
+    }
+
+    public String getFoto_2() {
+        return foto_2;
+    }
+
+    public void setFoto_2(String foto_2) {
+        this.foto_2 = foto_2;
+    }
+
+    public String getFoto_3() {
+        return foto_3;
+    }
+
+    public void setFoto_3(String foto_3) {
+        this.foto_3 = foto_3;
+    }
+
+    public int getId_kendaraan() {
+        return id_kendaraan;
+    }
+
+    public void setId_kendaraan(int id_kendaraan) {
+        this.id_kendaraan = id_kendaraan;
+    }
+
+    public int getHarga_sewa() {
+        return harga_sewa;
+    }
+
+    public void setHarga_sewa(int harga_sewa) {
+        this.harga_sewa = harga_sewa;
     }
 
     public int getKapasitas() {
         return kapasitas;
     }
 
-    public String getNama() {
-        return nama;
+    public void setKapasitas(int kapasitas) {
+        this.kapasitas = kapasitas;
     }
 
-    public String getMerk() {
-        return merk;
+    public int getStatus() {
+        return status;
     }
 
-    public String getWarna() {
-        return warna;
+    public void setStatus(int status) {
+        this.status = status;
     }
-
-    public int getCc() {
-        return cc;
-    }
-
-    public String getFoto1() {
-        return foto1;
-    }
-
-    public String getFoto2() {
-        return foto2;
-    }
-
-    public String getFoto3() {
-        return foto3;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public void setMerk(String merk) {
-        this.merk = merk;
-    }
-
-    public void setWarna(String warna) {
-        this.warna = warna;
-    }
-
-    public void setCc(String cc) {
-        this.cc = Integer.parseInt(cc);
-    }
-
-    public void setFoto1(String foto1) {
-        this.foto1 = foto1;
-    }
-
-    public void setFoto2(String foto2) {
-        this.foto2 = foto2;
-    }
-
-    public void setFoto3(String foto3) {
-        this.foto3 = foto3;
-    }
+    
 
 }
