@@ -74,4 +74,5 @@ public class Helper {
         view.getHarga().setText(priceFormat(kendaraan.getHarga_sewa()));
         view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
     }
+    
 }

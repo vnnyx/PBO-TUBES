@@ -79,13 +79,13 @@ public class PenyewaPageController implements MouseListener, ActionListener {
             nextPageClicked();
         } else if (src.equals(view_penyewa.getCheckoutRental())) {
             checkoutRentalClicked();
-        } else if(src.equals(view_penyewa.getRentalKendaraan())){
+        } else if (src.equals(view_penyewa.getRentalKendaraan())) {
             rentalKendaraanClicked();
-        } else if(src.equals(view_penyewa.getExitBtn())){
+        } else if (src.equals(view_penyewa.getExitBtn())) {
             exitBtnClicked();
-        } else if(src.equals(view_penyewa.getBranchKatalog()) || src.equals(view_penyewa.getBranchKatalog1())){
+        } else if (src.equals(view_penyewa.getBranchKatalog()) || src.equals(view_penyewa.getBranchKatalog1())) {
             branchKatalogClicked();
-        } else if (src.equals(view_penyewa.getBranchDetailKendaraan())){
+        } else if (src.equals(view_penyewa.getBranchDetailKendaraan())) {
             branchDetailClicked();
         }
     }
@@ -173,8 +173,8 @@ public class PenyewaPageController implements MouseListener, ActionListener {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public void rentalKendaraanClicked(){
+
+    public void rentalKendaraanClicked() {
         showDetailCheckout();
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPagePembayaran());
     }
@@ -216,16 +216,16 @@ public class PenyewaPageController implements MouseListener, ActionListener {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public void branchKatalogClicked(){
+
+    public void branchKatalogClicked() {
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
     }
-    
-    public void branchDetailClicked(){
+
+    public void branchDetailClicked() {
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
     }
-    
-    public void exitBtnClicked(){
+
+    public void exitBtnClicked() {
         JOptionPane.showMessageDialog(null, "Berhasil keluar");
         view_penyewa.dispose();
         new LoginController();
@@ -250,5 +250,5 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     public void mouseExited(MouseEvent e) {
 
     }
-
+    
 }

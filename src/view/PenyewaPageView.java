@@ -1153,7 +1153,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel warnaKendaraan;
     // End of variables declaration//GEN-END:variables
 
-    public void addMouseListener(MouseListener l){
+    public void addMouseListener(MouseListener l) {
         PanelGambar1.addMouseListener(l);
         PanelGambar2.addMouseListener(l);
         PanelGambar3.addMouseListener(l);
@@ -1166,12 +1166,12 @@ public class PenyewaPageView extends javax.swing.JFrame {
         branchKatalog.addMouseListener(l);
         branchKatalog1.addMouseListener(l);
     }
-    
-    public void addActionListener(ActionListener l){
+
+    public void addActionListener(ActionListener l) {
         searchBtn.addActionListener(l);
         listHari.addActionListener(l);
     }
-    
+
     public JPanel getPanelGambar1() {
         return PanelGambar1;
     }

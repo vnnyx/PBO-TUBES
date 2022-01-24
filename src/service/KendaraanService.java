@@ -44,4 +44,5 @@ public class KendaraanService extends Repository {
         }
         return model_kendaraan;
     }
+    
 }
