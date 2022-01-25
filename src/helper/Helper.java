@@ -6,18 +6,22 @@
 package helper;
 
 import com.cloudinary.Cloudinary;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.Kendaraan;
+import model.Transaksi;
 import view.PenyewaPageView;
 
 /**
@@ -47,6 +51,11 @@ public class Helper {
         kursIDN.setDecimalFormatSymbols(formatRp);
         return kursIDN.format(price);
     }
+    
+    public String dateFormat(LocalDate date){
+        DateTimeFormatter format_date = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        return date.format(format_date);
+    }
 
     public ImageIcon getImage(JLabel label, String path) throws Exception {
         URL url = new URL(path);
@@ -74,5 +83,23 @@ public class Helper {
         view.getHarga().setText(priceFormat(kendaraan.getHarga_sewa()));
         view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
     }
-    
+
+    public void createAsetRiwayat(Transaksi transaksi, JLabel image, JLabel nama_kendaraan, JLabel mulai,
+            JLabel selesai, JLabel harga, JLabel status) throws Exception {
+        image.setIcon(getImage(image, transaksi.getFoto_kendaraan()));
+        nama_kendaraan.setText(transaksi.getNama_kendaraan());
+        mulai.setText(dateFormat(transaksi.getMulai_sewa()));
+        selesai.setText(dateFormat(transaksi.getSelesai_sewa()));
+        harga.setText(priceFormat(transaksi.getTotal()));
+        int tgl_mulai = transaksi.getMulai_sewa().getDayOfMonth();
+        int tgl_selesai = transaksi.getSelesai_sewa().getDayOfMonth();
+        if(tgl_selesai-tgl_mulai < 0){
+            status.setText("Telah dirental");
+            status.setForeground(new Color(165, 0, 0));
+        }else{
+            status.setText("Sedang dirental");
+            status.setForeground(new Color(47, 225, 75));
+        }
+    }
+
 }

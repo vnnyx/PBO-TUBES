@@ -133,17 +133,58 @@ public class Repository extends Database {
     public void addTransaksi(Transaksi transaksi) throws SQLException {
         String username = transaksi.getUsername();
         String foto_kendaraan = transaksi.getFoto_kendaraan();
+        String nama_kendaraan = transaksi.getNama_kendaraan();
         int lama_sewa = transaksi.getLama_sewa();
         LocalDate mulai_sewa = transaksi.getMulai_sewa();
         LocalDate selesai_sewa = transaksi.getSelesai_sewa();
         int total = transaksi.getTotal();
         connectDB();
-        String query = "INSERT INTO `transaksi` (`foto_kendaraan`, `username`, "
-                + "`lama_sewa(hari)`, `mulai_sewa`, `selesai_sewa`, `total_harga`) "
-                + "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')";
-        query = String.format(query, foto_kendaraan, username, lama_sewa, mulai_sewa, selesai_sewa, total);
+        String query = "INSERT INTO transaksi (`nama_kendaraan`, `foto_kendaraan`, "
+                + "`username`, `lama_sewa(hari)`, `mulai_sewa`, `selesai_sewa`, `total_harga`) "
+                + "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+        query = String.format(query, nama_kendaraan, foto_kendaraan, username, lama_sewa, mulai_sewa, selesai_sewa, total);
         execute(query);
         disconnectDB();
+    }
+
+    public ArrayList<Transaksi> getDataTransaksi(int offset, String username) throws SQLException {
+        ArrayList<Transaksi> transaksi = new ArrayList<>();
+        connectDB();
+        String sql = "SELECT * FROM transaksi WHERE username = '%s' ORDER BY id DESC LIMIT 3 OFFSET %s";
+        sql = String.format(sql, username, offset);
+        executeQuery(sql);
+        while (rs.next()) {
+            String nama_kendaraan = rs.getString("nama_kendaraan");
+            String image = rs.getString("foto_kendaraan");
+            String user = rs.getString("username");
+            int lama_sewa = rs.getInt("lama_sewa(hari)");
+            LocalDate mulai_sewa = rs.getDate("mulai_sewa").toLocalDate();
+            LocalDate selesai_sewa = rs.getDate("selesai_sewa").toLocalDate();
+            int harga_total = rs.getInt("total_harga");
+            transaksi.add(new Transaksi(user, image, mulai_sewa, selesai_sewa, nama_kendaraan, lama_sewa, harga_total));
+        }
+        disconnectDB();
+        return transaksi;
+    }
+
+    public ArrayList<Transaksi> getDataTransaksi(String username) throws SQLException {
+        ArrayList<Transaksi> transaksi = new ArrayList<>();
+        connectDB();
+        String sql = "SELECT * FROM transaksi WHERE username = '%s' ORDER BY id DESC";
+        sql = String.format(sql, username);
+        executeQuery(sql);
+        while (rs.next()) {
+            String nama_kendaraan = rs.getString("nama_kendaraan");
+            String image = rs.getString("foto_kendaraan");
+            String user = rs.getString("username");
+            int lama_sewa = rs.getInt("lama_sewa(hari)");
+            LocalDate mulai_sewa = rs.getDate("mulai_sewa").toLocalDate();
+            LocalDate selesai_sewa = rs.getDate("selesai_sewa").toLocalDate();
+            int harga_total = rs.getInt("total_harga");
+            transaksi.add(new Transaksi(user, image, mulai_sewa, selesai_sewa, nama_kendaraan, lama_sewa, harga_total));
+        }
+        disconnectDB();
+        return transaksi;
     }
 
 }

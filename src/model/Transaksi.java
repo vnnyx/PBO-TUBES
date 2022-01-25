@@ -32,6 +32,10 @@ public class Transaksi {
         this.total = total;
     }
 
+    public Transaksi() {
+
+    }
+
     public String getUsername() {
         return username;
     }
@@ -88,5 +92,4 @@ public class Transaksi {
         this.total = total;
     }
 
-    
 }

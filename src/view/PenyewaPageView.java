@@ -5,13 +5,18 @@
  */
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -22,8 +27,19 @@ public class PenyewaPageView extends javax.swing.JFrame {
     /**
      * Creates new form PenyewaPageView
      */
+    private JScrollPane scroll;
     public PenyewaPageView() {
         initComponents();
+        CardLayout cl = new CardLayout();
+        cl.setVgap(0);
+        cl.setHgap(0);
+        listPanel.setLayout(cl);
+        panelItem.setLayout(new GridBagLayout());
+
+        scroll = new JScrollPane(panelItem);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        listPanel.add(scroll);
     }
 
     /**
@@ -35,9 +51,10 @@ public class PenyewaPageView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel8 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         katalog_Kendaraan = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        katalogKendaraanTxt = new javax.swing.JLabel();
         riwayatRental = new javax.swing.JPanel();
         riwataRentalTxt = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -129,6 +146,64 @@ public class PenyewaPageView extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         hargaCheckout = new javax.swing.JLabel();
+        popupSukses = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        branchDetailKendaraan1 = new javax.swing.JLabel();
+        branchKatalog2 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lihatRiwayatRental = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        riwayat = new javax.swing.JPanel();
+        jLabel44 = new javax.swing.JLabel();
+        previousPage1 = new javax.swing.JPanel();
+        prev1 = new javax.swing.JLabel();
+        nextPage1 = new javax.swing.JPanel();
+        next1 = new javax.swing.JLabel();
+        cardPanel = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
+        namaKendaraan1 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        tglMulai = new javax.swing.JLabel();
+        tglSelesai = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        hargaSewa = new javax.swing.JLabel();
+        status = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        cardPanel1 = new javax.swing.JPanel();
+        image1 = new javax.swing.JLabel();
+        namaKendaraan2 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        tglMulai1 = new javax.swing.JLabel();
+        tglSelesai1 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        hargaSewa1 = new javax.swing.JLabel();
+        status1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        riwayatv2 = new javax.swing.JPanel();
+        jLabel57 = new javax.swing.JLabel();
+        listPanel = new javax.swing.JPanel();
+        panelItem = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,10 +211,21 @@ public class PenyewaPageView extends javax.swing.JFrame {
 
         katalog_Kendaraan.setBackground(new java.awt.Color(0, 43, 130));
         katalog_Kendaraan.setPreferredSize(new java.awt.Dimension(323, 64));
+        katalog_Kendaraan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                katalog_KendaraanMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                katalog_KendaraanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                katalog_KendaraanMouseExited(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Mulish", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 216, 82));
-        jLabel1.setText("Katalog Kendaraan");
+        katalogKendaraanTxt.setFont(new java.awt.Font("Mulish", 1, 20)); // NOI18N
+        katalogKendaraanTxt.setForeground(new java.awt.Color(255, 216, 82));
+        katalogKendaraanTxt.setText("Katalog Kendaraan");
 
         javax.swing.GroupLayout katalog_KendaraanLayout = new javax.swing.GroupLayout(katalog_Kendaraan);
         katalog_Kendaraan.setLayout(katalog_KendaraanLayout);
@@ -147,19 +233,30 @@ public class PenyewaPageView extends javax.swing.JFrame {
             katalog_KendaraanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(katalog_KendaraanLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel1)
+                .addComponent(katalogKendaraanTxt)
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         katalog_KendaraanLayout.setVerticalGroup(
             katalog_KendaraanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, katalog_KendaraanLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(katalogKendaraanTxt)
                 .addGap(18, 18, 18))
         );
 
         riwayatRental.setBackground(new java.awt.Color(0, 63, 130));
         riwayatRental.setPreferredSize(new java.awt.Dimension(323, 64));
+        riwayatRental.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                riwayatRentalMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                riwayatRentalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                riwayatRentalMouseExited(evt);
+            }
+        });
 
         riwataRentalTxt.setFont(new java.awt.Font("Mulish", 1, 20)); // NOI18N
         riwataRentalTxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -497,6 +594,14 @@ public class PenyewaPageView extends javax.swing.JFrame {
         previousPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(139, 139, 139)));
         previousPage.setForeground(new java.awt.Color(255, 255, 255));
         previousPage.setPreferredSize(new java.awt.Dimension(74, 50));
+        previousPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                previousPageMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                previousPageMouseExited(evt);
+            }
+        });
 
         prev.setFont(new java.awt.Font("Nanum Pen", 1, 22)); // NOI18N
         prev.setText("<");
@@ -521,6 +626,14 @@ public class PenyewaPageView extends javax.swing.JFrame {
         nextPage.setBackground(new java.awt.Color(255, 255, 255));
         nextPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 63, 130)));
         nextPage.setPreferredSize(new java.awt.Dimension(74, 50));
+        nextPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextPageMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextPageMouseExited(evt);
+            }
+        });
 
         next.setFont(new java.awt.Font("Nanum Pen", 1, 22)); // NOI18N
         next.setText(">");
@@ -1002,6 +1115,530 @@ public class PenyewaPageView extends javax.swing.JFrame {
 
         mainPanel.add(pagePembayaran, "card4");
 
+        popupSukses.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Pembayaran_rental.png"))); // NOI18N
+
+        branchDetailKendaraan1.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        branchDetailKendaraan1.setForeground(new java.awt.Color(65, 65, 65));
+        branchDetailKendaraan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/branch detail kendaraan.png"))); // NOI18N
+
+        branchKatalog2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/branch katalog.png"))); // NOI18N
+
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Pembayaran.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/notif.png"))); // NOI18N
+
+        lihatRiwayatRental.setBackground(new java.awt.Color(0, 63, 130));
+        lihatRiwayatRental.setPreferredSize(new java.awt.Dimension(301, 72));
+
+        jLabel42.setFont(new java.awt.Font("Mulish", 1, 18)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("Lihat Riwayat Rental");
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/right_arrow2.png"))); // NOI18N
+
+        javax.swing.GroupLayout lihatRiwayatRentalLayout = new javax.swing.GroupLayout(lihatRiwayatRental);
+        lihatRiwayatRental.setLayout(lihatRiwayatRentalLayout);
+        lihatRiwayatRentalLayout.setHorizontalGroup(
+            lihatRiwayatRentalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lihatRiwayatRentalLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel42)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel43)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        lihatRiwayatRentalLayout.setVerticalGroup(
+            lihatRiwayatRentalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lihatRiwayatRentalLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(lihatRiwayatRentalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42)
+                    .addComponent(jLabel43))
+                .addGap(24, 24, 24))
+        );
+
+        javax.swing.GroupLayout popupSuksesLayout = new javax.swing.GroupLayout(popupSukses);
+        popupSukses.setLayout(popupSuksesLayout);
+        popupSuksesLayout.setHorizontalGroup(
+            popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popupSuksesLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addGroup(popupSuksesLayout.createSequentialGroup()
+                        .addComponent(branchKatalog2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(branchDetailKendaraan1)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel41)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
+                .addGap(236, 236, 236)
+                .addGroup(popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(179, 179, 179))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
+                        .addComponent(lihatRiwayatRental, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(261, 261, 261))))
+        );
+        popupSuksesLayout.setVerticalGroup(
+            popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popupSuksesLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(branchKatalog2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(branchDetailKendaraan1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel32)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24)
+                .addComponent(lihatRiwayatRental, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(popupSukses, "card5");
+
+        riwayat.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Riwayatrental (2).png"))); // NOI18N
+
+        previousPage1.setBackground(new java.awt.Color(255, 255, 255));
+        previousPage1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(139, 139, 139)));
+        previousPage1.setForeground(new java.awt.Color(255, 255, 255));
+        previousPage1.setPreferredSize(new java.awt.Dimension(74, 50));
+        previousPage1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                previousPage1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                previousPage1MouseExited(evt);
+            }
+        });
+
+        prev1.setFont(new java.awt.Font("Nanum Pen", 1, 22)); // NOI18N
+        prev1.setText("<");
+
+        javax.swing.GroupLayout previousPage1Layout = new javax.swing.GroupLayout(previousPage1);
+        previousPage1.setLayout(previousPage1Layout);
+        previousPage1Layout.setHorizontalGroup(
+            previousPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(previousPage1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(prev1)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        previousPage1Layout.setVerticalGroup(
+            previousPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, previousPage1Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(prev1)
+                .addGap(11, 11, 11))
+        );
+
+        nextPage1.setBackground(new java.awt.Color(255, 255, 255));
+        nextPage1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 63, 130)));
+        nextPage1.setPreferredSize(new java.awt.Dimension(74, 50));
+        nextPage1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextPage1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextPage1MouseExited(evt);
+            }
+        });
+
+        next1.setFont(new java.awt.Font("Nanum Pen", 1, 22)); // NOI18N
+        next1.setText(">");
+
+        javax.swing.GroupLayout nextPage1Layout = new javax.swing.GroupLayout(nextPage1);
+        nextPage1.setLayout(nextPage1Layout);
+        nextPage1Layout.setHorizontalGroup(
+            nextPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPage1Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(next1)
+                .addGap(29, 29, 29))
+        );
+        nextPage1Layout.setVerticalGroup(
+            nextPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPage1Layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(next1)
+                .addGap(11, 11, 11))
+        );
+
+        cardPanel.setBackground(new java.awt.Color(255, 255, 255));
+        cardPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 49, 49)));
+        cardPanel.setPreferredSize(new java.awt.Dimension(805, 160));
+
+        image.setPreferredSize(new java.awt.Dimension(135, 136));
+
+        namaKendaraan1.setFont(new java.awt.Font("Mulish", 1, 20)); // NOI18N
+        namaKendaraan1.setForeground(new java.awt.Color(49, 49, 49));
+        namaKendaraan1.setText("Alphard Tipe X");
+
+        jLabel45.setBackground(new java.awt.Color(79, 79, 79));
+        jLabel45.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel45.setText("Tanggal Rental      :");
+
+        jLabel46.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel46.setText("Tanggal Kembali   :");
+
+        tglMulai.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        tglMulai.setForeground(new java.awt.Color(49, 49, 49));
+        tglMulai.setText("12 Januari 2021");
+
+        tglSelesai.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        tglSelesai.setForeground(new java.awt.Color(49, 49, 49));
+        tglSelesai.setText("12 Januari 2021");
+
+        jLabel47.setBackground(new java.awt.Color(79, 79, 79));
+        jLabel47.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel47.setText("Harga Sewa :");
+
+        jLabel48.setBackground(new java.awt.Color(79, 79, 79));
+        jLabel48.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel48.setText("Status :");
+
+        hargaSewa.setFont(new java.awt.Font("Mulish", 1, 14)); // NOI18N
+        hargaSewa.setForeground(new java.awt.Color(249, 166, 32));
+        hargaSewa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        hargaSewa.setText("800.000,00");
+
+        status.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        status.setForeground(new java.awt.Color(47, 225, 75));
+        status.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        status.setText("Sedang dirental");
+
+        jPanel4.setBackground(new java.awt.Color(0, 63, 130));
+        jPanel4.setPreferredSize(new java.awt.Dimension(125, 39));
+
+        jLabel49.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("Lihat Detail");
+
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel50)
+                .addGap(18, 18, 18))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel49)
+                    .addComponent(jLabel50))
+                .addGap(12, 12, 12))
+        );
+
+        javax.swing.GroupLayout cardPanelLayout = new javax.swing.GroupLayout(cardPanel);
+        cardPanel.setLayout(cardPanelLayout);
+        cardPanelLayout.setHorizontalGroup(
+            cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardPanelLayout.createSequentialGroup()
+                        .addComponent(namaKendaraan1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(17, 17, 17)
+                        .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hargaSewa, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(status, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(cardPanelLayout.createSequentialGroup()
+                        .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cardPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel45)
+                                .addGap(12, 12, 12)
+                                .addComponent(tglMulai))
+                            .addGroup(cardPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel46)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tglSelesai)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12))
+        );
+        cardPanelLayout.setVerticalGroup(
+            cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardPanelLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(cardPanelLayout.createSequentialGroup()
+                        .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel47)
+                            .addComponent(hargaSewa))
+                        .addGap(12, 12, 12)
+                        .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel48)
+                            .addComponent(status))
+                        .addGap(57, 57, 57)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(cardPanelLayout.createSequentialGroup()
+                            .addComponent(namaKendaraan1)
+                            .addGap(73, 73, 73)
+                            .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel45)
+                                .addComponent(tglMulai))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel46)
+                                .addComponent(tglSelesai)))
+                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        cardPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        cardPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 49, 49)));
+        cardPanel1.setPreferredSize(new java.awt.Dimension(805, 160));
+
+        image1.setPreferredSize(new java.awt.Dimension(135, 136));
+
+        namaKendaraan2.setFont(new java.awt.Font("Mulish", 1, 20)); // NOI18N
+        namaKendaraan2.setForeground(new java.awt.Color(49, 49, 49));
+        namaKendaraan2.setText("Alphard Tipe X");
+
+        jLabel51.setBackground(new java.awt.Color(79, 79, 79));
+        jLabel51.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel51.setText("Tanggal Rental      :");
+
+        jLabel52.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel52.setText("Tanggal Kembali   :");
+
+        tglMulai1.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        tglMulai1.setForeground(new java.awt.Color(49, 49, 49));
+        tglMulai1.setText("12 Januari 2021");
+
+        tglSelesai1.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        tglSelesai1.setForeground(new java.awt.Color(49, 49, 49));
+        tglSelesai1.setText("12 Januari 2021");
+
+        jLabel53.setBackground(new java.awt.Color(79, 79, 79));
+        jLabel53.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel53.setText("Harga Sewa :");
+
+        jLabel54.setBackground(new java.awt.Color(79, 79, 79));
+        jLabel54.setFont(new java.awt.Font("Mulish Medium", 0, 12)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(79, 79, 79));
+        jLabel54.setText("Status :");
+
+        hargaSewa1.setFont(new java.awt.Font("Mulish", 1, 14)); // NOI18N
+        hargaSewa1.setForeground(new java.awt.Color(249, 166, 32));
+        hargaSewa1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        hargaSewa1.setText("800.000,00");
+
+        status1.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        status1.setForeground(new java.awt.Color(47, 225, 75));
+        status1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        status1.setText("Sedang dirental");
+
+        jPanel5.setBackground(new java.awt.Color(0, 63, 130));
+        jPanel5.setPreferredSize(new java.awt.Dimension(125, 39));
+
+        jLabel55.setFont(new java.awt.Font("Mulish", 1, 12)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel55.setText("Lihat Detail");
+
+        jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel56)
+                .addGap(18, 18, 18))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel55)
+                    .addComponent(jLabel56))
+                .addGap(12, 12, 12))
+        );
+
+        javax.swing.GroupLayout cardPanel1Layout = new javax.swing.GroupLayout(cardPanel1);
+        cardPanel1.setLayout(cardPanel1Layout);
+        cardPanel1Layout.setHorizontalGroup(
+            cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(image1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardPanel1Layout.createSequentialGroup()
+                        .addComponent(namaKendaraan2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel53)
+                            .addComponent(jLabel54))
+                        .addGap(17, 17, 17)
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hargaSewa1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(status1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(cardPanel1Layout.createSequentialGroup()
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cardPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addGap(12, 12, 12)
+                                .addComponent(tglMulai1))
+                            .addGroup(cardPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel52)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tglSelesai1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12))
+        );
+        cardPanel1Layout.setVerticalGroup(
+            cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardPanel1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(cardPanel1Layout.createSequentialGroup()
+                        .addComponent(namaKendaraan2)
+                        .addGap(73, 73, 73)
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel51)
+                            .addComponent(tglMulai1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel52)
+                            .addComponent(tglSelesai1)))
+                    .addGroup(cardPanel1Layout.createSequentialGroup()
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel53)
+                            .addComponent(hargaSewa1))
+                        .addGap(12, 12, 12)
+                        .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel54)
+                            .addComponent(status1))
+                        .addGap(57, 57, 57)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(image1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout riwayatLayout = new javax.swing.GroupLayout(riwayat);
+        riwayat.setLayout(riwayatLayout);
+        riwayatLayout.setHorizontalGroup(
+            riwayatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(riwayatLayout.createSequentialGroup()
+                .addGroup(riwayatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(riwayatLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(previousPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(nextPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, riwayatLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(riwayatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel44)
+                            .addComponent(cardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        riwayatLayout.setVerticalGroup(
+            riwayatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(riwayatLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel44)
+                .addGap(36, 36, 36)
+                .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(cardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGroup(riwayatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(previousPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+
+        mainPanel.add(riwayat, "card6");
+
+        riwayatv2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Riwayatrental (2).png"))); // NOI18N
+
+        listPanel.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout panelItemLayout = new javax.swing.GroupLayout(panelItem);
+        panelItem.setLayout(panelItemLayout);
+        panelItemLayout.setHorizontalGroup(
+            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelItemLayout.setVerticalGroup(
+            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
+        listPanel.setLayout(listPanelLayout);
+        listPanelLayout.setHorizontalGroup(
+            listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        listPanelLayout.setVerticalGroup(
+            listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout riwayatv2Layout = new javax.swing.GroupLayout(riwayatv2);
+        riwayatv2.setLayout(riwayatv2Layout);
+        riwayatv2Layout.setHorizontalGroup(
+            riwayatv2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(riwayatv2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(riwayatv2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        riwayatv2Layout.setVerticalGroup(
+            riwayatv2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(riwayatv2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel57)
+                .addGap(18, 18, 18)
+                .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(riwayatv2, "card6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1020,6 +1657,89 @@ public class PenyewaPageView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nextPageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextPageMouseEntered
+        setPagination(nextPage, next);
+    }//GEN-LAST:event_nextPageMouseEntered
+
+    private void nextPageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextPageMouseExited
+        resetPagination(nextPage, next);
+    }//GEN-LAST:event_nextPageMouseExited
+
+    private void previousPageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previousPageMouseEntered
+        setPagination(previousPage, prev);
+    }//GEN-LAST:event_previousPageMouseEntered
+
+    private void previousPageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previousPageMouseExited
+        resetPagination(previousPage, prev);
+    }//GEN-LAST:event_previousPageMouseExited
+
+    private void previousPage1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previousPage1MouseEntered
+        setPagination(previousPage1, prev1);
+    }//GEN-LAST:event_previousPage1MouseEntered
+
+    private void previousPage1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previousPage1MouseExited
+        resetPagination(previousPage1, prev1);
+    }//GEN-LAST:event_previousPage1MouseExited
+
+    private void nextPage1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextPage1MouseEntered
+        setPagination(nextPage1, next1);
+    }//GEN-LAST:event_nextPage1MouseEntered
+
+    private void nextPage1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextPage1MouseExited
+        resetPagination(nextPage1, next1);
+    }//GEN-LAST:event_nextPage1MouseExited
+
+    private void katalog_KendaraanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_katalog_KendaraanMouseEntered
+//        setColor(katalog_Kendaraan);
+    }//GEN-LAST:event_katalog_KendaraanMouseEntered
+
+    private void katalog_KendaraanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_katalog_KendaraanMouseExited
+//        resetColor(katalog_Kendaraan);
+    }//GEN-LAST:event_katalog_KendaraanMouseExited
+
+    private void katalog_KendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_katalog_KendaraanMouseClicked
+        setClicked(katalog_Kendaraan, riwayatRental, katalogKendaraanTxt, riwataRentalTxt);
+    }//GEN-LAST:event_katalog_KendaraanMouseClicked
+
+    private void riwayatRentalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatRentalMouseEntered
+//        setColor(riwayatRental);
+    }//GEN-LAST:event_riwayatRentalMouseEntered
+
+    private void riwayatRentalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatRentalMouseExited
+//        resetColor(riwayatRental);
+    }//GEN-LAST:event_riwayatRentalMouseExited
+
+    private void riwayatRentalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatRentalMouseClicked
+        setClicked(riwayatRental, katalog_Kendaraan, riwataRentalTxt, katalogKendaraanTxt);
+    }//GEN-LAST:event_riwayatRentalMouseClicked
+
+    private void setPagination(JPanel p, JLabel l) {
+        p.setBackground(new Color(0, 63, 130));
+        p.setBorder(new LineBorder(new Color(0, 63, 130)));
+        l.setForeground(new Color(255, 255, 255));
+    }
+
+    private void resetPagination(JPanel p, JLabel l) {
+        p.setBackground(new Color(255, 255, 255));
+        p.setBorder(new LineBorder(new Color(0, 63, 130)));
+        l.setForeground(new Color(0, 63, 130));
+    }
+
+    private void setColor(JPanel p) {
+        p.setBackground(new Color(0, 53, 130));
+    }
+
+    private void resetColor(JPanel p) {
+        p.setBackground(new Color(0, 63, 130));
+    }
+
+    private void setClicked(JPanel p1, JPanel p2, JLabel l1, JLabel l2) {
+        p1.setBackground(new Color(0, 43, 110));
+        l1.setForeground(new Color(255, 216, 82));
+        p2.setBackground(new Color(0, 63, 130));
+        l2.setForeground(new Color(255, 255, 255));
+    }
 
     /**
      * @param args the command line arguments
@@ -1061,8 +1781,12 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelGambar2;
     private javax.swing.JPanel PanelGambar3;
     private javax.swing.JLabel branchDetailKendaraan;
+    private javax.swing.JLabel branchDetailKendaraan1;
     private javax.swing.JLabel branchKatalog;
     private javax.swing.JLabel branchKatalog1;
+    private javax.swing.JLabel branchKatalog2;
+    private javax.swing.JPanel cardPanel;
+    private javax.swing.JPanel cardPanel1;
     private javax.swing.JLabel ccKendaraan;
     private javax.swing.JPanel checkoutRental;
     private javax.swing.JPanel detailKendaraan;
@@ -1080,11 +1804,14 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel hargaKendaraan1;
     private javax.swing.JLabel hargaKendaraan2;
     private javax.swing.JLabel hargaKendaraan3;
+    private javax.swing.JLabel hargaSewa;
+    private javax.swing.JLabel hargaSewa1;
     private javax.swing.JLabel hargaTotal;
     private javax.swing.JLabel harian1;
     private javax.swing.JLabel harian2;
     private javax.swing.JLabel harian3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel image;
+    private javax.swing.JLabel image1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1095,6 +1822,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1108,6 +1836,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -1117,38 +1846,77 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jmlPenumpang1;
     private javax.swing.JLabel jmlPenumpang2;
     private javax.swing.JLabel jmlPenumpang3;
     private javax.swing.JLabel kapasitasKendaraan;
     private javax.swing.JPanel katalogKendaraan;
+    private javax.swing.JLabel katalogKendaraanTxt;
     private javax.swing.JPanel katalog_Kendaraan;
+    private javax.swing.JPanel lihatRiwayatRental;
     private javax.swing.JComboBox<String> listHari;
+    private javax.swing.JPanel listPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel merkKendaraan;
     private javax.swing.JLabel merkKendaraan1;
     private javax.swing.JLabel merkKendaraan2;
     private javax.swing.JLabel merkKendaraan3;
     private javax.swing.JLabel namaKendaraan;
+    private javax.swing.JLabel namaKendaraan1;
+    private javax.swing.JLabel namaKendaraan2;
     private javax.swing.JLabel next;
+    private javax.swing.JLabel next1;
     private javax.swing.JPanel nextPage;
+    private javax.swing.JPanel nextPage1;
     private javax.swing.JPanel pagePembayaran;
+    private javax.swing.JPanel panelItem;
+    private javax.swing.JPanel popupSukses;
     private javax.swing.JLabel pp;
     private javax.swing.JLabel prev;
+    private javax.swing.JLabel prev1;
     private javax.swing.JPanel previousPage;
+    private javax.swing.JPanel previousPage1;
     private javax.swing.JPanel rentalKendaraan;
     private javax.swing.JLabel riwataRentalTxt;
+    private javax.swing.JPanel riwayat;
     private javax.swing.JPanel riwayatRental;
+    private javax.swing.JPanel riwayatv2;
     private javax.swing.JTextField searchBar;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JLabel status;
+    private javax.swing.JLabel status1;
+    private javax.swing.JLabel tglMulai;
+    private javax.swing.JLabel tglMulai1;
+    private javax.swing.JLabel tglSelesai;
+    private javax.swing.JLabel tglSelesai1;
     private javax.swing.JLabel username;
     private javax.swing.JLabel warnaKendaraan;
     // End of variables declaration//GEN-END:variables
@@ -1165,12 +1933,35 @@ public class PenyewaPageView extends javax.swing.JFrame {
         branchDetailKendaraan.addMouseListener(l);
         branchKatalog.addMouseListener(l);
         branchKatalog1.addMouseListener(l);
+        lihatRiwayatRental.addMouseListener(l);
+        riwayatRental.addMouseListener(l);
+        katalog_Kendaraan.addMouseListener(l);
+        nextPage1.addMouseListener(l);
+        previousPage1.addMouseListener(l);
     }
 
     public void addActionListener(ActionListener l) {
         searchBtn.addActionListener(l);
         listHari.addActionListener(l);
     }
+
+    public JScrollPane getScroll() {
+        return scroll;
+    }
+
+    public JPanel getListPanel() {
+        return listPanel;
+    }
+
+    public JPanel getPanelItem() {
+        return panelItem;
+    }
+
+    public JPanel getRiwayatv2() {
+        return riwayatv2;
+    }
+    
+    
 
     public JPanel getPanelGambar1() {
         return PanelGambar1;
@@ -1371,5 +2162,97 @@ public class PenyewaPageView extends javax.swing.JFrame {
     public JLabel getBranchKatalog1() {
         return branchKatalog1;
     }
-    
+
+    public JLabel getBranchDetailKendaraan1() {
+        return branchDetailKendaraan1;
+    }
+
+    public JLabel getBranchKatalog2() {
+        return branchKatalog2;
+    }
+
+    public JPanel getCardPanel() {
+        return cardPanel;
+    }
+
+    public JPanel getCardPanel1() {
+        return cardPanel1;
+    }
+
+    public JLabel getHargaSewa() {
+        return hargaSewa;
+    }
+
+    public JLabel getHargaSewa1() {
+        return hargaSewa1;
+    }
+
+    public JPanel getLihatRiwayatRental() {
+        return lihatRiwayatRental;
+    }
+
+    public JLabel getNamaKendaraan1() {
+        return namaKendaraan1;
+    }
+
+    public JLabel getNamaKendaraan2() {
+        return namaKendaraan2;
+    }
+
+    public JLabel getNext1() {
+        return next1;
+    }
+
+    public JPanel getNextPage1() {
+        return nextPage1;
+    }
+
+    public JPanel getPopupSukses() {
+        return popupSukses;
+    }
+
+    public JLabel getPrev1() {
+        return prev1;
+    }
+
+    public JPanel getPreviousPage1() {
+        return previousPage1;
+    }
+
+    public JPanel getRiwayat() {
+        return riwayat;
+    }
+
+    public JLabel getStatus() {
+        return status;
+    }
+
+    public JLabel getStatus1() {
+        return status1;
+    }
+
+    public JLabel getTglMulai() {
+        return tglMulai;
+    }
+
+    public JLabel getTglMulai1() {
+        return tglMulai1;
+    }
+
+    public JLabel getTglSelesai() {
+        return tglSelesai;
+    }
+
+    public JLabel getTglSelesai1() {
+        return tglSelesai1;
+    }
+
+    public JLabel getImage() {
+        return image;
+    }
+
+    public JLabel getImage1() {
+        return image1;
+    }
+
 }

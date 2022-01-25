@@ -6,6 +6,8 @@
 package controller;
 
 import helper.Helper;
+import java.awt.Cursor;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -13,13 +15,16 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import model.Kendaraan;
 import model.Transaksi;
 import repository.Repository;
 import service.PenyewaPageService;
 import service.KendaraanService;
 import view.PenyewaPageView;
+import view.Tes;
 
 /**
  *
@@ -27,8 +32,8 @@ import view.PenyewaPageView;
  */
 public class PenyewaPageController implements MouseListener, ActionListener {
 
-    private PenyewaPageView view_penyewa;
-    private String username;
+    protected PenyewaPageView view_penyewa;
+    protected String username;
     private String email;
     private String url;
     private PenyewaPageService penyewaPageService;
@@ -38,7 +43,9 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     private Kendaraan model_kendaraan;
     private Transaksi model_transaksi;
     private String nama_kendaraan;
-    private int offset = 0;
+    private Tes[] tes;
+    private int offset_katalog = 0;
+    private int offset_riwayat = 0;
 
     public PenyewaPageController(String username, String email, String url) {
         this.username = username;
@@ -54,7 +61,7 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         view_penyewa.addMouseListener(this);
         view_penyewa.addActionListener(this);
         try {
-            penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
+            penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -87,6 +94,14 @@ public class PenyewaPageController implements MouseListener, ActionListener {
             branchKatalogClicked();
         } else if (src.equals(view_penyewa.getBranchDetailKendaraan())) {
             branchDetailClicked();
+        } else if (src.equals(view_penyewa.getLihatRiwayatRental()) || src.equals(view_penyewa.getRiwayatRental())) {
+            riwayatRentalClicked();
+        } else if (src.equals(view_penyewa.getKatalog_Kendaraan())) {
+            katalogKendaraanClicked();
+        } else if (src.equals(view_penyewa.getNextPage1())) {
+            riwayatNextClicked();
+        } else if (src.equals(view_penyewa.getPreviousPage1())) {
+            riwayatPrevClicked();
         }
     }
 
@@ -124,17 +139,17 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     }
 
     public void searchBtnPerformed() {
-        offset = 0;
+        offset_katalog = 0;
         String search = view_penyewa.getSearchBar().getText();
         if (search.isEmpty()) {
             try {
-                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         } else {
             try {
-                ArrayList<Kendaraan> data_kendaraan = repo.getSearchDataKendaraan(offset, search);
+                ArrayList<Kendaraan> data_kendaraan = repo.getSearchDataKendaraan(offset_katalog, search);
                 if (data_kendaraan.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Nama kendaraan tidak ditemukan");
                 } else {
@@ -148,12 +163,12 @@ public class PenyewaPageController implements MouseListener, ActionListener {
 
     public void previousPageClicked() {
         String search = view_penyewa.getSearchBar().getText();
-        offset -= 3;
+        offset_katalog -= 3;
         try {
             if (search.isEmpty()) {
-                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
             } else {
-                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset, search));
+                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset_katalog, search));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -162,12 +177,12 @@ public class PenyewaPageController implements MouseListener, ActionListener {
 
     public void nextPageClicked() {
         String search = view_penyewa.getSearchBar().getText();
-        offset += 3;
+        offset_katalog += 3;
         try {
             if (search.isEmpty()) {
-                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset));
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
             } else {
-                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset, search));
+                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset_katalog, search));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -208,27 +223,102 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         int hari = Integer.parseInt(selectedValue.substring(0, 1));
         int total = hari * model_kendaraan.getHarga_sewa();
         LocalDate mulai = LocalDate.now();
-        LocalDate akhir = LocalDate.of(mulai.getYear(), mulai.getMonth(), mulai.getDayOfMonth() + hari);
+        LocalDate akhir = mulai.plusDays(hari);
         model_transaksi = new Transaksi(username, model_kendaraan.getFoto_1(), mulai, akhir, nama_kendaraan, hari, total);
         try {
             repo.addTransaksi(model_transaksi);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPopupSukses());
     }
 
-    public void branchKatalogClicked() {
+    public void katalogKendaraanClicked() {
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
     }
 
+    public void showRiwayatRental() {
+        try {
+            penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+    }
+
+    public void riwayatPrevClicked() {
+        offset_riwayat -= 2;
+        try {
+            penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void riwayatNextClicked() {
+        offset_riwayat += 2;
+        try {
+            penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void riwayatRentalClicked() {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        createList();
+        view_penyewa.getKatalogKendaraan().setVisible(false);
+        view_penyewa.getRiwayatv2().setVisible(true);
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+//        showRiwayatRental();
+    }
+
+    public void branchKatalogClicked() {
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+    }
+
     public void branchDetailClicked() {
-        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
     }
 
     public void exitBtnClicked() {
         JOptionPane.showMessageDialog(null, "Berhasil keluar");
         view_penyewa.dispose();
         new LoginController();
+    }
+
+    public void createList() {
+        try {
+            ArrayList<Transaksi> transaksi = repo.getDataTransaksi(username);
+            System.out.println(transaksi);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+
+            if (transaksi.isEmpty()) {
+                JLabel label = new JLabel();
+//                BufferedImage img = ImageIO.read(getClass().getResource("/icon/not-found.jpg"));
+//                Image dimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
+//                ImageIcon icon = new ImageIcon(dimg);
+//                label.setIcon(icon);
+                view_penyewa.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                view_penyewa.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                view_penyewa.getPanelItem().add(label);
+            } else {
+                System.out.println("tes");
+                view_penyewa.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                view_penyewa.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                tes = new Tes[transaksi.size()];
+                for (int i = 0; i < transaksi.size(); i++) {
+                    Transaksi v = transaksi.get(i);
+                    tes[i] = new Tes(v.getFoto_kendaraan(), v.getNama_kendaraan(), v.getMulai_sewa(), v.getSelesai_sewa(), v.getTotal());
+                    tes[i].addMouseListener(this);
+                    view_penyewa.getPanelItem().add(tes[i], gbc);
+                }
+            }
+
+        } catch (Exception ex) {
+
+        }
     }
 
     @Override
@@ -250,5 +340,5 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     public void mouseExited(MouseEvent e) {
 
     }
-    
+
 }

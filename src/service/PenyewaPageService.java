@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import model.Kendaraan;
+import model.Transaksi;
 import view.PenyewaPageView;
+import view.RiwayatRental;
 
 /**
  *
@@ -78,5 +80,38 @@ public class PenyewaPageService extends Helper {
         main_panel.repaint();
         main_panel.revalidate();
     }
-    
+
+    public void riwayatShow(PenyewaPageView view, ArrayList<Transaksi> transaksi_data) throws SQLException, Exception {
+        Transaksi transaksi1, transaksi2 = new Transaksi();
+        view.getCardPanel().setVisible(true);
+        view.getCardPanel1().setVisible(true);
+        transaksi1 = null;
+        transaksi2 = null;
+        switch (transaksi_data.size()) {
+            case 0:
+                if (transaksi1 == null && transaksi2 == null) {
+                    view.getCardPanel().setVisible(false);
+                    view.getCardPanel1().setVisible(false);
+                }
+                break;
+            case 1:
+                transaksi1 = transaksi_data.get(0);
+                createAsetRiwayat(transaksi1, view.getImage(), view.getNamaKendaraan1(),
+                        view.getTglMulai(), view.getTglSelesai(), view.getHargaSewa(), view.getStatus());
+                if (transaksi2 == null) {
+                    view.getCardPanel1().setVisible(false);
+                }
+                break;
+            default:
+                transaksi1 = transaksi_data.get(0);
+                transaksi2 = transaksi_data.get(1);
+                createAsetRiwayat(transaksi1, view.getImage(), view.getNamaKendaraan1(),
+                        view.getTglMulai(), view.getTglSelesai(), view.getHargaSewa(), view.getStatus());
+                createAsetRiwayat(transaksi2, view.getImage1(), view.getNamaKendaraan2(),
+                        view.getTglMulai1(), view.getTglSelesai1(), view.getHargaSewa1(), view.getStatus1());
+                break;
+        }
+
+    }
+
 }
