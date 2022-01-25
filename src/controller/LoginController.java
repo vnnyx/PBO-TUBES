@@ -80,4 +80,5 @@ public class LoginController extends Database implements ActionListener {
             view_login.getPassword().setEchoChar('*');
         }
     }
+    
 }

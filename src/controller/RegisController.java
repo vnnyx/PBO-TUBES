@@ -147,4 +147,5 @@ public class RegisController extends Database implements ActionListener {
         new RegisController();
         view_regis2.dispose();
     }
+    
 }
