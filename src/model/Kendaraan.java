@@ -10,7 +10,7 @@ package model;
  * @author Firdaus
  */
 public class Kendaraan {
-
+    private int id_kendaraan;
     private String nama_kendaraan;
     private String merk_kendaraan;
     private String warna_kendaraan;
@@ -20,9 +20,10 @@ public class Kendaraan {
     private String foto_3;
     private int harga_sewa;
     private int kapasitas;
+    private int status;
 
-    public Kendaraan(String nama_kendaraan, String merk_kendaraan, String warna_kendaraan,
-            int cc_kendaraan, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas) {
+    public Kendaraan(int id_kendaraan, String nama_kendaraan, String merk_kendaraan, String warna_kendaraan,
+            int cc_kendaraan, String foto_1, String foto_2, String foto_3, int harga_sewa, int kapasitas, int status) {
         this.nama_kendaraan = nama_kendaraan;
         this.merk_kendaraan = merk_kendaraan;
         this.warna_kendaraan = warna_kendaraan;
@@ -32,6 +33,8 @@ public class Kendaraan {
         this.foto_3 = foto_3;
         this.harga_sewa = harga_sewa;
         this.kapasitas = kapasitas;
+        this.status = status;
+        this.id_kendaraan=id_kendaraan;
     }
 
     public Kendaraan(String nama_kendaraan, String foto_1, int harga_sewa, int kapasitas) {
@@ -100,6 +103,14 @@ public class Kendaraan {
         this.foto_3 = foto_3;
     }
 
+    public int getId_kendaraan() {
+        return id_kendaraan;
+    }
+
+    public void setId_kendaraan(int id_kendaraan) {
+        this.id_kendaraan = id_kendaraan;
+    }
+
     public int getHarga_sewa() {
         return harga_sewa;
     }
@@ -115,5 +126,14 @@ public class Kendaraan {
     public void setKapasitas(int kapasitas) {
         this.kapasitas = kapasitas;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
 
 }

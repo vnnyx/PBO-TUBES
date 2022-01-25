@@ -147,6 +147,7 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
         view_penyewa.setCursor(Cursor.getDefaultCursor());
     }

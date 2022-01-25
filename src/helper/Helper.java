@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -58,14 +59,22 @@ public class Helper {
     }
 
     public ImageIcon getImage(JLabel label, String path) throws Exception {
-        URL url = new URL(path);
-        Image img = ImageIO.read(url);
-        Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon icon = new ImageIcon(dimg);
-        return icon;
+        Image img;
+        try{
+            URL url = new URL(path);
+            img = ImageIO.read(url);
+ 
+        }catch(IIOException e){
+            img = ImageIO.read(getClass().getResource("/icon/broke-image.png"));
+        }
+           Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+           ImageIcon icon = new ImageIcon(dimg);
+           return icon;
+       
     }
 
-    public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas) throws Exception {
+    public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas)
+            throws Exception {
         icon.setIcon(getImage(icon, kendaraan.getFoto_1()));
         harga.setText(priceFormat(kendaraan.getHarga_sewa()));
         nama.setText(kendaraan.getNama_kendaraan());
