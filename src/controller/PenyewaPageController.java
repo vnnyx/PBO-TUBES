@@ -5,253 +5,339 @@
  */
 package controller;
 
-import database.Database;
-import java.awt.Image;
+import helper.Helper;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import model.Kendaraan;
-import view.KatalogKendaraan;
-import view.DetailKendaraan;
+import model.Transaksi;
+import repository.Repository;
+import service.PenyewaPageService;
+import service.KendaraanService;
+import view.PenyewaPageView;
 
 /**
  *
  * @author Firdaus
  */
-public class PenyewaPageController extends Database implements MouseListener {
+public class PenyewaPageController implements MouseListener, ActionListener {
 
-    private KatalogKendaraan view_catalog;
-    private DetailKendaraan view_detail;
-    private int page = 1;
+    private int total_page_katalog;
+    private int total_page_riwayat;
+    private int page_katalog = 1;
+    private int page_riwayat = 1;
+    private PenyewaPageView view_penyewa;
+    private String username;
+    private String email;
+    private String url;
+    private PenyewaPageService penyewaPageService;
+    private KendaraanService kendaraanService;
+    private Repository repo;
+    private Helper helper;
+    private Kendaraan model_kendaraan;
+    private Transaksi model_transaksi;
+    private String nama_kendaraan;
 
     public PenyewaPageController() {
-        view_catalog = new KatalogKendaraan();
-        view_detail = new DetailKendaraan();
-        view_catalog.setVisible(true);
-        view_catalog.addMouseListener(this);
-        view_detail.addMouseListener(this);
+    }
+
+    public PenyewaPageController(String username, String email, String url) {
+        view_penyewa = new PenyewaPageView();
+        penyewaPageService = new PenyewaPageService();
+        kendaraanService = new KendaraanService();
+        repo = new Repository();
+        helper = new Helper();
+        view_penyewa.setVisible(true);
+        this.username = username;
+        this.email = email;
+        this.url = url;
+        total_page_riwayat = penyewaPageService.getPageTransaksi(this.username);
+        total_page_katalog = penyewaPageService.getPageKatalog();
+        int offset_katalog = (page_katalog - 1) * 3;
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
+        view_penyewa.addMouseListener(this);
+        view_penyewa.addActionListener(this);
         try {
-            initData();
+            penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+        showProfile();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Object src = e.getSource();
+        if (src.equals(view_penyewa.getPanelGambar1())) {
+            nama_kendaraan = view_penyewa.getMerkKendaraan1().getText();
+            detailKendaraanClicked(nama_kendaraan);
+        } else if (src.equals(view_penyewa.getPanelGambar2())) {
+            nama_kendaraan = view_penyewa.getMerkKendaraan2().getText();
+            detailKendaraanClicked(nama_kendaraan);
+        } else if (src.equals(view_penyewa.getPanelGambar3())) {
+            nama_kendaraan = view_penyewa.getMerkKendaraan3().getText();
+            detailKendaraanClicked(nama_kendaraan);
+        } else if (src.equals(view_penyewa.getPreviousPage())) {
+            if (page_katalog > 1) {
+                previousPageClicked();
+            }
+        } else if (src.equals(view_penyewa.getNextPage())) {
+            if (page_katalog <= total_page_katalog && page_katalog >= 1) {
+                nextPageClicked();
+            }
+        } else if (src.equals(view_penyewa.getCheckoutRental())) {
+            checkoutRentalClicked();
+        } else if (src.equals(view_penyewa.getRentalKendaraan())) {
+            rentalKendaraanClicked();
+        } else if (src.equals(view_penyewa.getExitBtn())) {
+            exitBtnClicked();
+        } else if (src.equals(view_penyewa.getBranchKatalog()) || src.equals(view_penyewa.getBranchKatalog1())) {
+            branchKatalogClicked();
+        } else if (src.equals(view_penyewa.getBranchDetailKendaraan())) {
+            branchDetailClicked();
+        } else if (src.equals(view_penyewa.getLihatRiwayatRental()) || src.equals(view_penyewa.getRiwayatRental())) {
+            riwayatRentalClicked();
+        } else if (src.equals(view_penyewa.getKatalog_Kendaraan())) {
+            katalogKendaraanClicked();
+        } else if (src.equals(view_penyewa.getNextPage1())) {
+            if (page_riwayat <= total_page_riwayat && page_riwayat >= 1) {
+                riwayatNextClicked();
+            }
+        } else if (src.equals(view_penyewa.getPreviousPage1())) {
+            if (page_riwayat > 1) {
+                riwayatPrevClicked();
+            }
         }
     }
 
     @Override
-    public void mouseClicked(MouseEvent me) {
-        Object src = me.getSource();
-        if (src.equals(view_catalog.getPanelGambar1())) {
-            detailKendaraanClicked(view_catalog.getMerkKendaraan1().getText());
-        } else if (src.equals(view_detail.getBranchKatalog())) {
-            branchKatalogClicked();
-        } else if (src.equals(view_catalog.getNextPage())) {
-            nextPageClicked();
-        } else if (src.equals(view_catalog.getPanelGambar2())) {
-            detailKendaraanClicked(view_catalog.getMerkKendaraan2().getText());
-        } else if (src.equals(view_catalog.getPanelGambar3())) {
-            detailKendaraanClicked(view_catalog.getMerkKendaraan3().getText());
-        } else if (src.equals(view_catalog.getPreviousPage())) {
-            previousPageClicked();
+    public void actionPerformed(ActionEvent e) {
+        Object src = e.getSource();
+        if (src.equals(view_penyewa.getSearchBtn())) {
+            searchBtnPerformed();
+        } else if (src.equals(view_penyewa.getListHari())) {
+            listActionPerformed();
         }
     }
 
-    public ArrayList<Kendaraan> getData(int limit, int offset) throws SQLException {
-        ArrayList<Kendaraan> kendaraan = new ArrayList<>();
-        connectDB();
-        String sql = "SELECT * FROM kendaraan LIMIT %s OFFSET %s";
-        sql = String.format(sql, limit, offset);
-        executeQuery(sql);
-        while (rs.next()) {
-            String nama_kendaraan = rs.getString("nama_kendaraan");
-            int harga_sewa = rs.getInt("harga_sewa");
-            String foto_1 = rs.getString("foto_1");
-            int kapasitas = rs.getInt("kapasitas");
-            kendaraan.add(new Kendaraan(nama_kendaraan, foto_1, harga_sewa, kapasitas));
-        }
-        disconnectDB();
-        return kendaraan;
-    }
-
-    public ArrayList<Kendaraan> getDetail(String namaKendaraan) throws SQLException {
-        ArrayList<Kendaraan> kendaraan = new ArrayList<>();
-        connectDB();
-        String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan='%s' LIMIT 1";
-        sql = String.format(sql, namaKendaraan);
-        executeQuery(sql);
-        while (rs.next()) {
-            String nama_kendaraan = rs.getString("nama_kendaraan");
-            int harga_sewa = rs.getInt("harga_sewa");
-            String foto_1 = rs.getString("foto_1");
-            String foto_2 = rs.getString("foto_2");
-            String foto_3 = rs.getString("foto_3");
-            String warna = rs.getString("warna_kendaraan");
-            String merk = rs.getString("merk_kendaraan");
-            int cc = rs.getInt("cc_kendaraan");
-            int kapasitas = rs.getInt("kapasitas");
-            kendaraan.add(new Kendaraan(nama_kendaraan, merk, warna, cc, foto_1, foto_2, foto_3, harga_sewa, kapasitas));
-        }
-        disconnectDB();
-        return kendaraan;
-    }
-
-    public ImageIcon getIcon(JLabel label, String path) {
-        BufferedImage img = null;
+    public void showProfile() {
+        view_penyewa.getUsername().setText(username);
+        view_penyewa.getEmail().setText(email);
         try {
-            img = ImageIO.read(new File(path));
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon icon = new ImageIcon(dimg);
-        return icon;
-    }
-
-    public void createAset(Kendaraan kendaraan, JLabel icon, JLabel harga, JLabel nama, JLabel kapasitas) {
-        String path = "D:\\Gambar\\deye-eyed-patrick-prog4.jpg"; //Sementara
-        icon.setIcon(getIcon(icon, path));
-        harga.setText(priceFormat(kendaraan.getHarga_sewa()));
-        nama.setText(kendaraan.getNama_kendaraan());
-        kapasitas.setText(String.valueOf(kendaraan.getKapasitas()));
-    }
-
-    public String priceFormat(int price) {
-        String harga = String.valueOf(price);
-        return harga.substring(0, 3) + "." + harga.substring(3, 6) + ",00";
-    }
-
-    public void initData() throws SQLException {
-        int limit = 3;
-        int offset = (page - 1) * limit;
-        Kendaraan kendaraan1, kendaraan2, kendaraan3 = new Kendaraan();
-        view_catalog.getPanelGambar1().setVisible(true);
-        view_catalog.getPanelGambar2().setVisible(true);
-        view_catalog.getPanelGambar3().setVisible(true);
-        kendaraan1 = null;
-        kendaraan2 = null;
-        kendaraan3 = null;
-        ArrayList<Kendaraan> kendaraan_data = getData(limit, offset);
-        switch (kendaraan_data.size()) {
-            case 0:
-                System.out.println("Masuk case 0");
-                if (kendaraan1 == null && kendaraan2 == null && kendaraan3 == null) {
-                    view_catalog.getPanelGambar1().setVisible(false);
-                    view_catalog.getPanelGambar2().setVisible(false);
-                    view_catalog.getPanelGambar3().setVisible(false);
-                }
-                break;
-            case 1:
-                System.out.println("Masuk case 1");
-                kendaraan1 = kendaraan_data.get(0);
-                createAset(kendaraan1, view_catalog.getGambar1(), view_catalog.getHargaKendaraan1(),
-                        view_catalog.getMerkKendaraan1(), view_catalog.getJmlPenumpang1());
-                if (kendaraan2 == null && kendaraan3 == null) {
-                    view_catalog.getPanelGambar2().setVisible(false);
-                    view_catalog.getPanelGambar3().setVisible(false);
-                }
-                break;
-            case 2:
-                System.out.println("Masuk case 2");
-                kendaraan1 = kendaraan_data.get(0);
-                kendaraan2 = kendaraan_data.get(1);
-                createAset(kendaraan1, view_catalog.getGambar1(), view_catalog.getHargaKendaraan1(),
-                        view_catalog.getMerkKendaraan1(), view_catalog.getJmlPenumpang1());
-                createAset(kendaraan2, view_catalog.getGambar2(), view_catalog.getHargaKendaraan2(),
-                        view_catalog.getMerkKendaraan2(), view_catalog.getJmlPenumpang2());
-                if (kendaraan3 == null) {
-                    view_catalog.getPanelGambar3().setVisible(false);
-                }
-                break;
-            default:
-                System.out.println("Masuk case default");
-                kendaraan1 = kendaraan_data.get(0);
-                kendaraan2 = kendaraan_data.get(1);
-                kendaraan3 = kendaraan_data.get(2);
-                createAset(kendaraan1, view_catalog.getGambar1(), view_catalog.getHargaKendaraan1(),
-                        view_catalog.getMerkKendaraan1(), view_catalog.getJmlPenumpang1());
-                createAset(kendaraan2, view_catalog.getGambar2(), view_catalog.getHargaKendaraan2(),
-                        view_catalog.getMerkKendaraan2(), view_catalog.getJmlPenumpang2());
-                createAset(kendaraan3, view_catalog.getGambar3(), view_catalog.getHargaKendaraan3(),
-                        view_catalog.getMerkKendaraan3(), view_catalog.getJmlPenumpang3());
-                break;
-        }
-
-    }
-
-    public void createAset(DetailKendaraan view, Kendaraan kendaraan) {
-        String path = "D:\\Gambar\\deye-eyed-patrick-prog4.jpg";
-        view.getNamaKendaraan().setText(kendaraan.getNama_kendaraan());
-        view.getMerkKendaraan().setText(kendaraan.getMerk_kendaraan());
-        view.getWarnaKendaraan().setText(kendaraan.getWarna_kendaraan());
-        view.getCcKendaraan().setText(String.valueOf(kendaraan.getCc_kendaraan()));
-        view.getGambar1().setIcon(getIcon(view.getGambar1(), path));
-        view.getGambar2().setIcon(getIcon(view.getGambar2(), path));
-        view.getGambar3().setIcon(getIcon(view.getGambar3(), path));
-        view.getHarga().setText(priceFormat(kendaraan.getHarga_sewa()));
-        view.getKapasitasKendaraan().setText(String.valueOf(kendaraan.getKapasitas()));
-    }
-
-    public void showList(String nama) throws SQLException {
-        Kendaraan kendaraan = new Kendaraan();
-        ArrayList<Kendaraan> detail_kendaraan = getDetail(nama);
-        if (detail_kendaraan.size() > 0) {
-            kendaraan = detail_kendaraan.get(0);
-            createAset(view_detail, kendaraan);
-        }
-
-    }
-
-    public void previousPageClicked() {
-        page--;
-        try {
-            initData();
+            view_penyewa.getPp().setIcon(helper.getImage(view_penyewa.getPp(), url));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void nextPageClicked() {
-        page++;
-        try {
-            initData();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public void branchKatalogClicked() {
-        new PenyewaPageController();
-        view_detail.dispose();
+    public void showList(String nama) throws SQLException, Exception {
+        kendaraanService.getDataKendaraan(view_penyewa, nama);
     }
 
     public void detailKendaraanClicked(String merk) {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             showList(merk);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        view_detail.setVisible(true);
-        view_catalog.dispose();
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void searchBtnPerformed() {
+        int offset_katalog = (page_katalog - 1) * 3;
+        String search = view_penyewa.getSearchBar().getText();
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (search.isEmpty()) {
+            try {
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            try {
+                ArrayList<Kendaraan> data_kendaraan = repo.getSearchDataKendaraan(offset_katalog, search);
+                if (data_kendaraan.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nama kendaraan tidak ditemukan");
+                } else {
+                    penyewaPageService.katalogShow(view_penyewa, data_kendaraan);
+                }
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void previousPageClicked() {
+        String search = view_penyewa.getSearchBar().getText();
+        page_katalog -= 1;
+        int offset_katalog = (page_katalog - 1) * 3;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            if (search.isEmpty()) {
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
+            } else {
+                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset_katalog, search));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void nextPageClicked() {
+        String search = view_penyewa.getSearchBar().getText();
+        page_katalog += 1;
+        int offset_katalog = (page_katalog - 1) * 3;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            if (search.isEmpty()) {
+                penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
+            } else {
+                penyewaPageService.katalogShow(view_penyewa, repo.getSearchDataKendaraan(offset_katalog, search));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void rentalKendaraanClicked() {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        showDetailCheckout();
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPagePembayaran());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void showDetailCheckout() {
+        this.model_kendaraan = kendaraanService.getDataKendaraan(nama_kendaraan);
+        String harga = helper.priceFormat(model_kendaraan.getHarga_sewa());
+        view_penyewa.getHargaHarian().setText(harga);
+        view_penyewa.getHargaCheckout().setText(harga);
+        view_penyewa.getHargaTotal().setText(harga);
+        view_penyewa.getUsername().setText(username);
+        view_penyewa.getEmail().setText(email);
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            view_penyewa.getPp().setIcon(helper.getImage(view_penyewa.getPp(), url));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void listActionPerformed() {
+        String selectedValue = view_penyewa.getListHari().getSelectedItem().toString();
+        int hari = Integer.parseInt(selectedValue.substring(0, 1));
+        System.out.println(hari);
+        int total = hari * model_kendaraan.getHarga_sewa();
+        view_penyewa.getHargaCheckout().setText(helper.priceFormat(total));
+        view_penyewa.getHargaTotal().setText(helper.priceFormat(total));
+    }
+
+    public void checkoutRentalClicked() {
+        String selectedValue = view_penyewa.getListHari().getSelectedItem().toString();
+        int hari = Integer.parseInt(selectedValue.substring(0, 1));
+        int total = hari * model_kendaraan.getHarga_sewa();
+        LocalDate mulai = LocalDate.now();
+        LocalDate akhir = mulai.plusDays(hari);
+        model_transaksi = new Transaksi(username, model_kendaraan.getFoto_1(), mulai, akhir, nama_kendaraan, hari, total);
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            repo.addTransaksi(model_transaksi);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPopupSukses());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void katalogKendaraanClicked() {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void showRiwayatRental() {
+        int offset_riwayat = (page_riwayat - 1) * 2;
+        try {
+            penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+    }
+
+    public void riwayatPrevClicked() {
+        page_riwayat -= 1;
+        int offset_riwayat = (page_riwayat - 1) * 2;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void riwayatNextClicked() {
+        page_riwayat += 1;
+        int offset_riwayat = (page_riwayat - 1) * 2;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void riwayatRentalClicked() {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        showRiwayatRental();
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void branchKatalogClicked() {
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+    }
+
+    public void branchDetailClicked() {
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+    }
+
+    public void exitBtnClicked() {
+        JOptionPane.showMessageDialog(null, "Berhasil keluar");
+        view_penyewa.dispose();
+        new LoginController();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+
     }
+
 }
