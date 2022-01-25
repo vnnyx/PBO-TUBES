@@ -45,14 +45,9 @@ public class InformasiKendaraan extends javax.swing.JFrame {
         cl.setVgap(0);
         cl.setHgap(0);
         listPanel.setLayout(cl);
-         jPanelItem.setLayout(new GridBagLayout());
-//        GridBagConstraints gbc = new GridBagConstraints();
-//        gbc.gridwidth = GridBagConstraints.REMAINDER;
-//        for (int index = 0; index < 10; index++) {
-//            jPanelItem.add(new InfoCard(), gbc);
-//        }
+        jPanelItem.setLayout(new GridBagLayout());
         
-            scroll = new JScrollPane(jPanelItem);
+        scroll = new JScrollPane(jPanelItem);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         listPanel.add(scroll);
@@ -182,7 +177,7 @@ public class InformasiKendaraan extends javax.swing.JFrame {
         );
         jPanelItemLayout.setVerticalGroup(
             jPanelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
@@ -400,7 +395,7 @@ public class InformasiKendaraan extends javax.swing.JFrame {
                 .addGap(0, 665, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

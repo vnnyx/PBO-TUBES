@@ -4,12 +4,14 @@
  */
 package service;
 
-import java.awt.GridBagConstraints;
+import helper.Helper;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -33,8 +35,7 @@ import view.InformasiKendaraan;
 public class InformasiKendaraanService implements MouseListener {
     private InfoCard[] infoCard;
     private InformasiKendaraan view;
-  
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
          JPanel src = (JPanel)e.getSource();
@@ -62,6 +63,55 @@ public class InformasiKendaraanService implements MouseListener {
          }
     }
     
+        
+    public void updateKendaraan(String nama, String merk,String warna, String cc, String harga, String kapasitas, File img1, File img2,File img3, String img1URL, String img2URL, String img3URL, int IDKendaraan) throws IOException, SQLException{
+        Helper helper = new Helper();
+        Repository repo = new Repository();
+        String image1URL = img1URL;
+        String image2URL = img2URL;
+        String image3URL = img3URL;
+        if(img1 != null){
+             image1URL = helper.uploadImage(img1);
+        }
+        if (img2 != null){
+            image2URL = helper.uploadImage(img2);
+        }
+        if (img3 != null){
+            image3URL = helper.uploadImage(img3);
+        }
+        
+        
+        int ccInt = Integer.parseInt(cc);
+        int hargaInt = Integer.parseInt(harga);
+        int kapasitasInt = Integer.parseInt(kapasitas);
+        
+        Kendaraan n = new Kendaraan(IDKendaraan,nama, merk,warna, ccInt, image1URL, image2URL, image3URL, hargaInt, kapasitasInt,0);
+        
+        System.out.println(n);
+        
+        repo.UpdateKendaraan(n);
+    }
+    
+    public void updateStatus(int id, int status) throws SQLException{
+         Repository repo = new Repository();
+         
+         repo.UpdateStatusKendaraan(id, status);
+    }
+    
+    public Kendaraan getKendaraanByID(int id) throws SQLException{
+         Repository repo = new Repository();
+         Kendaraan data = repo.getKendaraanByID(id);
+         
+         return data;
+    }
+    
+    public ArrayList<Kendaraan> getListKendaraan(String  q) throws SQLException{
+         Repository repo = new Repository();
+         
+         ArrayList<Kendaraan> data = repo.getListKendaraan(q);
+         
+         return data;
+    }
     
     
     public void deleteKendaraan(int idKendaraan) throws SQLException{

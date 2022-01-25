@@ -639,10 +639,10 @@ public class MenuUtamaDaftarKendaraan extends javax.swing.JFrame {
             } catch (IOException ioe) {
 
             }
-
+            
             Image dimg = originalBI1.getScaledInstance(img1.getWidth(), img1.getHeight(), Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(dimg);
-
+            img1.setBorder(null);
             img1.setIcon(image);
             panelImg1.add(img1);
         }
