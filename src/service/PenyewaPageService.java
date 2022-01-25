@@ -11,14 +11,16 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import model.Kendaraan;
 import model.Transaksi;
+import repository.Repository;
 import view.PenyewaPageView;
-import view.RiwayatRental;
 
 /**
  *
  * @author Firdaus
  */
 public class PenyewaPageService extends Helper {
+
+    private Repository repo = new Repository();
 
     public void katalogShow(PenyewaPageView view, ArrayList<Kendaraan> kendaraan_data) throws SQLException, Exception {
         Kendaraan kendaraan1, kendaraan2, kendaraan3 = new Kendaraan();
@@ -112,6 +114,28 @@ public class PenyewaPageService extends Helper {
                 break;
         }
 
+    }
+
+    public int getPageKatalog() {
+        int page =0;
+        try {
+            int totalData = repo.getTotalDataKendaraan();
+            page = (int) Math.ceil(totalData / 3);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return (int) page;
+    }
+
+    public int getPageTransaksi(String username) {
+        int page =0;
+        try {
+            int totalData = repo.getTotalDataTransaksi(username);
+            page = (int) Math.ceil(totalData / 2);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return (int) page;
     }
 
 }

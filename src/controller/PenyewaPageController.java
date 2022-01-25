@@ -7,7 +7,6 @@ package controller;
 
 import helper.Helper;
 import java.awt.Cursor;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,16 +14,13 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import model.Kendaraan;
 import model.Transaksi;
 import repository.Repository;
 import service.PenyewaPageService;
 import service.KendaraanService;
 import view.PenyewaPageView;
-import view.Tes;
 
 /**
  *
@@ -32,8 +28,12 @@ import view.Tes;
  */
 public class PenyewaPageController implements MouseListener, ActionListener {
 
-    protected PenyewaPageView view_penyewa;
-    protected String username;
+    private int total_page_katalog;
+    private int total_page_riwayat;
+    private int page_katalog = 1;
+    private int page_riwayat = 1;
+    private PenyewaPageView view_penyewa;
+    private String username;
     private String email;
     private String url;
     private PenyewaPageService penyewaPageService;
@@ -43,21 +43,24 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     private Kendaraan model_kendaraan;
     private Transaksi model_transaksi;
     private String nama_kendaraan;
-    private Tes[] tes;
-    private int offset_katalog = 0;
-    private int offset_riwayat = 0;
+
+    public PenyewaPageController() {
+    }
 
     public PenyewaPageController(String username, String email, String url) {
-        this.username = username;
-        this.email = email;
-        this.url = url;
         view_penyewa = new PenyewaPageView();
         penyewaPageService = new PenyewaPageService();
         kendaraanService = new KendaraanService();
         repo = new Repository();
         helper = new Helper();
-        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
         view_penyewa.setVisible(true);
+        this.username = username;
+        this.email = email;
+        this.url = url;
+        total_page_riwayat = penyewaPageService.getPageTransaksi(this.username);
+        total_page_katalog = penyewaPageService.getPageKatalog();
+        int offset_katalog = (page_katalog - 1) * 3;
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
         view_penyewa.addMouseListener(this);
         view_penyewa.addActionListener(this);
         try {
@@ -81,9 +84,13 @@ public class PenyewaPageController implements MouseListener, ActionListener {
             nama_kendaraan = view_penyewa.getMerkKendaraan3().getText();
             detailKendaraanClicked(nama_kendaraan);
         } else if (src.equals(view_penyewa.getPreviousPage())) {
-            previousPageClicked();
+            if (page_katalog > 1) {
+                previousPageClicked();
+            }
         } else if (src.equals(view_penyewa.getNextPage())) {
-            nextPageClicked();
+            if (page_katalog <= total_page_katalog && page_katalog >= 1) {
+                nextPageClicked();
+            }
         } else if (src.equals(view_penyewa.getCheckoutRental())) {
             checkoutRentalClicked();
         } else if (src.equals(view_penyewa.getRentalKendaraan())) {
@@ -99,9 +106,13 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         } else if (src.equals(view_penyewa.getKatalog_Kendaraan())) {
             katalogKendaraanClicked();
         } else if (src.equals(view_penyewa.getNextPage1())) {
-            riwayatNextClicked();
+            if (page_riwayat <= total_page_riwayat && page_riwayat >= 1) {
+                riwayatNextClicked();
+            }
         } else if (src.equals(view_penyewa.getPreviousPage1())) {
-            riwayatPrevClicked();
+            if (page_riwayat > 1) {
+                riwayatPrevClicked();
+            }
         }
     }
 
@@ -130,17 +141,20 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     }
 
     public void detailKendaraanClicked(String merk) {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             showList(merk);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void searchBtnPerformed() {
-        offset_katalog = 0;
+        int offset_katalog = (page_katalog - 1) * 3;
         String search = view_penyewa.getSearchBar().getText();
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (search.isEmpty()) {
             try {
                 penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
@@ -159,11 +173,14 @@ public class PenyewaPageController implements MouseListener, ActionListener {
                 System.out.println(ex.getMessage());
             }
         }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void previousPageClicked() {
         String search = view_penyewa.getSearchBar().getText();
-        offset_katalog -= 3;
+        page_katalog -= 1;
+        int offset_katalog = (page_katalog - 1) * 3;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             if (search.isEmpty()) {
                 penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
@@ -173,11 +190,14 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void nextPageClicked() {
         String search = view_penyewa.getSearchBar().getText();
-        offset_katalog += 3;
+        page_katalog += 1;
+        int offset_katalog = (page_katalog - 1) * 3;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             if (search.isEmpty()) {
                 penyewaPageService.katalogShow(view_penyewa, repo.getDataKendaraan(offset_katalog));
@@ -187,11 +207,14 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void rentalKendaraanClicked() {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         showDetailCheckout();
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPagePembayaran());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void showDetailCheckout() {
@@ -202,11 +225,13 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         view_penyewa.getHargaTotal().setText(harga);
         view_penyewa.getUsername().setText(username);
         view_penyewa.getEmail().setText(email);
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             view_penyewa.getPp().setIcon(helper.getImage(view_penyewa.getPp(), url));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void listActionPerformed() {
@@ -225,19 +250,24 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         LocalDate mulai = LocalDate.now();
         LocalDate akhir = mulai.plusDays(hari);
         model_transaksi = new Transaksi(username, model_kendaraan.getFoto_1(), mulai, akhir, nama_kendaraan, hari, total);
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             repo.addTransaksi(model_transaksi);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPopupSukses());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void katalogKendaraanClicked() {
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void showRiwayatRental() {
+        int offset_riwayat = (page_riwayat - 1) * 2;
         try {
             penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
         } catch (Exception ex) {
@@ -247,30 +277,33 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     }
 
     public void riwayatPrevClicked() {
-        offset_riwayat -= 2;
+        page_riwayat -= 1;
+        int offset_riwayat = (page_riwayat - 1) * 2;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void riwayatNextClicked() {
-        offset_riwayat += 2;
+        page_riwayat += 1;
+        int offset_riwayat = (page_riwayat - 1) * 2;
+        view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        view_penyewa.setCursor(Cursor.getDefaultCursor());
     }
 
     public void riwayatRentalClicked() {
         view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        createList();
-        view_penyewa.getKatalogKendaraan().setVisible(false);
-        view_penyewa.getRiwayatv2().setVisible(true);
+        showRiwayatRental();
         view_penyewa.setCursor(Cursor.getDefaultCursor());
-//        showRiwayatRental();
     }
 
     public void branchKatalogClicked() {
@@ -285,40 +318,6 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         JOptionPane.showMessageDialog(null, "Berhasil keluar");
         view_penyewa.dispose();
         new LoginController();
-    }
-
-    public void createList() {
-        try {
-            ArrayList<Transaksi> transaksi = repo.getDataTransaksi(username);
-            System.out.println(transaksi);
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridwidth = GridBagConstraints.REMAINDER;
-
-            if (transaksi.isEmpty()) {
-                JLabel label = new JLabel();
-//                BufferedImage img = ImageIO.read(getClass().getResource("/icon/not-found.jpg"));
-//                Image dimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
-//                ImageIcon icon = new ImageIcon(dimg);
-//                label.setIcon(icon);
-                view_penyewa.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                view_penyewa.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-                view_penyewa.getPanelItem().add(label);
-            } else {
-                System.out.println("tes");
-                view_penyewa.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                view_penyewa.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-                tes = new Tes[transaksi.size()];
-                for (int i = 0; i < transaksi.size(); i++) {
-                    Transaksi v = transaksi.get(i);
-                    tes[i] = new Tes(v.getFoto_kendaraan(), v.getNama_kendaraan(), v.getMulai_sewa(), v.getSelesai_sewa(), v.getTotal());
-                    tes[i].addMouseListener(this);
-                    view_penyewa.getPanelItem().add(tes[i], gbc);
-                }
-            }
-
-        } catch (Exception ex) {
-
-        }
     }
 
     @Override

@@ -77,7 +77,7 @@ public class Repository extends Database {
     public ArrayList<Kendaraan> getDataKendaraan(int offset) throws SQLException {
         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
-        String sql = "SELECT * FROM kendaraan LIMIT 3 OFFSET %s";
+        String sql = "SELECT * FROM kendaraan WHERE status=1 LIMIT 3 OFFSET %s";
         sql = String.format(sql, offset);
         executeQuery(sql);
         while (rs.next()) {
@@ -94,7 +94,7 @@ public class Repository extends Database {
     public ArrayList<Kendaraan> getSearchDataKendaraan(int offset, String nama) throws SQLException {
         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
-        String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan LIKE '%s' LIMIT 3 OFFSET %s";
+        String sql = "SELECT * FROM kendaraan WHERE nama_kendaraan LIKE '%s' AND status=1 LIMIT 3 OFFSET %s";
         sql = String.format(sql, "%" + nama + "%", offset);
         executeQuery(sql);
         while (rs.next()) {
@@ -185,6 +185,29 @@ public class Repository extends Database {
         }
         disconnectDB();
         return transaksi;
+    }
+
+    public int getTotalDataTransaksi(String username) throws SQLException {
+        connectDB();
+        int total = 0;
+        String sql = "SELECT COUNT (*) FROM transaksi WHERE username='%s'";
+        sql = String.format(sql, username);
+        executeQuery(sql);
+        rs.next();
+        total = rs.getInt(1);
+        disconnectDB();
+        return total;
+    }
+    
+    public int getTotalDataKendaraan() throws SQLException {
+        connectDB();
+        int total = 0;
+        String sql = "SELECT COUNT (*) FROM kendaraan WHERE status=1";
+        executeQuery(sql);
+        rs.next();
+        total = rs.getInt(1);
+        disconnectDB();
+        return total;
     }
 
 }

@@ -5,16 +5,14 @@
  */
 package view;
 
-import java.awt.CardLayout;
+import controller.PenyewaPageController;
 import java.awt.Color;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -27,19 +25,8 @@ public class PenyewaPageView extends javax.swing.JFrame {
     /**
      * Creates new form PenyewaPageView
      */
-    private JScrollPane scroll;
     public PenyewaPageView() {
         initComponents();
-        CardLayout cl = new CardLayout();
-        cl.setVgap(0);
-        cl.setHgap(0);
-        listPanel.setLayout(cl);
-        panelItem.setLayout(new GridBagLayout());
-
-        scroll = new JScrollPane(panelItem);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        listPanel.add(scroll);
     }
 
     /**
@@ -189,10 +176,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
-        riwayatv2 = new javax.swing.JPanel();
-        jLabel57 = new javax.swing.JLabel();
-        listPanel = new javax.swing.JPanel();
-        panelItem = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1588,57 +1571,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
 
         mainPanel.add(riwayat, "card6");
 
-        riwayatv2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Riwayatrental (2).png"))); // NOI18N
-
-        listPanel.setBackground(new java.awt.Color(204, 255, 204));
-
-        javax.swing.GroupLayout panelItemLayout = new javax.swing.GroupLayout(panelItem);
-        panelItem.setLayout(panelItemLayout);
-        panelItemLayout.setHorizontalGroup(
-            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panelItemLayout.setVerticalGroup(
-            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
-        listPanel.setLayout(listPanelLayout);
-        listPanelLayout.setHorizontalGroup(
-            listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        listPanelLayout.setVerticalGroup(
-            listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout riwayatv2Layout = new javax.swing.GroupLayout(riwayatv2);
-        riwayatv2.setLayout(riwayatv2Layout);
-        riwayatv2Layout.setHorizontalGroup(
-            riwayatv2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(riwayatv2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(riwayatv2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(listPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-        riwayatv2Layout.setVerticalGroup(
-            riwayatv2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(riwayatv2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel57)
-                .addGap(18, 18, 18)
-                .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        mainPanel.add(riwayatv2, "card6");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1863,7 +1795,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1883,7 +1814,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JPanel katalog_Kendaraan;
     private javax.swing.JPanel lihatRiwayatRental;
     private javax.swing.JComboBox<String> listHari;
-    private javax.swing.JPanel listPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel merkKendaraan;
     private javax.swing.JLabel merkKendaraan1;
@@ -1897,7 +1827,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JPanel nextPage;
     private javax.swing.JPanel nextPage1;
     private javax.swing.JPanel pagePembayaran;
-    private javax.swing.JPanel panelItem;
     private javax.swing.JPanel popupSukses;
     private javax.swing.JLabel pp;
     private javax.swing.JLabel prev;
@@ -1908,7 +1837,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel riwataRentalTxt;
     private javax.swing.JPanel riwayat;
     private javax.swing.JPanel riwayatRental;
-    private javax.swing.JPanel riwayatv2;
     private javax.swing.JTextField searchBar;
     private javax.swing.JButton searchBtn;
     private javax.swing.JLabel status;
@@ -1944,24 +1872,6 @@ public class PenyewaPageView extends javax.swing.JFrame {
         searchBtn.addActionListener(l);
         listHari.addActionListener(l);
     }
-
-    public JScrollPane getScroll() {
-        return scroll;
-    }
-
-    public JPanel getListPanel() {
-        return listPanel;
-    }
-
-    public JPanel getPanelItem() {
-        return panelItem;
-    }
-
-    public JPanel getRiwayatv2() {
-        return riwayatv2;
-    }
-    
-    
 
     public JPanel getPanelGambar1() {
         return PanelGambar1;
