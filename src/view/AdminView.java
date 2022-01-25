@@ -25,7 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import static jdk.jfr.consumer.EventStream.openFile;
 
 /**
  *
@@ -57,6 +56,7 @@ public class AdminView extends javax.swing.JFrame {
     private File image2;
     private File image3;
     private JScrollPane scroll;
+
     public AdminView() {
         initComponents();
         listCC();
@@ -66,17 +66,17 @@ public class AdminView extends javax.swing.JFrame {
         DaftarKendaraanSukses.setVisible(false);
         openFile = new JFileChooser();
         openFile.setFileFilter(new FileNameExtensionFilter("Image", "jpeg", "png", "jpg"));
-        
+
         save.setName("saveBtn");
         nextDaftarBtn.setName("nextDaftarBtn");
         search.setName("searchBtn");
-        
+
         CardLayout cl = new CardLayout();
         cl.setVgap(0);
         cl.setHgap(0);
         listPanel.setLayout(cl);
         jPanelItem.setLayout(new GridBagLayout());
-        
+
         scroll = new JScrollPane(jPanelItem);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -869,16 +869,16 @@ public class AdminView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void daftarKendaraanMouseEntered(java.awt.event.MouseEvent evt) {                                             
-         setColor(daftarKendaraan);
-    }                                            
 
-    private void daftarKendaraanMouseExited(java.awt.event.MouseEvent evt) {                                            
+    private void daftarKendaraanMouseEntered(java.awt.event.MouseEvent evt) {
+        setColor(daftarKendaraan);
+    }
+
+    private void daftarKendaraanMouseExited(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         resetColor(daftarKendaraan);
-    } 
-    
+    }
+
     private void updateKendaraanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseEntered
         setColor(updateKendaraan);
     }//GEN-LAST:event_updateKendaraanMouseEntered
@@ -886,9 +886,16 @@ public class AdminView extends javax.swing.JFrame {
     private void updateKendaraanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseExited
         resetColor(updateKendaraan);
     }//GEN-LAST:event_updateKendaraanMouseExited
-    
-     private void listMerk() {
-        String[] merk = { "Honda", "Suzuki", "BMW", "Mercedes Benz", "Toyota" };
+
+    private void setClicked(JPanel p1, JPanel p2, JLabel l1, JLabel l2) {
+        p1.setBackground(new Color(0, 43, 110));
+        l1.setForeground(new Color(255, 216, 82));
+        p2.setBackground(new Color(0, 63, 130));
+        l2.setForeground(new Color(255, 255, 255));
+    }
+
+    private void listMerk() {
+        String[] merk = {"Honda", "Suzuki", "BMW", "Mercedes Benz", "Toyota"};
         Arrays.sort(merk);
         for (String v : merk) {
             merkKendaraan.add(v);
@@ -896,23 +903,22 @@ public class AdminView extends javax.swing.JFrame {
     }
 
     private void listCC() {
-        String[] cc = { "200", "300", "1000" };
+        String[] cc = {"200", "300", "1000"};
         Arrays.sort(cc);
         for (String v : cc) {
             ccKendaraan.add(v);
         }
     }
-    
-     private void setColor(JPanel p) {
+
+    private void setColor(JPanel p) {
         p.setBackground(new Color(0, 53, 130));
     }
 
     private void resetColor(JPanel p) {
         p.setBackground(new Color(0, 63, 130));
     }
-    
-    
-    
+
+
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchFieldActionPerformed
@@ -990,10 +996,11 @@ public class AdminView extends javax.swing.JFrame {
         label2org.setForeground(Color.black);
         kapasitas = "6";
     }//GEN-LAST:event_kapasitas6MousePressed
-    
+
     private void daftarKendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarKendaraanMouseClicked
         DaftarKendaraan.setVisible(true);
         ListKendaraan.setVisible(false);
+        setClicked(daftarKendaraan, updateKendaraan, jLabel10, riwataRentalTxt);
     }//GEN-LAST:event_daftarKendaraanMouseClicked
 
     private void riwataRentalTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwataRentalTxtMouseClicked
@@ -1003,18 +1010,19 @@ public class AdminView extends javax.swing.JFrame {
     private void updateKendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseClicked
         ListKendaraan.setVisible(true);
         DaftarKendaraan.setVisible(false);
+        setClicked(updateKendaraan, daftarKendaraan, riwataRentalTxt, jLabel10);
     }//GEN-LAST:event_updateKendaraanMouseClicked
 
     private void img1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img1MousePressed
-       int returnValue = openFile.showOpenDialog(this);
+        int returnValue = openFile.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             image1 = openFile.getSelectedFile();
-           try {
-               originalBI1 = ImageIO.read(image1);
-           } catch (IOException ex) {
-               Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            
+            try {
+                originalBI1 = ImageIO.read(image1);
+            } catch (IOException ex) {
+                Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             Image dimg = originalBI1.getScaledInstance(img1.getWidth(), img1.getHeight(), Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(dimg);
             img1.setText(null);
@@ -1026,12 +1034,12 @@ public class AdminView extends javax.swing.JFrame {
         int returnValue = openFile.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             image2 = openFile.getSelectedFile();
-           try {
-               originalBI1 = ImageIO.read(image2);
-           } catch (IOException ex) {
-               Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            
+            try {
+                originalBI1 = ImageIO.read(image2);
+            } catch (IOException ex) {
+                Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             Image dimg = originalBI1.getScaledInstance(img2.getWidth(), img2.getHeight(), Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(dimg);
             img2.setText(null);
@@ -1040,22 +1048,22 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_img2MousePressed
 
     private void img3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img3MousePressed
-      int returnValue = openFile.showOpenDialog(this);
+        int returnValue = openFile.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             image3 = openFile.getSelectedFile();
-           try {
-               originalBI1 = ImageIO.read(image3);
-           } catch (IOException ex) {
-               Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            
+            try {
+                originalBI1 = ImageIO.read(image3);
+            } catch (IOException ex) {
+                Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             Image dimg = originalBI1.getScaledInstance(img3.getWidth(), img3.getHeight(), Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(dimg);
             img3.setText(null);
             img3.setIcon(image);
     }//GEN-LAST:event_img3MousePressed
-}  
-    
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1138,8 +1146,6 @@ public class AdminView extends javax.swing.JFrame {
     public void setTitleDaftarSukses(JLabel titleDaftarSukses) {
         this.titleDaftarSukses = titleDaftarSukses;
     }
-    
-    
 
     public String getKapasitas() {
         return kapasitas;
@@ -1296,12 +1302,14 @@ public class AdminView extends javax.swing.JFrame {
     public void setWarnaKendaraan(TextField warnaKendaraan) {
         this.warnaKendaraan = warnaKendaraan;
     }
-    
+
     @Override
-     public void addMouseListener(MouseListener me){
+    public void addMouseListener(MouseListener me) {
         save.addMouseListener(me);
         search.addMouseListener(me);
         nextDaftarBtn.addMouseListener(me);
+        exitBtn.addMouseListener(me);
+        updateKendaraan.addMouseListener(me);
     }
 
     public JPanel getNextDaftarBtn() {
@@ -1335,7 +1343,11 @@ public class AdminView extends javax.swing.JFrame {
     public JLabel getImg3() {
         return img3;
     }
-     
+
+    public JPanel getExitBtn() {
+        return exitBtn;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DaftarKendaraan;

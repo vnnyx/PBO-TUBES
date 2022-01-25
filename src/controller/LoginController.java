@@ -58,7 +58,7 @@ public class LoginController extends Database implements ActionListener {
                     view_login.dispose();
                     new PenyewaPageController(attPenyewa.getUsername(), attPenyewa.getEmail(), attPenyewa.getFoto_diri());
                 } else if (attAdmin.getUsername() != null) {
-                    JOptionPane.showMessageDialog(null, "Admin page");
+                    new AdminPageController();
                 } else {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan daftar akun");
                 }

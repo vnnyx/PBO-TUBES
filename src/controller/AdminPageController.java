@@ -24,9 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 import model.Kendaraan;
-import repository.Repository;
 import service.DaftarKendaraanService;
 import service.InformasiKendaraanService;
 import view.AdminView;
@@ -46,7 +44,6 @@ public final class AdminPageController extends Database implements MouseListener
     private InformasiKendaraanService infoKendaraanService;
     private InformasiKendaraan viewInfoKendaraan;
     private InfoCard[] infoCard;
-//    private final MenuUtamaDaftarKendaraan viewDaftar;
     private final Helper helper;
     private final DaftarKendaraanService daftarKendaraanService;
     private AdminView adminView;
@@ -209,38 +206,15 @@ public final class AdminPageController extends Database implements MouseListener
     
     @Override
     public void mouseClicked(MouseEvent e) {
-//        JPanel src = (JPanel)e.getSource();
-//        
-//        InfoCard pressedCard = (InfoCard)src.getParent();
-//        int idKendaraan = Integer.parseInt(pressedCard.getId().getText());
-//        if (src.equals(pressedCard.getHapus())){
-//           int opsi = JOptionPane.showConfirmDialog(src, "Benarkah anda ingin menghapus data ini ?", 
-//                        "Hapus Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-//        
-//             if (opsi == JOptionPane.YES_OPTION){
-//                adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                deleteKendaraan(idKendaraan);
-//               try {
-//                   adminView.getjPanelItem().removeAll();
-//                   createList("");
-//               } catch (Exception ex) {
-//                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-//               }
-//               adminView.setCursor(Cursor.getDefaultCursor());
-//             }
-//       }else if (src.equals(pressedCard.getSunting())){
-//            adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//            try {
-//                showDataKendaraan(idKendaraan);
-//                adminView.getListKendaraan().setVisible(false);
-//                adminView.getDaftarKendaraan().setVisible(true);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (Exception ex) {
-//                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            adminView.setCursor(Cursor.getDefaultCursor());
-//       }
+        Object src = e.getSource();
+        if(src.equals(adminView.getExitBtn())){
+            exitBtnClicked();
+        }
+    }
+    
+    public void exitBtnClicked(){
+        new LoginController();
+        adminView.dispose();
     }
     
 
