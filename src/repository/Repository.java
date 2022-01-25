@@ -6,6 +6,7 @@
 package repository;
 
 import database.Database;
+import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -115,6 +116,7 @@ public class Repository extends Database {
         sql = String.format(sql, namaKendaraan);
         executeQuery(sql);
         while (rs.next()) {
+            int id_kendaraan = rs.getInt("id");
             String nama_kendaraan = rs.getString("nama_kendaraan");
             int harga_sewa = rs.getInt("harga_sewa");
             String foto_1 = rs.getString("foto_1");
@@ -124,7 +126,125 @@ public class Repository extends Database {
             String merk = rs.getString("merk_kendaraan");
             int cc = rs.getInt("cc_kendaraan");
             int kapasitas = rs.getInt("kapasitas");
-            kendaraan.add(new Kendaraan(nama_kendaraan, merk, warna, cc, foto_1, foto_2, foto_3, harga_sewa, kapasitas));
+            int status = rs.getInt("status");
+            kendaraan.add(new Kendaraan(id_kendaraan,nama_kendaraan, merk, warna, cc, foto_1, foto_2, foto_3, harga_sewa, kapasitas,status));
+        }
+        disconnectDB();
+        return kendaraan;
+    }
+   
+    
+    public ArrayList<Kendaraan> getListKendaraan(String q) throws SQLException {
+         ArrayList<Kendaraan> kendaraan = new ArrayList<>();
+        connectDB();
+        String sql = "SELECT * FROM kendaraan";
+        
+        if (!"".equals(q)){
+            sql += " WHERE LOWER(nama_kendaraan) like '%s' or LOWER(merk_kendaraan) like '%s' ";
+            sql = String.format(sql, "%"+q+"%","%"+q+"%");
+            executeQuery(sql);
+        }else{
+            executeQuery(sql);
+        }
+        
+        while (rs.next()) {
+            int id_kendaraan = rs.getInt("id");
+            String nama_kendaraan = rs.getString("nama_kendaraan");
+            int harga_sewa = rs.getInt("harga_sewa");
+            String foto_1 = rs.getString("foto_1");
+            String foto_2 = rs.getString("foto_2");
+            String foto_3 = rs.getString("foto_3");
+            String warna = rs.getString("warna_kendaraan");
+            String merk = rs.getString("merk_kendaraan");
+            int cc = rs.getInt("cc_kendaraan");
+            int kapasitas = rs.getInt("kapasitas");
+            int status = rs.getInt("status");
+            kendaraan.add(new Kendaraan(id_kendaraan,nama_kendaraan, merk, warna, cc, foto_1, foto_2, foto_3, harga_sewa, kapasitas,status));
+        }
+        disconnectDB();
+        return kendaraan;
+    }
+    
+    public void deleteKendaraan(int idKendaraan) throws SQLException {
+     
+        connectDB();
+        String query = "DELETE FROM kendaraan WHERE id='%d'";
+        query = String.format(query,idKendaraan);
+        execute(query);
+        disconnectDB();
+    }
+    
+    
+      public void addKendaraan(Kendaraan k) throws SQLException {
+        String getNama = k.getNama_kendaraan();
+        String getMerk = k.getMerk_kendaraan();
+        String getWarna = k.getWarna_kendaraan();
+        int getCC = k.getCc_kendaraan();
+        int getHarga = k.getHarga_sewa();
+        int getKapasitas = k.getKapasitas();
+        String getImage1 = k.getFoto_1();
+        String getImage2 = k.getFoto_2();
+        String getImage3 = k.getFoto_3();
+
+
+        connectDB();
+        String sql = "INSERT INTO `kendaraan` (`nama_kendaraan`, `merk_kendaraan`, `warna_kendaraan`, `cc_kendaraan`, `foto_1`, `foto_2`, `foto_3`, `harga_sewa`, `kapasitas`) VALUES\n"
+                +
+                "('%s', '%s', '%s', %d, '%s', '%s', '%s', %d, %d)";
+        sql = String.format(sql, getNama, getMerk,getWarna,getCC,getImage1,getImage2,getImage3, getHarga, getKapasitas);
+        execute(sql);
+        disconnectDB();
+    }
+      
+      
+    
+      public void UpdateKendaraan(Kendaraan k) throws SQLException {
+        String getNama = k.getNama_kendaraan();
+        String getMerk = k.getMerk_kendaraan();
+        String getWarna = k.getWarna_kendaraan();
+        int getCC = k.getCc_kendaraan();
+        int getHarga = k.getHarga_sewa();
+        int getKapasitas = k.getKapasitas();
+        String getImage1 = k.getFoto_1();
+        String getImage2 = k.getFoto_2();
+        String getImage3 = k.getFoto_3();
+        int id = k.getId_kendaraan();
+        connectDB();
+        String sql = "UPDATE kendaraan SET nama_kendaraan='%s', merk_kendaraan='%s', warna_kendaraan='%s', cc_kendaraan=%d, foto_1='%s', foto_2='%s', foto_3='%s', harga_sewa=%d, kapasitas=%d WHERE id=%d ";
+        sql = String.format(sql, getNama, getMerk,getWarna,getCC,getImage1,getImage2,getImage3, getHarga, getKapasitas, id);
+        execute(sql);
+        disconnectDB();
+    }  
+      
+       public void UpdateStatusKendaraan(int id, int status) throws SQLException {
+        connectDB();
+        String sql = "UPDATE kendaraan SET status=%d WHERE id=%d ";
+        sql = String.format(sql, status, id);
+        execute(sql);
+        disconnectDB();
+    }  
+      
+      
+      
+      public Kendaraan getKendaraanByID(int id) throws SQLException {
+        Kendaraan kendaraan = null;
+        connectDB();
+        String sql = "SELECT * FROM kendaraan WHERE id=%d";
+        sql = String.format(sql, id);
+        executeQuery(sql);
+        while (rs.next()) {
+            int id_kendaraan = rs.getInt("id");
+            String nama_kendaraan = rs.getString("nama_kendaraan");
+            int harga_sewa = rs.getInt("harga_sewa");
+            String foto_1 = rs.getString("foto_1");
+            String foto_2 = rs.getString("foto_2");
+            String foto_3 = rs.getString("foto_3");
+            String warna = rs.getString("warna_kendaraan");
+            String merk = rs.getString("merk_kendaraan");
+            int cc = rs.getInt("cc_kendaraan");
+            int kapasitas = rs.getInt("kapasitas");
+            int status = rs.getInt("status");
+            kendaraan = new Kendaraan(id_kendaraan,nama_kendaraan, merk, warna, cc, foto_1, foto_2, foto_3, harga_sewa, kapasitas,status);
         }
         disconnectDB();
         return kendaraan;
