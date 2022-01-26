@@ -1,6 +1,6 @@
 # Rentalee
 
-Apikasi rental mobil
+Apikasi rental kendaraan
 
 ## Installation
 
