@@ -17,9 +17,9 @@ import java.sql.SQLException;
  */
 public class Database {
 
-    static final String DB_URL = "jdbc:mysql://localhost:3306/sewakendaraan";
-    static final String DB_USER = "root";
-    static final String DB_PASS = "password";
+    static final String DB_URL = "jdbc:mysql://db-mysql-do-do-user-7851304-0.b.db.ondigitalocean.com:25060/sewakendaraan";
+    static final String DB_USER = "doadmin";
+    static final String DB_PASS = "Gy0kEuurt5HuDGqw";
     protected Connection conn = null;
     protected Statement stmt = null;
     protected ResultSet rs = null;

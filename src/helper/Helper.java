@@ -100,14 +100,13 @@ public class Helper {
         mulai.setText(dateFormat(transaksi.getMulai_sewa()));
         selesai.setText(dateFormat(transaksi.getSelesai_sewa()));
         harga.setText(priceFormat(transaksi.getTotal()));
-        int tgl_mulai = transaksi.getMulai_sewa().getDayOfMonth();
-        int tgl_selesai = transaksi.getSelesai_sewa().getDayOfMonth();
-        if(tgl_selesai-tgl_mulai < 0){
-            status.setText("Telah dirental");
-            status.setForeground(new Color(165, 0, 0));
-        }else{
+//        int tgl_mulai = transaksi.getMulai_sewa();
+        if(transaksi.getSelesai_sewa().isAfter(LocalDate.now()) ){
             status.setText("Sedang dirental");
             status.setForeground(new Color(47, 225, 75));
+        }else{
+            status.setText("Telah dirental");
+            status.setForeground(new Color(165, 0, 0));
         }
     }
 

@@ -217,8 +217,10 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     public void rentalKendaraanClicked() {
         view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         showDetailCheckout();
+        view_penyewa.getListHari().setSelectedIndex(0);
         penyewaPageService.swapPanel(view_penyewa, view_penyewa.getPagePembayaran());
         view_penyewa.setCursor(Cursor.getDefaultCursor());
+        
     }
 
     public void showDetailCheckout() {

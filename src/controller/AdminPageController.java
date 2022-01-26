@@ -97,6 +97,24 @@ public final class AdminPageController extends Database implements MouseListener
         File getImage3 = adminView.getImage3();
 
         daftarKendaraanService.daftarKendaraan(getNama, getMerk, getWarna, getCC, getHarga, getKapasitas, getImage1, getImage2, getImage3);
+        
+        adminView.getNamaKendaraan().setText("");
+        adminView.getMerkKendaraan().select("");
+        adminView.getWarnaKendaraan().setText("");
+        adminView.getCcKendaraan().select("BMW");
+        adminView.getImg1().setText(null);
+        adminView.getImg2().setText(null);
+        adminView.getImg3().setText(null);
+        adminView.getImg1().setIcon(null);
+        adminView.getImg2().setIcon(null);
+        adminView.getImg3().setIcon(null);
+        adminView.setImage1(null);
+        adminView.setImage2(null);
+        adminView.setImage3(null);
+        adminView.getHargaKendaraan().setText("");
+        adminView.getIdKendaraan().setText("");
+        adminView.getIdKendaraan().setVisible(false);
+        resetKapasitas();
     }
 
     @Override
@@ -339,7 +357,8 @@ public final class AdminPageController extends Database implements MouseListener
         ArrayList<Kendaraan> kendaraan = infoKendaraanService.getListKendaraan(q);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.weighty = 1;
         if (kendaraan.isEmpty()) {
             JLabel label = new JLabel();
             BufferedImage img = ImageIO.read(getClass().getResource("/icon/not-found.jpg"));

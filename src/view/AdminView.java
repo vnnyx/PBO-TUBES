@@ -334,6 +334,11 @@ public class AdminView extends javax.swing.JFrame {
 
         nextDaftarBtn.setBackground(new java.awt.Color(0, 61, 127));
         nextDaftarBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        nextDaftarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                nextDaftarBtnMousePressed(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -986,13 +991,10 @@ public class AdminView extends javax.swing.JFrame {
         label2org.setForeground(Color.black);
         kapasitas = "6";
     }//GEN-LAST:event_kapasitas6MousePressed
-    
-    
-    
+
+
     private void daftarKendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarKendaraanMouseClicked
-         ListKendaraan.setVisible(false);
-         listPanel.setVisible(false);
-         jPanelItem.setVisible(false);
+        ListKendaraan.setVisible(false);
         DaftarKendaraan.setVisible(true);
         setClicked(daftarKendaraan, updateKendaraan, jLabel10, riwataRentalTxt);
     }//GEN-LAST:event_daftarKendaraanMouseClicked
@@ -1004,8 +1006,6 @@ public class AdminView extends javax.swing.JFrame {
     private void updateKendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseClicked
         DaftarKendaraan.setVisible(false);
         ListKendaraan.setVisible(true);
-            listPanel.setVisible(true);
-         jPanelItem.setVisible(true);
         setClicked(updateKendaraan, daftarKendaraan, riwataRentalTxt, jLabel10);
     }//GEN-LAST:event_updateKendaraanMouseClicked
 
@@ -1059,6 +1059,9 @@ public class AdminView extends javax.swing.JFrame {
             img3.setIcon(image);
     }//GEN-LAST:event_img3MousePressed
     }
+    private void nextDaftarBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextDaftarBtnMousePressed
+        setClicked(updateKendaraan, daftarKendaraan, riwataRentalTxt, jLabel10);
+    }//GEN-LAST:event_nextDaftarBtnMousePressed
 
     /**
      * @param args the command line arguments
