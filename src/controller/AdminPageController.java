@@ -1,6 +1,5 @@
 package controller;
 
-import database.Database;
 import helper.Helper;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -39,7 +38,7 @@ import view.InformasiKendaraan;
  *
  * @author aryuska
  */
-public final class AdminPageController extends Database implements MouseListener, ItemListener {
+public final class AdminPageController implements MouseListener, ItemListener {
 
     private InformasiKendaraanService infoKendaraanService;
     private InformasiKendaraan viewInfoKendaraan;

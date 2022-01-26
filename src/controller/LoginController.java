@@ -5,7 +5,6 @@
  */
 package controller;
 
-import database.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -18,7 +17,7 @@ import view.Login;
  *
  * @author Firdaus
  */
-public class LoginController extends Database implements ActionListener {
+public class LoginController implements ActionListener {
 
     private Login view_login;
     private UserService userService;

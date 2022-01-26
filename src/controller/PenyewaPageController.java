@@ -44,8 +44,6 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     private Transaksi model_transaksi;
     private String nama_kendaraan;
 
-    public PenyewaPageController() {
-    }
 
     public PenyewaPageController(String username, String email, String url) {
         view_penyewa = new PenyewaPageView();
