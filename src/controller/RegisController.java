@@ -5,7 +5,6 @@
  */
 package controller;
 
-import database.Database;
 import helper.Helper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +21,7 @@ import view.Registrasi2;
  *
  * @author Firdaus
  */
-public class RegisController extends Database implements ActionListener {
+public class RegisController  implements ActionListener {
 
     private Registrasi1 view_regis1;
     private Registrasi2 view_regis2;

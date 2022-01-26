@@ -24,8 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import model.Kendaraan;
-import service.DaftarKendaraanService;
-import service.InformasiKendaraanService;
+import service.KendaraanService;
 import view.AdminView;
 import view.InfoCard;
 import view.InformasiKendaraan;
@@ -39,12 +38,11 @@ import view.InformasiKendaraan;
  * @author aryuska
  */
 public final class AdminPageController implements MouseListener, ItemListener {
-
-    private InformasiKendaraanService infoKendaraanService;
+    
+    private KendaraanService kendaraanService;
     private InformasiKendaraan viewInfoKendaraan;
     private InfoCard[] infoCard;
     private final Helper helper;
-    private final DaftarKendaraanService daftarKendaraanService;
     private AdminView adminView;
     private String imageURL1;
     private String imageURL2;
@@ -75,10 +73,9 @@ public final class AdminPageController implements MouseListener, ItemListener {
     }
 
     public AdminPageController() throws Exception {
-        infoKendaraanService = new InformasiKendaraanService();
         helper = new Helper();
-        daftarKendaraanService = new DaftarKendaraanService();
         adminView = new AdminView();
+        kendaraanService = new KendaraanService();
         adminView.setVisible(true);
         adminView.addMouseListener(this);
         createList("");
@@ -95,7 +92,7 @@ public final class AdminPageController implements MouseListener, ItemListener {
         File getImage2 = adminView.getImage2();
         File getImage3 = adminView.getImage3();
 
-        daftarKendaraanService.daftarKendaraan(getNama, getMerk, getWarna, getCC, getHarga, getKapasitas, getImage1, getImage2, getImage3);
+        kendaraanService.daftarKendaraan(getNama, getMerk, getWarna, getCC, getHarga, getKapasitas, getImage1, getImage2, getImage3);
         
         adminView.getNamaKendaraan().setText("");
         adminView.getMerkKendaraan().select("");
@@ -253,18 +250,18 @@ public final class AdminPageController implements MouseListener, ItemListener {
 
     public void deleteKendaraan(int idKendaraan) {
         try {
-            infoKendaraanService.deleteKendaraan(idKendaraan);
+            kendaraanService.deleteKendaraan(idKendaraan);
             viewInfoKendaraan.getjPanelItem().removeAll();
             createList("");
         } catch (SQLException ex) {
-            Logger.getLogger(InformasiKendaraanService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KendaraanService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void showDataKendaraan(int id) throws SQLException, Exception {
-        Kendaraan data = infoKendaraanService.getKendaraanByID(id);
+        Kendaraan data = kendaraanService.getKendaraanByID(id);
 
         adminView.getTitleFormKendaraan().setText("Update Kendaraan");
         adminView.getSubTitleFormKendaraan().setText("Sunting dan edit item kendaraan yang telah didaftarkan");
@@ -292,7 +289,7 @@ public final class AdminPageController implements MouseListener, ItemListener {
     }
 
     public void updateKendaraan(int id) throws IOException, SQLException {
-        infoKendaraanService.updateKendaraan(adminView.getNamaKendaraan().getText(), adminView.getMerkKendaraan().getSelectedItem(),
+        kendaraanService.updateKendaraan(adminView.getNamaKendaraan().getText(), adminView.getMerkKendaraan().getSelectedItem(),
                 adminView.getWarnaKendaraan().getText(), adminView.getCcKendaraan().getSelectedItem(), adminView.getHargaKendaraan().getText(),
                 adminView.getKapasitas(), adminView.getImage1(), adminView.getImage2(), adminView.getImage2(),
                 getImageURL1(), getImageURL2(), getImageURL3(), id);
@@ -353,7 +350,7 @@ public final class AdminPageController implements MouseListener, ItemListener {
 
     public void createList(String q) throws SQLException, Exception {
 
-        ArrayList<Kendaraan> kendaraan = infoKendaraanService.getListKendaraan(q);
+        ArrayList<Kendaraan> kendaraan = kendaraanService.getListKendaraan(q);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
@@ -390,7 +387,7 @@ public final class AdminPageController implements MouseListener, ItemListener {
         if (src.getName().equals("statusCB") && e.getStateChange() == ItemEvent.SELECTED) {
             adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
-                infoKendaraanService.updateStatus(idKendaraan, src.getSelectedIndex());
+                kendaraanService.updateStatus(idKendaraan, src.getSelectedIndex());
             } catch (SQLException ex) {
                 Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
             }

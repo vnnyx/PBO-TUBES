@@ -134,7 +134,7 @@ public class Repository extends Database {
     }
    
     
-    public ArrayList<Kendaraan> getListKendaraan(String q) throws SQLException {
+    public ArrayList<Kendaraan> getListKendaraanRepo(String q) throws SQLException {
          ArrayList<Kendaraan> kendaraan = new ArrayList<>();
         connectDB();
         String sql = "SELECT * FROM kendaraan";
@@ -170,7 +170,7 @@ public class Repository extends Database {
         return kendaraan;
     }
     
-    public void deleteKendaraan(int idKendaraan) throws SQLException {
+    public void deleteKendaraanRepo(int idKendaraan) throws SQLException {
      
         connectDB();
         String query = "DELETE FROM kendaraan WHERE id='%d'";
@@ -231,7 +231,7 @@ public class Repository extends Database {
       
       
       
-      public Kendaraan getKendaraanByID(int id) throws SQLException {
+      public Kendaraan getKendaraanByIDRepo(int id) throws SQLException {
         Kendaraan kendaraan = null;
         connectDB();
         String sql = "SELECT * FROM kendaraan WHERE id=%d";
