@@ -326,7 +326,7 @@ public class AdminView extends javax.swing.JFrame {
         subTextDaftarSukses.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         subTextDaftarSukses.setText("kendaraan telah berhasil didaftarkan dan akan siap untuk direntalkan");
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sukses.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/animation_300_kyv7x5sa.gif"))); // NOI18N
 
         subText1.setText("Kamu dapat menyunting data dan informasi dari kendaraan yang telah ");
 
@@ -348,18 +348,18 @@ public class AdminView extends javax.swing.JFrame {
             .addGroup(nextDaftarBtnLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel20)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         nextDaftarBtnLayout.setVerticalGroup(
             nextDaftarBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nextDaftarBtnLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(14, 14, 14)
                 .addGroup(nextDaftarBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DaftarKendaraanSuksesLayout = new javax.swing.GroupLayout(DaftarKendaraanSukses);
@@ -369,34 +369,36 @@ public class AdminView extends javax.swing.JFrame {
             .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
                 .addGroup(DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subTitleDaftarSukses, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(titleDaftarSukses)))
-                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addComponent(textDaftarSukses)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
-                .addGroup(DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1597, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(subTextDaftarSukses, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
-                        .addGap(409, 409, 409)
-                        .addComponent(jLabel17))
-                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
-                        .addGap(315, 315, 315)
-                        .addComponent(subText1))
-                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
                         .addGap(388, 388, 388)
                         .addGroup(DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nextDaftarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(subText2))))
+                            .addComponent(subText2)
+                            .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(nextDaftarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
+                .addGroup(DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subTitleDaftarSukses, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titleDaftarSukses)))
+                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(textDaftarSukses))
+                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
+                        .addGap(375, 375, 375)
+                        .addComponent(jLabel17))
+                    .addGroup(DaftarKendaraanSuksesLayout.createSequentialGroup()
+                        .addGap(321, 321, 321)
+                        .addComponent(subText1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DaftarKendaraanSuksesLayout.setVerticalGroup(
             DaftarKendaraanSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,15 +413,15 @@ public class AdminView extends javax.swing.JFrame {
                 .addComponent(textDaftarSukses, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(subTextDaftarSukses, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(subText1)
                 .addGap(18, 18, 18)
                 .addComponent(subText2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(nextDaftarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         ListKendaraan.setBackground(new java.awt.Color(255, 255, 255));

@@ -77,7 +77,7 @@ public class LoginController extends Database implements ActionListener {
         if (view_login.getLihatPassword().isSelected()) {
             view_login.getPassword().setEchoChar((char) 0);
         } else {
-            view_login.getPassword().setEchoChar('*');
+            view_login.getPassword().setEchoChar('•');
         }
     }
     
