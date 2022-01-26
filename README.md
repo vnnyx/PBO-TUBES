@@ -1,6 +1,6 @@
 # Rentalee
 
-Apikasi rental kendaraan
+Aplikasi rental kendaraan
 
 ## Installation
 
