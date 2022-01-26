@@ -142,6 +142,8 @@ public class PenyewaPageView extends javax.swing.JFrame {
         lihatRiwayatRental = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
         riwayat = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         previousPage1 = new javax.swing.JPanel();
@@ -211,12 +213,12 @@ public class PenyewaPageView extends javax.swing.JFrame {
             .addGroup(katalog_KendaraanLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(katalogKendaraanTxt)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         katalog_KendaraanLayout.setVerticalGroup(
             katalog_KendaraanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, katalog_KendaraanLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(katalogKendaraanTxt)
                 .addGap(18, 18, 18))
         );
@@ -246,14 +248,14 @@ public class PenyewaPageView extends javax.swing.JFrame {
             .addGroup(riwayatRentalLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(riwataRentalTxt)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         riwayatRentalLayout.setVerticalGroup(
             riwayatRentalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(riwayatRentalLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(riwataRentalTxt)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
@@ -272,7 +274,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
         exitBtnLayout.setHorizontalGroup(
             exitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitBtnLayout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
@@ -405,7 +407,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(hargaKendaraan1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(harian1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                         .addComponent(jmlPenumpang1)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel11)))
@@ -425,7 +427,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(harian1)
                         .addComponent(jmlPenumpang1)
                         .addComponent(jLabel4)))
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         PanelGambar2.setBackground(new java.awt.Color(255, 255, 255));
@@ -471,7 +473,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(hargaKendaraan2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(harian2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                         .addComponent(jmlPenumpang2)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel17)))
@@ -491,7 +493,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(harian2)
                         .addComponent(jmlPenumpang2)
                         .addComponent(jLabel9)))
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         PanelGambar3.setBackground(new java.awt.Color(255, 255, 255));
@@ -537,7 +539,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(hargaKendaraan3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(harian3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                         .addComponent(jmlPenumpang3)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel23)))
@@ -557,7 +559,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(harian3)
                         .addComponent(jmlPenumpang3)
                         .addComponent(jLabel10)))
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         previousPage.setBackground(new java.awt.Color(255, 255, 255));
@@ -583,12 +585,12 @@ public class PenyewaPageView extends javax.swing.JFrame {
             .addGroup(previousPageLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(prev)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         previousPageLayout.setVerticalGroup(
             previousPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, previousPageLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(prev)
                 .addGap(11, 11, 11))
         );
@@ -613,14 +615,14 @@ public class PenyewaPageView extends javax.swing.JFrame {
         nextPageLayout.setHorizontalGroup(
             nextPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPageLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(next)
                 .addGap(29, 29, 29))
         );
         nextPageLayout.setVerticalGroup(
             nextPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPageLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(next)
                 .addGap(11, 11, 11))
         );
@@ -1003,7 +1005,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                 .addComponent(jLabel40)
                 .addGap(20, 20, 20)
                 .addComponent(hargaCheckout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
                 .addComponent(checkoutRental, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
@@ -1097,7 +1099,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Pembayaran.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/notif.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/KendaraanBerhasil.png"))); // NOI18N
 
         lihatRiwayatRental.setBackground(new java.awt.Color(0, 63, 130));
         lihatRiwayatRental.setPreferredSize(new java.awt.Dimension(301, 72));
@@ -1117,7 +1119,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                 .addComponent(jLabel42)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel43)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         lihatRiwayatRentalLayout.setVerticalGroup(
             lihatRiwayatRentalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1128,6 +1130,10 @@ public class PenyewaPageView extends javax.swing.JFrame {
                     .addComponent(jLabel43))
                 .addGap(24, 24, 24))
         );
+
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/animation_300_kyv7x5sa.gif"))); // NOI18N
+
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Kamu dapat melihat status dan riwayat kendaraan yang telah kamu rental dengan menuju tombol dibawah.png"))); // NOI18N
 
         javax.swing.GroupLayout popupSuksesLayout = new javax.swing.GroupLayout(popupSukses);
         popupSukses.setLayout(popupSuksesLayout);
@@ -1145,14 +1151,19 @@ public class PenyewaPageView extends javax.swing.JFrame {
                         .addComponent(jLabel41)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
-                .addGap(236, 236, 236)
+                .addGap(227, 227, 227)
                 .addGroup(popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel50)
+                            .addComponent(jLabel2))
                         .addGap(179, 179, 179))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
                         .addComponent(lihatRiwayatRental, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(261, 261, 261))))
+                        .addGap(250, 250, 250))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popupSuksesLayout.createSequentialGroup()
+                        .addComponent(jLabel49)
+                        .addGap(260, 260, 260))))
         );
         popupSuksesLayout.setVerticalGroup(
             popupSuksesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1166,9 +1177,13 @@ public class PenyewaPageView extends javax.swing.JFrame {
                 .addComponent(jLabel32)
                 .addGap(43, 43, 43)
                 .addComponent(jLabel2)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel50)
+                .addGap(18, 18, 18)
                 .addComponent(lihatRiwayatRental, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         mainPanel.add(popupSukses, "card5");
@@ -1200,12 +1215,12 @@ public class PenyewaPageView extends javax.swing.JFrame {
             .addGroup(previousPage1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(prev1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         previousPage1Layout.setVerticalGroup(
             previousPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, previousPage1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(prev1)
                 .addGap(11, 11, 11))
         );
@@ -1230,14 +1245,14 @@ public class PenyewaPageView extends javax.swing.JFrame {
         nextPage1Layout.setHorizontalGroup(
             nextPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPage1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(next1)
                 .addGap(29, 29, 29))
         );
         nextPage1Layout.setVerticalGroup(
             nextPage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPage1Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(next1)
                 .addGap(11, 11, 11))
         );
@@ -1300,7 +1315,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                 .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cardPanelLayout.createSequentialGroup()
                         .addComponent(namaKendaraan1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
                         .addGroup(cardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -1347,7 +1362,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                                 .addComponent(jLabel46)
                                 .addComponent(tglSelesai)))
                         .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cardPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -1408,7 +1423,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                 .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cardPanel1Layout.createSequentialGroup()
                         .addComponent(namaKendaraan2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                         .addGroup(cardPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel53)
                             .addComponent(jLabel54))
@@ -1454,7 +1469,7 @@ public class PenyewaPageView extends javax.swing.JFrame {
                             .addComponent(status1))
                         .addGap(96, 96, 96))
                     .addComponent(image1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout riwayatLayout = new javax.swing.GroupLayout(riwayat);
@@ -1709,7 +1724,9 @@ public class PenyewaPageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
