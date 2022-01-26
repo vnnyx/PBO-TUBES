@@ -30,8 +30,8 @@ public class PenyewaPageController implements MouseListener, ActionListener {
 
     private int total_page_katalog;
     private int total_page_riwayat;
-    private int page_katalog = 1;
-    private int page_riwayat = 1;
+    private int page_katalog;
+    private int page_riwayat;
     private PenyewaPageView view_penyewa;
     private String username;
     private String email;
@@ -49,6 +49,8 @@ public class PenyewaPageController implements MouseListener, ActionListener {
         view_penyewa = new PenyewaPageView();
         penyewaPageService = new PenyewaPageService();
         kendaraanService = new KendaraanService();
+        page_katalog = 1;
+        page_riwayat = 1;
         repo = new Repository();
         helper = new Helper();
         view_penyewa.setVisible(true);
