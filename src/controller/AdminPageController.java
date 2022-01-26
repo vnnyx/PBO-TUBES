@@ -35,12 +35,12 @@ import view.InformasiKendaraan;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author aryuska
  */
 public final class AdminPageController extends Database implements MouseListener, ItemListener {
+
     private InformasiKendaraanService infoKendaraanService;
     private InformasiKendaraan viewInfoKendaraan;
     private InfoCard[] infoCard;
@@ -74,7 +74,7 @@ public final class AdminPageController extends Database implements MouseListener
     public void setImageURL3(String imageURL3) {
         this.imageURL3 = imageURL3;
     }
-    
+
     public AdminPageController() throws Exception {
         infoKendaraanService = new InformasiKendaraanService();
         helper = new Helper();
@@ -84,7 +84,6 @@ public final class AdminPageController extends Database implements MouseListener
         adminView.addMouseListener(this);
         createList("");
     }
-   
 
     public void daftarKendaraanActionPerformed() throws IOException, SQLException {
         String getNama = adminView.getNamaKendaraan().getText();
@@ -96,99 +95,97 @@ public final class AdminPageController extends Database implements MouseListener
         File getImage1 = adminView.getImage1();
         File getImage2 = adminView.getImage2();
         File getImage3 = adminView.getImage3();
-                
+
         daftarKendaraanService.daftarKendaraan(getNama, getMerk, getWarna, getCC, getHarga, getKapasitas, getImage1, getImage2, getImage3);
     }
 
-
     @Override
     public void mousePressed(MouseEvent e) {
-       JPanel src = (JPanel)e.getSource();
-       String btnName = src.getName();
-       System.out.println(btnName);
-       if (btnName.equals("searchBtn")) {
-           String search = adminView.getSearchField().getText();
-           adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-           adminView.getjPanelItem().removeAll();
-           try {  
-              
-              createList(search);
-             
+        JPanel src = (JPanel) e.getSource();
+        String btnName = src.getName();
+        System.out.println(btnName);
+        if (btnName.equals("searchBtn")) {
+            String search = adminView.getSearchField().getText();
+            adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            adminView.getjPanelItem().removeAll();
+            try {
 
-           } catch (Exception ex) {
-               Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           adminView.setCursor(Cursor.getDefaultCursor());
-       }else if (btnName.equals("saveBtn")){
-           if(adminView.getTextBtnFormKendaraan().getText().equals("Selanjutnya")){
+                createList(search);
+
+            } catch (Exception ex) {
+                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            adminView.setCursor(Cursor.getDefaultCursor());
+        } else if (btnName.equals("saveBtn")) {
+            if (adminView.getTextBtnFormKendaraan().getText().equals("Selanjutnya")) {
                 try {
                     adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     daftarKendaraanActionPerformed();
                     adminView.getjPanelItem().removeAll();
                     createList("");
                     adminView.setCursor(Cursor.getDefaultCursor());
-               } catch (IOException ex) {
-                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-               } catch (SQLException ex) {
-                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-               } catch (Exception ex) {
-                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               adminView.getDaftarKendaraan().setVisible(false);
-               adminView.getDaftarKendaraanSukses().setVisible(true);
-           }else if (adminView.getTextBtnFormKendaraan().getText().equals("Simpan Perubahan")){
-               System.out.println("BUTTON UPDATE");
-               adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-               try {
-                   updateKendaraan(Integer.parseInt(adminView.getIdKendaraan().getText()));
-               } catch (IOException ex) {
-                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-               } catch (SQLException ex) {
-                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               adminView.setCursor(Cursor.getDefaultCursor());
-               adminView.getDaftarKendaraan().setVisible(false);
-               adminView.getjPanelItem().removeAll();
-               adminView.getListKendaraan().setVisible(true);
-               try {
-                   createList("");
-               } catch (Exception ex) {
-                   Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-               }
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                adminView.getDaftarKendaraan().setVisible(false);
+                adminView.getDaftarKendaraanSukses().setVisible(true);
+            } else if (adminView.getTextBtnFormKendaraan().getText().equals("Simpan Perubahan")) {
+                System.out.println("BUTTON UPDATE");
+                adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                try {
+                    updateKendaraan(Integer.parseInt(adminView.getIdKendaraan().getText()));
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                adminView.setCursor(Cursor.getDefaultCursor());
+                adminView.getDaftarKendaraan().setVisible(false);
+                adminView.getjPanelItem().removeAll();
+                adminView.getListKendaraan().setVisible(true);
+                try {
+                    createList("");
+                } catch (Exception ex) {
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 adminView.setCursor(Cursor.getDefaultCursor());
 //               
-           }
-        
-       }else if (btnName.equals("nextDaftarBtn")){
-           adminView.getDaftarKendaraanSukses().setVisible(false);
-           adminView.getListKendaraan().setVisible(true);
-           adminView.getjPanelItem().removeAll();
-           adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-           try {
-               createList("");
-           } catch (Exception ex) {
-               Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           adminView.setCursor(Cursor.getDefaultCursor());
-       }else if(btnName.equals("hapusBtn")){
-            InfoCard pressedCard = (InfoCard)src.getParent();
+            }
+
+        } else if (btnName.equals("nextDaftarBtn")) {
+            adminView.getDaftarKendaraanSukses().setVisible(false);
+            adminView.getListKendaraan().setVisible(true);
+            adminView.getjPanelItem().removeAll();
+            adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            try {
+                createList("");
+            } catch (Exception ex) {
+                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            adminView.setCursor(Cursor.getDefaultCursor());
+        } else if (btnName.equals("hapusBtn")) {
+            InfoCard pressedCard = (InfoCard) src.getParent();
             int idKendaraan = Integer.parseInt(pressedCard.getId().getText());
-            int opsi = JOptionPane.showConfirmDialog(src, "Benarkah anda ingin menghapus data ini ?", 
-                        "Hapus Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        
-            if (opsi == JOptionPane.YES_OPTION){
+            int opsi = JOptionPane.showConfirmDialog(src, "Benarkah anda ingin menghapus data ini ?",
+                    "Hapus Data", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+            if (opsi == JOptionPane.YES_OPTION) {
                 adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 deleteKendaraan(idKendaraan);
                 try {
-                       adminView.getjPanelItem().removeAll();
-                       createList("");
+                    adminView.getjPanelItem().removeAll();
+                    createList("");
                 } catch (Exception ex) {
-                       Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                   adminView.setCursor(Cursor.getDefaultCursor());
+                adminView.setCursor(Cursor.getDefaultCursor());
             }
-       }else if (btnName.equals("suntingBtn")){
-            InfoCard pressedCard = (InfoCard)src.getParent();
+        } else if (btnName.equals("suntingBtn")) {
+            InfoCard pressedCard = (InfoCard) src.getParent();
             int idKendaraan = Integer.parseInt(pressedCard.getId().getText());
             adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
@@ -201,54 +198,57 @@ public final class AdminPageController extends Database implements MouseListener
                 Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
             }
             adminView.setCursor(Cursor.getDefaultCursor());
-       }
+        }
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
         Object src = e.getSource();
-        if(src.equals(adminView.getExitBtn())){
+        if (src.equals(adminView.getExitBtn())) {
             exitBtnClicked();
         }
     }
-    
-    public void exitBtnClicked(){
-        new LoginController();
-        adminView.dispose();
+
+    public void exitBtnClicked() {
+        int opsi = JOptionPane.showConfirmDialog(adminView, "Anda yakin ingin Keluar ?",
+                "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (opsi == JOptionPane.YES_OPTION) {
+            adminView.dispose();
+            new LoginController();
+        }
     }
-    
 
     @Override
     public void mouseReleased(MouseEvent e) {
-     
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-       
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-       
+
     }
-    
-    public void deleteKendaraan(int idKendaraan){
+
+    public void deleteKendaraan(int idKendaraan) {
         try {
             infoKendaraanService.deleteKendaraan(idKendaraan);
             viewInfoKendaraan.getjPanelItem().removeAll();
-            createList("");     
+            createList("");
         } catch (SQLException ex) {
             Logger.getLogger(InformasiKendaraanService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    public void showDataKendaraan(int id) throws SQLException, Exception{
+
+    public void showDataKendaraan(int id) throws SQLException, Exception {
         Kendaraan data = infoKendaraanService.getKendaraanByID(id);
- 
+
         adminView.getTitleFormKendaraan().setText("Update Kendaraan");
         adminView.getSubTitleFormKendaraan().setText("Sunting dan edit item kendaraan yang telah didaftarkan");
         adminView.getIconArrowFormKendaraan().setIcon(null);
@@ -267,20 +267,19 @@ public final class AdminPageController extends Database implements MouseListener
         adminView.getIdKendaraan().setText(String.valueOf(id));
         adminView.getIdKendaraan().setVisible(false);
         setKapasitas(String.valueOf(data.getKapasitas()));
-        
+
         setImageURL1(data.getFoto_1());
         setImageURL2(data.getFoto_2());
         setImageURL3(data.getFoto_3());
-        
-    }   
-    
-    
-    public void updateKendaraan(int id) throws IOException, SQLException{
-        infoKendaraanService.updateKendaraan(adminView.getNamaKendaraan().getText(), adminView.getMerkKendaraan().getSelectedItem(), 
-                adminView.getWarnaKendaraan().getText(), adminView.getCcKendaraan().getSelectedItem(), adminView.getHargaKendaraan().getText(), 
-                adminView.getKapasitas(), adminView.getImage1(), adminView.getImage2(), adminView.getImage2(), 
-                getImageURL1(), getImageURL2(), getImageURL3(),id);
-        
+
+    }
+
+    public void updateKendaraan(int id) throws IOException, SQLException {
+        infoKendaraanService.updateKendaraan(adminView.getNamaKendaraan().getText(), adminView.getMerkKendaraan().getSelectedItem(),
+                adminView.getWarnaKendaraan().getText(), adminView.getCcKendaraan().getSelectedItem(), adminView.getHargaKendaraan().getText(),
+                adminView.getKapasitas(), adminView.getImage1(), adminView.getImage2(), adminView.getImage2(),
+                getImageURL1(), getImageURL2(), getImageURL3(), id);
+
         adminView.getTitleFormKendaraan().setText("Update Kendaraan");
         adminView.getSubTitleFormKendaraan().setText("Sunting dan edit item kendaraan yang telah didaftarkan");
         adminView.getIconArrowFormKendaraan().setIcon(null);
@@ -300,8 +299,8 @@ public final class AdminPageController extends Database implements MouseListener
         adminView.getIdKendaraan().setVisible(false);
         resetKapasitas();
     }
-    
-    public void resetKapasitas(){
+
+    public void resetKapasitas() {
         adminView.getKapasitas4().setBackground(Color.white);
         adminView.getKapasitas6().setBackground(Color.white);
         adminView.getKapasitas2().setBackground(Color.white);
@@ -309,23 +308,23 @@ public final class AdminPageController extends Database implements MouseListener
         adminView.getLabel4org().setForeground(Color.black);
         adminView.getLabel6org().setForeground(Color.black);
     }
-    
-    public void setKapasitas(String kapasitas){
-        if(kapasitas.equals("2")){
+
+    public void setKapasitas(String kapasitas) {
+        if (kapasitas.equals("2")) {
             adminView.getKapasitas4().setBackground(Color.white);
             adminView.getKapasitas6().setBackground(Color.white);
             adminView.getKapasitas2().setBackground(Color.decode("#003F82"));
             adminView.getLabel2org().setForeground(Color.white);
             adminView.getLabel4org().setForeground(Color.black);
             adminView.getLabel6org().setForeground(Color.black);
-        }else if(kapasitas.equals("4")){
+        } else if (kapasitas.equals("4")) {
             adminView.getKapasitas4().setBackground(Color.decode("#003F82"));
             adminView.getKapasitas6().setBackground(Color.white);
             adminView.getKapasitas2().setBackground(Color.white);
             adminView.getLabel4org().setForeground(Color.white);
             adminView.getLabel2org().setForeground(Color.black);
             adminView.getLabel6org().setForeground(Color.black);
-        }else{
+        } else {
             adminView.getKapasitas4().setBackground(Color.white);
             adminView.getKapasitas6().setBackground(Color.decode("#003F82"));
             adminView.getKapasitas2().setBackground(Color.white);
@@ -334,59 +333,58 @@ public final class AdminPageController extends Database implements MouseListener
             adminView.getLabel2org().setForeground(Color.black);
         }
     }
-    
+
     public void createList(String q) throws SQLException, Exception {
-        
+
         ArrayList<Kendaraan> kendaraan = infoKendaraanService.getListKendaraan(q);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        
-        if(kendaraan.isEmpty()){
-           JLabel label = new JLabel();
-           BufferedImage img = ImageIO.read(getClass().getResource("/icon/not-found.jpg"));
-           Image dimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
-           ImageIcon icon = new ImageIcon(dimg);
-           label.setIcon(icon);
-           adminView.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-           adminView.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-           adminView.getjPanelItem().add(label);
-        }else{
-           adminView.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-           adminView.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-           infoCard = new InfoCard[kendaraan.size()];
-            for (int i=0;i<kendaraan.size();i++) {
+
+        if (kendaraan.isEmpty()) {
+            JLabel label = new JLabel();
+            BufferedImage img = ImageIO.read(getClass().getResource("/icon/not-found.jpg"));
+            Image dimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(dimg);
+            label.setIcon(icon);
+            adminView.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            adminView.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+            adminView.getjPanelItem().add(label);
+        } else {
+            adminView.getScroll().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            adminView.getScroll().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+            infoCard = new InfoCard[kendaraan.size()];
+            for (int i = 0; i < kendaraan.size(); i++) {
                 Kendaraan v = kendaraan.get(i);
-                infoCard[i] = new InfoCard(v.getId_kendaraan(),v.getNama_kendaraan(), v.getWarna_kendaraan(), v.getMerk_kendaraan(), v.getKapasitas(), v.getHarga_sewa(), v.getStatus(), v.getFoto_1()); 
-                    infoCard[i].addMouseListener(this);
-                    infoCard[i].addItemListener(this);
-                adminView.getjPanelItem().add(infoCard[i],gbc);
-            } 
+                infoCard[i] = new InfoCard(v.getId_kendaraan(), v.getNama_kendaraan(), v.getWarna_kendaraan(), v.getMerk_kendaraan(), v.getKapasitas(), v.getHarga_sewa(), v.getStatus(), v.getFoto_1());
+                infoCard[i].addMouseListener(this);
+                infoCard[i].addItemListener(this);
+                adminView.getjPanelItem().add(infoCard[i], gbc);
+            }
         }
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-      JComboBox src = (JComboBox)e.getSource();
-      InfoCard pressedCard = (InfoCard)src.getParent();
-      int idKendaraan = Integer.parseInt(pressedCard.getId().getText());
-      
-      
-      if(src.getName().equals("statusCB") && e.getStateChange() == ItemEvent.SELECTED){
-          adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-          try {
-              infoKendaraanService.updateStatus(idKendaraan, src.getSelectedIndex());
-          } catch (SQLException ex) {
-              Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-          }
-          
-          adminView.getjPanelItem().removeAll();
-          try {
-              createList("");
-          } catch (Exception ex) {
-              Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
-          }
-          adminView.setCursor(Cursor.getDefaultCursor());
-      }
+        JComboBox src = (JComboBox) e.getSource();
+        InfoCard pressedCard = (InfoCard) src.getParent();
+        int idKendaraan = Integer.parseInt(pressedCard.getId().getText());
+
+        if (src.getName().equals("statusCB") && e.getStateChange() == ItemEvent.SELECTED) {
+            adminView.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            try {
+                infoKendaraanService.updateStatus(idKendaraan, src.getSelectedIndex());
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            adminView.getjPanelItem().removeAll();
+            try {
+                createList("");
+            } catch (Exception ex) {
+                Logger.getLogger(AdminPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            adminView.setCursor(Cursor.getDefaultCursor());
+        }
     }
-    
+
 }

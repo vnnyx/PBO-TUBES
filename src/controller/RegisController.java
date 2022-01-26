@@ -76,7 +76,10 @@ public class RegisController extends Database implements ActionListener {
         String username = view_regis1.getUsername().getText();
         String password = String.valueOf(view_regis1.getPassword().getPassword());
         String confirm_password = String.valueOf(view_regis1.getConfirm_password().getPassword());
-        if (!password.equals(confirm_password)) {
+       
+        if(username.equals("") || password.equals("") || view_regis1.getEmail().getText().isEmpty()){
+              JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+        }else if (!password.equals(confirm_password)) {
             JOptionPane.showMessageDialog(null, "Password tidak sesuai");
         } else {
             Penyewa penyewa = new Penyewa(username, confirm_password);
@@ -96,15 +99,20 @@ public class RegisController extends Database implements ActionListener {
     }
 
     public void daftarBtnPerformed() {
-        updateUser();
-        try {
-            repo.addUser(model_penyewa);
-            JOptionPane.showMessageDialog(null, "Sukses daftar akun");
-            view_regis2.dispose();
-            new LoginController();
+        if (view_regis2.getAlamat().getText().isEmpty() || view_regis2.getPathFoto().getText().equals("Unggah foto diri")
+                || view_regis2.getPathKTP().getText().equals("Unggah foto KTP")){
+            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+        }else{
+            updateUser();
+            try {
+                repo.addUser(model_penyewa);
+                JOptionPane.showMessageDialog(null, "Sukses daftar akun");
+                view_regis2.dispose();
+                new LoginController();
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
 
     }

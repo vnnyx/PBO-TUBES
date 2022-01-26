@@ -97,23 +97,26 @@ public class PenyewaPageController implements MouseListener, ActionListener {
             rentalKendaraanClicked();
         } else if (src.equals(view_penyewa.getExitBtn())) {
             exitBtnClicked();
-        } else if (src.equals(view_penyewa.getBranchKatalog()) || src.equals(view_penyewa.getBranchKatalog1())) {
+        } else if (src.equals(view_penyewa.getBranchKatalog()) || src.equals(view_penyewa.getBranchKatalog1()) || src.equals(view_penyewa.getBranchKatalog2())) {
             branchKatalogClicked();
-        } else if (src.equals(view_penyewa.getBranchDetailKendaraan())) {
+        } else if (src.equals(view_penyewa.getBranchDetailKendaraan()) || src.equals(view_penyewa.getBranchDetailKendaraan1())) {
             branchDetailClicked();
         } else if (src.equals(view_penyewa.getLihatRiwayatRental()) || src.equals(view_penyewa.getRiwayatRental())) {
             riwayatRentalClicked();
         } else if (src.equals(view_penyewa.getKatalog_Kendaraan())) {
             katalogKendaraanClicked();
         } else if (src.equals(view_penyewa.getNextPage1())) {
+            System.out.println(page_riwayat);
+            System.out.println(total_page_riwayat);
             if (page_riwayat <= total_page_riwayat && page_riwayat >= 1) {
+         
                 riwayatNextClicked();
             }
         } else if (src.equals(view_penyewa.getPreviousPage1())) {
             if (page_riwayat > 1) {
                 riwayatPrevClicked();
             }
-        }
+        } 
     }
 
     @Override
@@ -292,6 +295,7 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     public void riwayatNextClicked() {
         page_riwayat += 1;
         int offset_riwayat = (page_riwayat - 1) * 2;
+        System.out.println(offset_riwayat);
         view_penyewa.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             penyewaPageService.riwayatShow(view_penyewa, repo.getDataTransaksi(offset_riwayat, username));
@@ -308,17 +312,21 @@ public class PenyewaPageController implements MouseListener, ActionListener {
     }
 
     public void branchKatalogClicked() {
-        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getKatalogKendaraan());
     }
 
     public void branchDetailClicked() {
-        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getRiwayat());
+        penyewaPageService.swapPanel(view_penyewa, view_penyewa.getDetailKendaraan());
     }
 
     public void exitBtnClicked() {
-        JOptionPane.showMessageDialog(null, "Berhasil keluar");
-        view_penyewa.dispose();
-        new LoginController();
+        int opsi = JOptionPane.showConfirmDialog(view_penyewa, "Anda yakin ingin Keluar ?", 
+                        "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+            if (opsi == JOptionPane.YES_OPTION){
+                view_penyewa.dispose();
+                new LoginController();
+            }
     }
 
     @Override

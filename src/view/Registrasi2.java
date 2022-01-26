@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -21,6 +22,12 @@ public class Registrasi2 extends javax.swing.JFrame {
      */
     public Registrasi2() {
         initComponents();
+        unggahKTPBtn.setOpaque(true);
+        unggahKTPBtn.setBackground(Color.decode("#FFD852"));
+        unggahFotoBtn.setOpaque(true);
+        unggahFotoBtn.setBackground(Color.decode("#FFD852"));
+        daftarBtn.setOpaque(true);
+        daftarBtn.setBackground(Color.decode("#003F82"));
     }
 
     /**
@@ -80,6 +87,7 @@ public class Registrasi2 extends javax.swing.JFrame {
         daftarBtn.setText("Daftar");
         daftarBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         daftarBtn.setFocusable(false);
+        daftarBtn.setOpaque(true);
 
         FotoKTP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         FotoKTP.setForeground(new java.awt.Color(51, 51, 51));
@@ -108,6 +116,8 @@ public class Registrasi2 extends javax.swing.JFrame {
         unggahKTPBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         unggahKTPBtn.setForeground(new java.awt.Color(255, 255, 255));
         unggahKTPBtn.setText("Unggah Foto");
+        unggahKTPBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        unggahKTPBtn.setOpaque(true);
 
         pathKTP.setText("Unggah foto KTP");
         pathKTP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -121,6 +131,8 @@ public class Registrasi2 extends javax.swing.JFrame {
         unggahFotoBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         unggahFotoBtn.setForeground(new java.awt.Color(255, 255, 255));
         unggahFotoBtn.setText("Unggah Foto");
+        unggahFotoBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        unggahFotoBtn.setOpaque(true);
 
         backBtn.setBackground(new java.awt.Color(255, 255, 255));
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chevron-left 1 (2).png"))); // NOI18N

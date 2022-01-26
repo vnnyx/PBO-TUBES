@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import service.PenyewaPageService;
 
 /**
  *
@@ -197,12 +198,6 @@ public class AdminView extends javax.swing.JFrame {
         updateKendaraan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateKendaraanMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                updateKendaraanMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                updateKendaraanMouseExited(evt);
             }
         });
 
@@ -868,6 +863,7 @@ public class AdminView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void daftarKendaraanMouseEntered(java.awt.event.MouseEvent evt) {
@@ -878,14 +874,6 @@ public class AdminView extends javax.swing.JFrame {
         // TODO add your handling code here:
         resetColor(daftarKendaraan);
     }
-
-    private void updateKendaraanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseEntered
-        setColor(updateKendaraan);
-    }//GEN-LAST:event_updateKendaraanMouseEntered
-
-    private void updateKendaraanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseExited
-        resetColor(updateKendaraan);
-    }//GEN-LAST:event_updateKendaraanMouseExited
 
     private void setClicked(JPanel p1, JPanel p2, JLabel l1, JLabel l2) {
         p1.setBackground(new Color(0, 43, 110));
@@ -996,10 +984,14 @@ public class AdminView extends javax.swing.JFrame {
         label2org.setForeground(Color.black);
         kapasitas = "6";
     }//GEN-LAST:event_kapasitas6MousePressed
-
+    
+    
+    
     private void daftarKendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarKendaraanMouseClicked
+         ListKendaraan.setVisible(false);
+         listPanel.setVisible(false);
+         jPanelItem.setVisible(false);
         DaftarKendaraan.setVisible(true);
-        ListKendaraan.setVisible(false);
         setClicked(daftarKendaraan, updateKendaraan, jLabel10, riwataRentalTxt);
     }//GEN-LAST:event_daftarKendaraanMouseClicked
 
@@ -1008,8 +1000,10 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_riwataRentalTxtMouseClicked
 
     private void updateKendaraanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKendaraanMouseClicked
-        ListKendaraan.setVisible(true);
         DaftarKendaraan.setVisible(false);
+        ListKendaraan.setVisible(true);
+            listPanel.setVisible(true);
+         jPanelItem.setVisible(true);
         setClicked(updateKendaraan, daftarKendaraan, riwataRentalTxt, jLabel10);
     }//GEN-LAST:event_updateKendaraanMouseClicked
 

@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -21,6 +22,8 @@ public class Registrasi1 extends javax.swing.JFrame {
      */
     public Registrasi1() {
         initComponents();
+        nextBtn.setOpaque(true);
+        nextBtn.setBackground(Color.decode("#003F82"));          
     }
 
     /**

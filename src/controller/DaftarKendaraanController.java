@@ -2,20 +2,10 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import database.Database;
-import helper.Helper;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import model.Kendaraan;
-import service.DaftarKendaraanService;
-import view.DaftarKendaraanSukses;
-import view.MenuUtamaDaftarKendaraan;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

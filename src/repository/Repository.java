@@ -140,12 +140,17 @@ public class Repository extends Database {
         String sql = "SELECT * FROM kendaraan";
         
         if (!"".equals(q)){
-            sql += " WHERE LOWER(nama_kendaraan) like '%s' or LOWER(merk_kendaraan) like '%s' ";
+            sql += " WHERE LOWER(nama_kendaraan) like '%s' or LOWER(merk_kendaraan) like '%s' ORDER BY id DESC";
             sql = String.format(sql, "%"+q+"%","%"+q+"%");
             executeQuery(sql);
         }else{
+            sql += " ORDER BY id DESC";
             executeQuery(sql);
         }
+        
+
+        
+        System.out.print(sql);
         
         while (rs.next()) {
             int id_kendaraan = rs.getInt("id");
@@ -260,7 +265,7 @@ public class Repository extends Database {
         int total = transaksi.getTotal();
         connectDB();
         String query = "INSERT INTO transaksi (`nama_kendaraan`, `foto_kendaraan`, "
-                + "`username`, `lama_sewa(hari)`, `mulai_sewa`, `selesai_sewa`, `total_harga`) "
+                + "`username`, `lama_sewa_hari`, `mulai_sewa`, `selesai_sewa`, `total_harga`) "
                 + "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
         query = String.format(query, nama_kendaraan, foto_kendaraan, username, lama_sewa, mulai_sewa, selesai_sewa, total);
         execute(query);
@@ -277,7 +282,7 @@ public class Repository extends Database {
             String nama_kendaraan = rs.getString("nama_kendaraan");
             String image = rs.getString("foto_kendaraan");
             String user = rs.getString("username");
-            int lama_sewa = rs.getInt("lama_sewa(hari)");
+            int lama_sewa = rs.getInt("lama_sewa_hari");
             LocalDate mulai_sewa = rs.getDate("mulai_sewa").toLocalDate();
             LocalDate selesai_sewa = rs.getDate("selesai_sewa").toLocalDate();
             int harga_total = rs.getInt("total_harga");
@@ -297,7 +302,7 @@ public class Repository extends Database {
             String nama_kendaraan = rs.getString("nama_kendaraan");
             String image = rs.getString("foto_kendaraan");
             String user = rs.getString("username");
-            int lama_sewa = rs.getInt("lama_sewa(hari)");
+            int lama_sewa = rs.getInt("lama_sewa_hari");
             LocalDate mulai_sewa = rs.getDate("mulai_sewa").toLocalDate();
             LocalDate selesai_sewa = rs.getDate("selesai_sewa").toLocalDate();
             int harga_total = rs.getInt("total_harga");
@@ -310,8 +315,9 @@ public class Repository extends Database {
     public int getTotalDataTransaksi(String username) throws SQLException {
         connectDB();
         int total = 0;
-        String sql = "SELECT COUNT (*) FROM transaksi WHERE username='%s'";
+        String sql = "SELECT COUNT(*) FROM transaksi WHERE username='%s'";
         sql = String.format(sql, username);
+        System.out.println(sql);
         executeQuery(sql);
         rs.next();
         total = rs.getInt(1);
@@ -322,7 +328,7 @@ public class Repository extends Database {
     public int getTotalDataKendaraan() throws SQLException {
         connectDB();
         int total = 0;
-        String sql = "SELECT COUNT (*) FROM kendaraan WHERE status=1";
+        String sql = "SELECT COUNT(*) FROM kendaraan WHERE status=1";
         executeQuery(sql);
         rs.next();
         total = rs.getInt(1);
