@@ -100,7 +100,6 @@ public class Helper {
         mulai.setText(dateFormat(transaksi.getMulai_sewa()));
         selesai.setText(dateFormat(transaksi.getSelesai_sewa()));
         harga.setText(priceFormat(transaksi.getTotal()));
-//        int tgl_mulai = transaksi.getMulai_sewa();
         if(transaksi.getSelesai_sewa().isAfter(LocalDate.now()) ){
             status.setText("Sedang dirental");
             status.setForeground(new Color(47, 225, 75));
